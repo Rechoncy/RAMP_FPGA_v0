@@ -1,0 +1,17 @@
+{
+  "completed_at": "2026-09-16T22:44:22.875201+08:00",
+  "initial_plan_deleted_items": 92,
+  "supplement_deleted_items": 60,
+  "deleted_items_total": 152,
+  "deleted_bytes_total": 3127257311,
+  "retained_evidence_archive_bytes": 602912,
+  "net_bytes_after_evidence_archives": 3126654399,
+  "protected_files_checked": 463,
+  "protected_files_changed": [],
+  "note": "Supplement stopped on an empty directory after 7 deletions; exact missing targets recorded, scalar/empty-array handling fixed, remaining 53 completed. All 60 original supplement targets now absent. Initial four changed caches were re-inventoried and removed in supplement. No user data or final routed project was removed.",
+  "reports": [
+    "cleanup_result.json",
+    "cleanup_supplement_partial_items.json",
+    "cleanup_supplement_result.json"
+  ]
+}

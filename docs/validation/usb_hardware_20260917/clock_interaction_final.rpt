@@ -1,0 +1,30 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Thu Sep 17 10:41:02 2026
+| Host         : Quantum running 64-bit major release  (build 9200)
+| Command      : report_clock_interaction -file E:/Github_Project/RAMP_FPGA_v0/build/usb_hardware_20260917/clock_interaction_final.rpt
+| Design       : ramp_extended_top
+| Device       : 7a35t-fgg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Clock Interaction Report
+
+Clock Interaction Table
+-----------------------
+
+                                            WNS                            TNS Failing  TNS Total    WNS Path         Clock-Pair           Inter-Clock              
+From Clock            To Clock              Clock Edges  WNS(ns)  TNS(ns)    Endpoints    Endpoints  Requirement(ns)  Classification       Constraints              
+--------------------  --------------------  -----------  -------  -------  -----------  -----------  ---------------  -------------------  -----------------------  
+clk_out1_clk_core_ip  clk_out1_clk_core_ip  rise - rise     0.00     0.00            0        49856             5.00  Clean                Partial False Path       
+clk_out1_clk_core_ip  dac_clk_1             rise - rise     0.27     0.00            0           10             5.00  Clean                Timed                    
+clk_out1_clk_core_ip  dac_clk_2             rise - rise     0.30     0.00            0           10             5.00  Clean                Timed                    
+clk_out1_clk_core_ip  dac_clk_3             rise - rise     0.07     0.00            0           10             5.00  Clean                Timed                    
+clk_out1_clk_core_ip  dac_clk_4             rise - rise     0.27     0.00            0           10             5.00  Clean                Timed                    
+clk_out1_clk_core_ip  usb_clk               rise - rise     3.81     0.00            0           34             5.00  Ignored              Max Delay Datapath Only  
+usb_clk               clk_out1_clk_core_ip  rise - rise     2.47     0.00            0           31             5.00  Ignored              Max Delay Datapath Only  
+usb_clk               usb_clk               rise - rise     1.15     0.00            0         1000            16.67  Clean                Partial False Path       
+
+

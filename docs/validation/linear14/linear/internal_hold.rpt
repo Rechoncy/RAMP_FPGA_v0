@@ -1,0 +1,1341 @@
+All timing path bodies retained. Expanded -from/-to command header omitted.
+Original: build/linear14_validation/linear_no_legacy/internal_hold.rpt
+
+Slack (MET) :             0.056ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[103]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_1/DIADI[31]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.345%)  route 0.103ns (38.655%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.057ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.391ns
+    Source Clock Delay      (SCD):    1.051ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.635     1.051    controller/channels[3].engine/core_clk
+    SLICE_X8Y120         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[103]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y120         FDRE (Prop_fdre_C_Q)         0.164     1.215 r  controller/channels[3].engine/step_write_data_reg[103]/Q
+                         net (fo=1, routed)           0.103     1.319    controller/channels[3].engine/step_write_data[103]
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/DIADI[31]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.951     1.391    controller/channels[3].engine/core_clk
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.283     1.108    
+    RAMB36_X0Y23         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[31])
+                                                      0.155     1.263    controller/channels[3].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.263    
+                         arrival time                           1.319    
+  -------------------------------------------------------------------
+                         slack                                  0.056    
+
+Slack (MET) :             0.056ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[107]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_1/DIBDI[3]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.506%)  route 0.103ns (38.494%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.056ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.391ns
+    Source Clock Delay      (SCD):    1.052ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.636     1.052    controller/channels[3].engine/core_clk
+    SLICE_X8Y119         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[107]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y119         FDRE (Prop_fdre_C_Q)         0.164     1.216 r  controller/channels[3].engine/step_write_data_reg[107]/Q
+                         net (fo=1, routed)           0.103     1.319    controller/channels[3].engine/step_write_data[107]
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/DIBDI[3]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.951     1.391    controller/channels[3].engine/core_clk
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.283     1.108    
+    RAMB36_X0Y23         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[3])
+                                                      0.155     1.263    controller/channels[3].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.263    
+                         arrival time                           1.319    
+  -------------------------------------------------------------------
+                         slack                                  0.056    
+
+Slack (MET) :             0.057ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[25]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_0/DIADI[25]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.345%)  route 0.103ns (38.655%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.056ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.310ns
+    Source Clock Delay      (SCD):    0.977ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.561     0.977    controller/channels[0].engine/core_clk
+    SLICE_X8Y59          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[25]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y59          FDRE (Prop_fdre_C_Q)         0.164     1.141 r  controller/channels[0].engine/step_write_data_reg[25]/Q
+                         net (fo=1, routed)           0.103     1.244    controller/channels[0].engine/step_write_data[25]
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/DIADI[25]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.870     1.310    controller/channels[0].engine/core_clk
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.277     1.033    
+    RAMB36_X0Y11         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[25])
+                                                      0.155     1.188    controller/channels[0].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.188    
+                         arrival time                           1.244    
+  -------------------------------------------------------------------
+                         slack                                  0.057    
+
+Slack (MET) :             0.058ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[120]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_1/DIBDI[16]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.345%)  route 0.103ns (38.655%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.311ns
+    Source Clock Delay      (SCD):    0.979ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.563     0.979    controller/channels[0].engine/core_clk
+    SLICE_X8Y50          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[120]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y50          FDRE (Prop_fdre_C_Q)         0.164     1.143 r  controller/channels[0].engine/step_write_data_reg[120]/Q
+                         net (fo=1, routed)           0.103     1.246    controller/channels[0].engine/step_write_data[120]
+    RAMB36_X0Y10         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_1/DIBDI[16]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.871     1.311    controller/channels[0].engine/core_clk
+    RAMB36_X0Y10         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.277     1.034    
+    RAMB36_X0Y10         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[16])
+                                                      0.155     1.189    controller/channels[0].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.189    
+                         arrival time                           1.246    
+  -------------------------------------------------------------------
+                         slack                                  0.058    
+
+Slack (MET) :             0.058ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[122]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_1/DIBDI[18]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.345%)  route 0.103ns (38.655%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.311ns
+    Source Clock Delay      (SCD):    0.979ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.563     0.979    controller/channels[0].engine/core_clk
+    SLICE_X8Y50          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[122]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y50          FDRE (Prop_fdre_C_Q)         0.164     1.143 r  controller/channels[0].engine/step_write_data_reg[122]/Q
+                         net (fo=1, routed)           0.103     1.246    controller/channels[0].engine/step_write_data[122]
+    RAMB36_X0Y10         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_1/DIBDI[18]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.871     1.311    controller/channels[0].engine/core_clk
+    RAMB36_X0Y10         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.277     1.034    
+    RAMB36_X0Y10         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[18])
+                                                      0.155     1.189    controller/channels[0].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.189    
+                         arrival time                           1.246    
+  -------------------------------------------------------------------
+                         slack                                  0.058    
+
+Slack (MET) :             0.058ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[154]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_2/DIADI[10]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.345%)  route 0.103ns (38.655%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.308ns
+    Source Clock Delay      (SCD):    0.976ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.560     0.976    controller/channels[0].engine/core_clk
+    SLICE_X8Y61          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[154]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y61          FDRE (Prop_fdre_C_Q)         0.164     1.140 r  controller/channels[0].engine/step_write_data_reg[154]/Q
+                         net (fo=1, routed)           0.103     1.243    controller/channels[0].engine/step_write_data[154]
+    RAMB36_X0Y12         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_2/DIADI[10]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.868     1.308    controller/channels[0].engine/core_clk
+    RAMB36_X0Y12         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_2/CLKBWRCLK
+                         clock pessimism             -0.277     1.031    
+    RAMB36_X0Y12         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[10])
+                                                      0.155     1.186    controller/channels[0].engine/step_memory_reg_2
+  -------------------------------------------------------------------
+                         required time                         -1.186    
+                         arrival time                           1.243    
+  -------------------------------------------------------------------
+                         slack                                  0.058    
+
+Slack (MET) :             0.058ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[156]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_2/DIADI[12]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.345%)  route 0.103ns (38.655%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.308ns
+    Source Clock Delay      (SCD):    0.976ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.560     0.976    controller/channels[0].engine/core_clk
+    SLICE_X8Y61          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[156]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y61          FDRE (Prop_fdre_C_Q)         0.164     1.140 r  controller/channels[0].engine/step_write_data_reg[156]/Q
+                         net (fo=1, routed)           0.103     1.243    controller/channels[0].engine/step_write_data[156]
+    RAMB36_X0Y12         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_2/DIADI[12]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.868     1.308    controller/channels[0].engine/core_clk
+    RAMB36_X0Y12         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_2/CLKBWRCLK
+                         clock pessimism             -0.277     1.031    
+    RAMB36_X0Y12         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[12])
+                                                      0.155     1.186    controller/channels[0].engine/step_memory_reg_2
+  -------------------------------------------------------------------
+                         required time                         -1.186    
+                         arrival time                           1.243    
+  -------------------------------------------------------------------
+                         slack                                  0.058    
+
+Slack (MET) :             0.058ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[19]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_0/DIADI[19]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.268ns  (logic 0.164ns (61.116%)  route 0.104ns (38.884%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.056ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.310ns
+    Source Clock Delay      (SCD):    0.977ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.561     0.977    controller/channels[0].engine/core_clk
+    SLICE_X8Y58          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[19]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y58          FDRE (Prop_fdre_C_Q)         0.164     1.141 r  controller/channels[0].engine/step_write_data_reg[19]/Q
+                         net (fo=1, routed)           0.104     1.245    controller/channels[0].engine/step_write_data[19]
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/DIADI[19]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.870     1.310    controller/channels[0].engine/core_clk
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.277     1.033    
+    RAMB36_X0Y11         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[19])
+                                                      0.155     1.188    controller/channels[0].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.188    
+                         arrival time                           1.245    
+  -------------------------------------------------------------------
+                         slack                                  0.058    
+
+Slack (MET) :             0.058ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[31]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_0/DIADI[31]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.268ns  (logic 0.164ns (61.116%)  route 0.104ns (38.884%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.056ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.310ns
+    Source Clock Delay      (SCD):    0.977ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.561     0.977    controller/channels[0].engine/core_clk
+    SLICE_X8Y59          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[31]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y59          FDRE (Prop_fdre_C_Q)         0.164     1.141 r  controller/channels[0].engine/step_write_data_reg[31]/Q
+                         net (fo=1, routed)           0.104     1.245    controller/channels[0].engine/step_write_data[31]
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/DIADI[31]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.870     1.310    controller/channels[0].engine/core_clk
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.277     1.033    
+    RAMB36_X0Y11         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[31])
+                                                      0.155     1.188    controller/channels[0].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.188    
+                         arrival time                           1.245    
+  -------------------------------------------------------------------
+                         slack                                  0.058    
+
+Slack (MET) :             0.059ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[109]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_1/DIBDI[5]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.268ns  (logic 0.164ns (61.116%)  route 0.104ns (38.884%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.391ns
+    Source Clock Delay      (SCD):    1.053ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.637     1.053    controller/channels[3].engine/core_clk
+    SLICE_X8Y118         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[109]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y118         FDRE (Prop_fdre_C_Q)         0.164     1.217 r  controller/channels[3].engine/step_write_data_reg[109]/Q
+                         net (fo=1, routed)           0.104     1.322    controller/channels[3].engine/step_write_data[109]
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/DIBDI[5]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.951     1.391    controller/channels[3].engine/core_clk
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.283     1.108    
+    RAMB36_X0Y23         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[5])
+                                                      0.155     1.263    controller/channels[3].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.263    
+                         arrival time                           1.322    
+  -------------------------------------------------------------------
+                         slack                                  0.059    
+
+Slack (MET) :             0.059ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[111]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_1/DIBDI[7]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.268ns  (logic 0.164ns (61.116%)  route 0.104ns (38.884%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.391ns
+    Source Clock Delay      (SCD):    1.053ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.637     1.053    controller/channels[3].engine/core_clk
+    SLICE_X8Y118         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[111]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y118         FDRE (Prop_fdre_C_Q)         0.164     1.217 r  controller/channels[3].engine/step_write_data_reg[111]/Q
+                         net (fo=1, routed)           0.104     1.322    controller/channels[3].engine/step_write_data[111]
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/DIBDI[7]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.951     1.391    controller/channels[3].engine/core_clk
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.283     1.108    
+    RAMB36_X0Y23         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[7])
+                                                      0.155     1.263    controller/channels[3].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.263    
+                         arrival time                           1.322    
+  -------------------------------------------------------------------
+                         slack                                  0.059    
+
+Slack (MET) :             0.059ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[54]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_0/DIBDI[22]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.268ns  (logic 0.164ns (61.116%)  route 0.104ns (38.884%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.310ns
+    Source Clock Delay      (SCD):    0.978ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.562     0.978    controller/channels[0].engine/core_clk
+    SLICE_X8Y55          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[54]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y55          FDRE (Prop_fdre_C_Q)         0.164     1.142 r  controller/channels[0].engine/step_write_data_reg[54]/Q
+                         net (fo=1, routed)           0.104     1.246    controller/channels[0].engine/step_write_data[54]
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/DIBDI[22]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.870     1.310    controller/channels[0].engine/core_clk
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.277     1.033    
+    RAMB36_X0Y11         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[22])
+                                                      0.155     1.188    controller/channels[0].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.188    
+                         arrival time                           1.246    
+  -------------------------------------------------------------------
+                         slack                                  0.059    
+
+Slack (MET) :             0.059ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[36]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_0/DIBDI[4]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.268ns  (logic 0.164ns (61.116%)  route 0.104ns (38.884%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.310ns
+    Source Clock Delay      (SCD):    0.978ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.562     0.978    controller/channels[0].engine/core_clk
+    SLICE_X8Y55          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[36]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y55          FDRE (Prop_fdre_C_Q)         0.164     1.142 r  controller/channels[0].engine/step_write_data_reg[36]/Q
+                         net (fo=1, routed)           0.104     1.246    controller/channels[0].engine/step_write_data[36]
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/DIBDI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.870     1.310    controller/channels[0].engine/core_clk
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.277     1.033    
+    RAMB36_X0Y11         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[4])
+                                                      0.155     1.188    controller/channels[0].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.188    
+                         arrival time                           1.246    
+  -------------------------------------------------------------------
+                         slack                                  0.059    
+
+Slack (MET) :             0.059ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[38]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_0/DIBDI[6]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.268ns  (logic 0.164ns (61.116%)  route 0.104ns (38.884%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.310ns
+    Source Clock Delay      (SCD):    0.978ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.562     0.978    controller/channels[0].engine/core_clk
+    SLICE_X8Y55          FDRE                                         r  controller/channels[0].engine/step_write_data_reg[38]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y55          FDRE (Prop_fdre_C_Q)         0.164     1.142 r  controller/channels[0].engine/step_write_data_reg[38]/Q
+                         net (fo=1, routed)           0.104     1.246    controller/channels[0].engine/step_write_data[38]
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/DIBDI[6]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.870     1.310    controller/channels[0].engine/core_clk
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.277     1.033    
+    RAMB36_X0Y11         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[6])
+                                                      0.155     1.188    controller/channels[0].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.188    
+                         arrival time                           1.246    
+  -------------------------------------------------------------------
+                         slack                                  0.059    
+
+Slack (MET) :             0.060ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[160]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_2/DIADI[16]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.345%)  route 0.103ns (38.655%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.053ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.383ns
+    Source Clock Delay      (SCD):    1.047ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.631     1.047    controller/channels[3].engine/core_clk
+    SLICE_X8Y125         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[160]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y125         FDRE (Prop_fdre_C_Q)         0.164     1.211 r  controller/channels[3].engine/step_write_data_reg[160]/Q
+                         net (fo=1, routed)           0.103     1.315    controller/channels[3].engine/step_write_data[160]
+    RAMB36_X0Y25         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_2/DIADI[16]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.943     1.383    controller/channels[3].engine/core_clk
+    RAMB36_X0Y25         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_2/CLKBWRCLK
+                         clock pessimism             -0.283     1.100    
+    RAMB36_X0Y25         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[16])
+                                                      0.155     1.255    controller/channels[3].engine/step_memory_reg_2
+  -------------------------------------------------------------------
+                         required time                         -1.255    
+                         arrival time                           1.315    
+  -------------------------------------------------------------------
+                         slack                                  0.060    
+
+Slack (MET) :             0.060ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[162]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_2/DIADI[18]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.267ns  (logic 0.164ns (61.345%)  route 0.103ns (38.655%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.053ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.383ns
+    Source Clock Delay      (SCD):    1.047ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.631     1.047    controller/channels[3].engine/core_clk
+    SLICE_X8Y125         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[162]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y125         FDRE (Prop_fdre_C_Q)         0.164     1.211 r  controller/channels[3].engine/step_write_data_reg[162]/Q
+                         net (fo=1, routed)           0.103     1.315    controller/channels[3].engine/step_write_data[162]
+    RAMB36_X0Y25         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_2/DIADI[18]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.943     1.383    controller/channels[3].engine/core_clk
+    RAMB36_X0Y25         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_2/CLKBWRCLK
+                         clock pessimism             -0.283     1.100    
+    RAMB36_X0Y25         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[18])
+                                                      0.155     1.255    controller/channels[3].engine/step_memory_reg_2
+  -------------------------------------------------------------------
+                         required time                         -1.255    
+                         arrival time                           1.315    
+  -------------------------------------------------------------------
+                         slack                                  0.060    
+
+Slack (MET) :             0.061ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[166]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_2/DIADI[22]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.268ns  (logic 0.164ns (61.116%)  route 0.104ns (38.884%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.053ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.383ns
+    Source Clock Delay      (SCD):    1.047ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.631     1.047    controller/channels[3].engine/core_clk
+    SLICE_X8Y125         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[166]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y125         FDRE (Prop_fdre_C_Q)         0.164     1.211 r  controller/channels[3].engine/step_write_data_reg[166]/Q
+                         net (fo=1, routed)           0.104     1.316    controller/channels[3].engine/step_write_data[166]
+    RAMB36_X0Y25         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_2/DIADI[22]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.943     1.383    controller/channels[3].engine/core_clk
+    RAMB36_X0Y25         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_2/CLKBWRCLK
+                         clock pessimism             -0.283     1.100    
+    RAMB36_X0Y25         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[22])
+                                                      0.155     1.255    controller/channels[3].engine/step_memory_reg_2
+  -------------------------------------------------------------------
+                         required time                         -1.255    
+                         arrival time                           1.316    
+  -------------------------------------------------------------------
+                         slack                                  0.061    
+
+Slack (MET) :             0.061ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/active_runs_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/play_count_reg[6]/D
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.443ns  (logic 0.224ns (50.534%)  route 0.219ns (49.466%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        0.275ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.274ns
+    Source Clock Delay      (SCD):    0.976ns
+    Clock Pessimism Removal (CPR):    0.024ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.560     0.976    controller/channels[0].engine/core_clk
+    SLICE_X33Y50         FDRE                                         r  controller/channels[0].engine/active_runs_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X33Y50         FDRE (Prop_fdre_C_Q)         0.128     1.104 r  controller/channels[0].engine/active_runs_reg[6]/Q
+                         net (fo=1, routed)           0.219     1.323    controller/channels[0].engine/u_program/play_count_reg[12]_0[6]
+    SLICE_X33Y49         LUT3 (Prop_lut3_I2_O)        0.096     1.419 r  controller/channels[0].engine/u_program/play_count[6]_i_1/O
+                         net (fo=1, routed)           0.000     1.419    controller/channels[0].engine/u_program_n_162
+    SLICE_X33Y49         FDRE                                         r  controller/channels[0].engine/play_count_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.835     1.274    controller/channels[0].engine/core_clk
+    SLICE_X33Y49         FDRE                                         r  controller/channels[0].engine/play_count_reg[6]/C
+                         clock pessimism             -0.024     1.251    
+    SLICE_X33Y49         FDRE (Hold_fdre_C_D)         0.107     1.358    controller/channels[0].engine/play_count_reg[6]
+  -------------------------------------------------------------------
+                         required time                         -1.358    
+                         arrival time                           1.419    
+  -------------------------------------------------------------------
+                         slack                                  0.061    
+
+Slack (MET) :             0.065ns  (arrival time - required time)
+  Source:                 controller/channels[1].engine/pending_fall_ticks_reg[23]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[1].engine/active_fall_ticks_reg[23]/D
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.394ns  (logic 0.164ns (41.601%)  route 0.230ns (58.399%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.277ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.276ns
+    Source Clock Delay      (SCD):    0.976ns
+    Clock Pessimism Removal (CPR):    0.024ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.560     0.976    controller/channels[1].engine/core_clk
+    SLICE_X42Y52         FDRE                                         r  controller/channels[1].engine/pending_fall_ticks_reg[23]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X42Y52         FDRE (Prop_fdre_C_Q)         0.164     1.140 r  controller/channels[1].engine/pending_fall_ticks_reg[23]/Q
+                         net (fo=2, routed)           0.230     1.370    controller/channels[1].engine/pending_fall_ticks[23]
+    SLICE_X46Y47         FDRE                                         r  controller/channels[1].engine/active_fall_ticks_reg[23]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.837     1.276    controller/channels[1].engine/core_clk
+    SLICE_X46Y47         FDRE                                         r  controller/channels[1].engine/active_fall_ticks_reg[23]/C
+                         clock pessimism             -0.024     1.253    
+    SLICE_X46Y47         FDRE (Hold_fdre_C_D)         0.052     1.305    controller/channels[1].engine/active_fall_ticks_reg[23]
+  -------------------------------------------------------------------
+                         required time                         -1.305    
+                         arrival time                           1.370    
+  -------------------------------------------------------------------
+                         slack                                  0.065    
+
+Slack (MET) :             0.067ns  (arrival time - required time)
+  Source:                 controller/channels[1].engine/sample_write_data_reg[28]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[1].engine/sample_memory_reg_3/DIADI[1]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.278ns  (logic 0.141ns (50.720%)  route 0.137ns (49.280%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.056ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.317ns
+    Source Clock Delay      (SCD):    0.985ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.569     0.985    controller/channels[1].engine/core_clk
+    SLICE_X57Y41         FDRE                                         r  controller/channels[1].engine/sample_write_data_reg[28]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X57Y41         FDRE (Prop_fdre_C_Q)         0.141     1.126 r  controller/channels[1].engine/sample_write_data_reg[28]/Q
+                         net (fo=1, routed)           0.137     1.263    controller/channels[1].engine/sample_write_data[28]
+    RAMB36_X2Y8          RAMB36E1                                     r  controller/channels[1].engine/sample_memory_reg_3/DIADI[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.877     1.317    controller/channels[1].engine/core_clk
+    RAMB36_X2Y8          RAMB36E1                                     r  controller/channels[1].engine/sample_memory_reg_3/CLKARDCLK
+                         clock pessimism             -0.277     1.041    
+    RAMB36_X2Y8          RAMB36E1 (Hold_ramb36e1_CLKARDCLK_DIADI[1])
+                                                      0.155     1.196    controller/channels[1].engine/sample_memory_reg_3
+  -------------------------------------------------------------------
+                         required time                         -1.196    
+                         arrival time                           1.263    
+  -------------------------------------------------------------------
+                         slack                                  0.067    
+
+Slack (MET) :             0.069ns  (arrival time - required time)
+  Source:                 controller/channels[2].engine/step_write_data_reg[105]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[2].engine/step_memory_reg_1/DIBDI[1]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.278ns  (logic 0.141ns (50.647%)  route 0.137ns (49.353%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.309ns
+    Source Clock Delay      (SCD):    0.977ns
+    Clock Pessimism Removal (CPR):    0.277ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.561     0.977    controller/channels[2].engine/core_clk
+    SLICE_X49Y92         FDRE                                         r  controller/channels[2].engine/step_write_data_reg[105]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X49Y92         FDRE (Prop_fdre_C_Q)         0.141     1.118 r  controller/channels[2].engine/step_write_data_reg[105]/Q
+                         net (fo=1, routed)           0.137     1.255    controller/channels[2].engine/step_write_data[105]
+    RAMB36_X1Y18         RAMB36E1                                     r  controller/channels[2].engine/step_memory_reg_1/DIBDI[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.869     1.309    controller/channels[2].engine/core_clk
+    RAMB36_X1Y18         RAMB36E1                                     r  controller/channels[2].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.277     1.032    
+    RAMB36_X1Y18         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[1])
+                                                      0.155     1.187    controller/channels[2].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.187    
+                         arrival time                           1.255    
+  -------------------------------------------------------------------
+                         slack                                  0.069    
+
+Slack (MET) :             0.069ns  (arrival time - required time)
+  Source:                 controller/channels[2].engine/verify_fall_sum_reg[5]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[2].engine/verify_next_sum_reg[5]/D
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.439ns  (logic 0.311ns (70.859%)  route 0.128ns (29.141%))
+  Logic Levels:           2  (CARRY4=1 LUT2=1)
+  Clock Path Skew:        0.265ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.268ns
+    Source Clock Delay      (SCD):    0.975ns
+    Clock Pessimism Removal (CPR):    0.029ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.559     0.975    controller/channels[2].engine/core_clk
+    SLICE_X34Y99         FDRE                                         r  controller/channels[2].engine/verify_fall_sum_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X34Y99         FDRE (Prop_fdre_C_Q)         0.148     1.123 r  controller/channels[2].engine/verify_fall_sum_reg[5]/Q
+                         net (fo=2, routed)           0.128     1.251    controller/channels[2].engine/verify_fall_sum[5]
+    SLICE_X36Y99         LUT2 (Prop_lut2_I0_O)        0.098     1.349 r  controller/channels[2].engine/verify_next_sum[7]_i_4__1/O
+                         net (fo=1, routed)           0.000     1.349    controller/channels[2].engine/verify_next_sum[7]_i_4__1_n_0
+    SLICE_X36Y99         CARRY4 (Prop_carry4_S[1]_O[1])
+                                                      0.065     1.414 r  controller/channels[2].engine/verify_next_sum_reg[7]_i_1/O[1]
+                         net (fo=1, routed)           0.000     1.414    controller/channels[2].engine/verify_next_sum_reg[7]_i_1_n_6
+    SLICE_X36Y99         FDRE                                         r  controller/channels[2].engine/verify_next_sum_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.828     1.268    controller/channels[2].engine/core_clk
+    SLICE_X36Y99         FDRE                                         r  controller/channels[2].engine/verify_next_sum_reg[5]/C
+                         clock pessimism             -0.029     1.240    
+    SLICE_X36Y99         FDRE (Hold_fdre_C_D)         0.105     1.345    controller/channels[2].engine/verify_next_sum_reg[5]
+  -------------------------------------------------------------------
+                         required time                         -1.345    
+                         arrival time                           1.414    
+  -------------------------------------------------------------------
+                         slack                                  0.069    
+
+Slack (MET) :             0.069ns  (arrival time - required time)
+  Source:                 controller/channels[2].engine/u_linear/p_r_reg[5]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[2].engine/u_linear/p_negative_reg[16]/D
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.554ns  (logic 0.424ns (76.551%)  route 0.130ns (23.449%))
+  Logic Levels:           4  (CARRY4=4)
+  Clock Path Skew:        0.350ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.358ns
+    Source Clock Delay      (SCD):    0.979ns
+    Clock Pessimism Removal (CPR):    0.029ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.563     0.979    controller/channels[2].engine/u_linear/core_clk
+    SLICE_X48Y97         FDRE                                         r  controller/channels[2].engine/u_linear/p_r_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X48Y97         FDRE (Prop_fdre_C_Q)         0.141     1.120 r  controller/channels[2].engine/u_linear/p_r_reg[5]/Q
+                         net (fo=5, routed)           0.129     1.249    controller/channels[2].engine/u_linear/p_r_reg[14]_0[5]
+    SLICE_X50Y97         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.150     1.399 r  controller/channels[2].engine/u_linear/p_negative_reg[7]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     1.399    controller/channels[2].engine/u_linear/p_negative_reg[7]_i_1__1_n_0
+    SLICE_X50Y98         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.040     1.439 r  controller/channels[2].engine/u_linear/p_negative_reg[11]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.000     1.439    controller/channels[2].engine/u_linear/p_negative_reg[11]_i_1__1_n_0
+    SLICE_X50Y99         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.040     1.479 r  controller/channels[2].engine/u_linear/p_negative_reg[15]_i_1__1/CO[3]
+                         net (fo=1, routed)           0.001     1.480    controller/channels[2].engine/u_linear/p_negative_reg[15]_i_1__1_n_0
+    SLICE_X50Y100        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.053     1.533 r  controller/channels[2].engine/u_linear/p_negative_reg[19]_i_1__1/O[0]
+                         net (fo=1, routed)           0.000     1.533    controller/channels[2].engine/u_linear/p_negative_reg[19]_i_1__1_n_7
+    SLICE_X50Y100        FDRE                                         r  controller/channels[2].engine/u_linear/p_negative_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.918     1.358    controller/channels[2].engine/u_linear/core_clk
+    SLICE_X50Y100        FDRE                                         r  controller/channels[2].engine/u_linear/p_negative_reg[16]/C
+                         clock pessimism             -0.029     1.329    
+    SLICE_X50Y100        FDRE (Hold_fdre_C_D)         0.134     1.463    controller/channels[2].engine/u_linear/p_negative_reg[16]
+  -------------------------------------------------------------------
+                         required time                         -1.463    
+                         arrival time                           1.533    
+  -------------------------------------------------------------------
+                         slack                                  0.069    
+
+Slack (MET) :             0.072ns  (arrival time - required time)
+  Source:                 controller/channels[1].engine/step_write_data_reg[32]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[1].engine/step_memory_reg_0/DIBDI[0]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.282ns  (logic 0.141ns (50.028%)  route 0.141ns (49.972%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.055ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.315ns
+    Source Clock Delay      (SCD):    0.983ns
+    Clock Pessimism Removal (CPR):    0.278ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.567     0.983    controller/channels[1].engine/core_clk
+    SLICE_X48Y40         FDRE                                         r  controller/channels[1].engine/step_write_data_reg[32]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X48Y40         FDRE (Prop_fdre_C_Q)         0.141     1.124 r  controller/channels[1].engine/step_write_data_reg[32]/Q
+                         net (fo=1, routed)           0.141     1.265    controller/channels[1].engine/step_write_data[32]
+    RAMB36_X1Y8          RAMB36E1                                     r  controller/channels[1].engine/step_memory_reg_0/DIBDI[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.875     1.315    controller/channels[1].engine/core_clk
+    RAMB36_X1Y8          RAMB36E1                                     r  controller/channels[1].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.278     1.038    
+    RAMB36_X1Y8          RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[0])
+                                                      0.155     1.193    controller/channels[1].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.193    
+                         arrival time                           1.265    
+  -------------------------------------------------------------------
+                         slack                                  0.072    
+
+Slack (MET) :             0.074ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[53]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_0/DIBDI[21]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.304ns  (logic 0.141ns (46.339%)  route 0.163ns (53.661%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.076ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.386ns
+    Source Clock Delay      (SCD):    1.048ns
+    Clock Pessimism Removal (CPR):    0.262ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.632     1.048    controller/channels[3].engine/core_clk
+    SLICE_X11Y123        FDRE                                         r  controller/channels[3].engine/step_write_data_reg[53]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X11Y123        FDRE (Prop_fdre_C_Q)         0.141     1.189 r  controller/channels[3].engine/step_write_data_reg[53]/Q
+                         net (fo=1, routed)           0.163     1.353    controller/channels[3].engine/step_write_data[53]
+    RAMB36_X0Y24         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_0/DIBDI[21]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.946     1.386    controller/channels[3].engine/core_clk
+    RAMB36_X0Y24         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.262     1.124    
+    RAMB36_X0Y24         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[21])
+                                                      0.155     1.279    controller/channels[3].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.279    
+                         arrival time                           1.353    
+  -------------------------------------------------------------------
+                         slack                                  0.074    
+
+Slack (MET) :             0.074ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[99]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_1/DIADI[27]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.233ns  (logic 0.128ns (55.039%)  route 0.105ns (44.961%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.057ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.391ns
+    Source Clock Delay      (SCD):    1.051ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.635     1.051    controller/channels[3].engine/core_clk
+    SLICE_X9Y120         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[99]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X9Y120         FDRE (Prop_fdre_C_Q)         0.128     1.179 r  controller/channels[3].engine/step_write_data_reg[99]/Q
+                         net (fo=1, routed)           0.105     1.284    controller/channels[3].engine/step_write_data[99]
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/DIADI[27]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.951     1.391    controller/channels[3].engine/core_clk
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.283     1.108    
+    RAMB36_X0Y23         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[27])
+                                                      0.102     1.210    controller/channels[3].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.210    
+                         arrival time                           1.284    
+  -------------------------------------------------------------------
+                         slack                                  0.074    
+
+Slack (MET) :             0.074ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[97]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_1/DIADI[25]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.233ns  (logic 0.128ns (55.025%)  route 0.105ns (44.975%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.057ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.391ns
+    Source Clock Delay      (SCD):    1.051ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.635     1.051    controller/channels[3].engine/core_clk
+    SLICE_X9Y120         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[97]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X9Y120         FDRE (Prop_fdre_C_Q)         0.128     1.179 r  controller/channels[3].engine/step_write_data_reg[97]/Q
+                         net (fo=1, routed)           0.105     1.284    controller/channels[3].engine/step_write_data[97]
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/DIADI[25]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.951     1.391    controller/channels[3].engine/core_clk
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.283     1.108    
+    RAMB36_X0Y23         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[25])
+                                                      0.102     1.210    controller/channels[3].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.210    
+                         arrival time                           1.284    
+  -------------------------------------------------------------------
+                         slack                                  0.074    
+
+Slack (MET) :             0.074ns  (arrival time - required time)
+  Source:                 controller/channels[1].engine/u_linear/p_inc_reg[12]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[1].engine/u_linear/fifo_inc_reg_0_1_12_13/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.256ns  (logic 0.141ns (55.003%)  route 0.115ns (44.997%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.035ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.300ns
+    Source Clock Delay      (SCD):    1.008ns
+    Clock Pessimism Removal (CPR):    0.257ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.592     1.008    controller/channels[1].engine/u_linear/core_clk
+    SLICE_X63Y51         FDRE                                         r  controller/channels[1].engine/u_linear/p_inc_reg[12]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y51         FDRE (Prop_fdre_C_Q)         0.141     1.149 r  controller/channels[1].engine/u_linear/p_inc_reg[12]/Q
+                         net (fo=1, routed)           0.115     1.264    controller/channels[1].engine/u_linear/fifo_inc_reg_0_1_12_13/DIA0
+    SLICE_X60Y51         RAMD32                                       r  controller/channels[1].engine/u_linear/fifo_inc_reg_0_1_12_13/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.861     1.300    controller/channels[1].engine/u_linear/fifo_inc_reg_0_1_12_13/WCLK
+    SLICE_X60Y51         RAMD32                                       r  controller/channels[1].engine/u_linear/fifo_inc_reg_0_1_12_13/RAMA/CLK
+                         clock pessimism             -0.257     1.043    
+    SLICE_X60Y51         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.190    controller/channels[1].engine/u_linear/fifo_inc_reg_0_1_12_13/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.190    
+                         arrival time                           1.264    
+  -------------------------------------------------------------------
+                         slack                                  0.074    
+
+Slack (MET) :             0.075ns  (arrival time - required time)
+  Source:                 controller/channels[3].engine/step_write_data_reg[87]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/step_memory_reg_1/DIADI[15]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.233ns  (logic 0.128ns (54.973%)  route 0.105ns (45.027%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.057ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.391ns
+    Source Clock Delay      (SCD):    1.051ns
+    Clock Pessimism Removal (CPR):    0.283ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.635     1.051    controller/channels[3].engine/core_clk
+    SLICE_X9Y120         FDRE                                         r  controller/channels[3].engine/step_write_data_reg[87]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X9Y120         FDRE (Prop_fdre_C_Q)         0.128     1.179 r  controller/channels[3].engine/step_write_data_reg[87]/Q
+                         net (fo=1, routed)           0.105     1.284    controller/channels[3].engine/step_write_data[87]
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/DIADI[15]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.951     1.391    controller/channels[3].engine/core_clk
+    RAMB36_X0Y23         RAMB36E1                                     r  controller/channels[3].engine/step_memory_reg_1/CLKBWRCLK
+                         clock pessimism             -0.283     1.108    
+    RAMB36_X0Y23         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIADI[15])
+                                                      0.101     1.209    controller/channels[3].engine/step_memory_reg_1
+  -------------------------------------------------------------------
+                         required time                         -1.209    
+                         arrival time                           1.284    
+  -------------------------------------------------------------------
+                         slack                                  0.075    
+
+Slack (MET) :             0.075ns  (arrival time - required time)
+  Source:                 controller/channels[0].engine/step_write_data_reg[47]/C
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/step_memory_reg_0/DIBDI[15]
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core rise@0.000ns - core rise@0.000ns)
+  Data Path Delay:        0.306ns  (logic 0.141ns (46.099%)  route 0.165ns (53.901%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.076ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.310ns
+    Source Clock Delay      (SCD):    0.977ns
+    Clock Pessimism Removal (CPR):    0.257ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.390     0.390    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.416 r  core_buf/O
+                         net (fo=16103, routed)       0.561     0.977    controller/channels[0].engine/core_clk
+    SLICE_X11Y59         FDRE                                         r  controller/channels[0].engine/step_write_data_reg[47]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X11Y59         FDRE (Prop_fdre_C_Q)         0.141     1.118 r  controller/channels[0].engine/step_write_data_reg[47]/Q
+                         net (fo=1, routed)           0.165     1.283    controller/channels[0].engine/step_write_data[47]
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/DIBDI[15]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.411     0.411    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.440 r  core_buf/O
+                         net (fo=16103, routed)       0.870     1.310    controller/channels[0].engine/core_clk
+    RAMB36_X0Y11         RAMB36E1                                     r  controller/channels[0].engine/step_memory_reg_0/CLKBWRCLK
+                         clock pessimism             -0.257     1.053    
+    RAMB36_X0Y11         RAMB36E1 (Hold_ramb36e1_CLKBWRCLK_DIBDI[15])
+                                                      0.155     1.208    controller/channels[0].engine/step_memory_reg_0
+  -------------------------------------------------------------------
+                         required time                         -1.208    
+                         arrival time                           1.283    
+  -------------------------------------------------------------------
+                         slack                                  0.075    
+
+
+
+

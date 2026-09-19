@@ -1,0 +1,457 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Thu Sep 17 10:40:55 2026
+| Host         : Quantum running 64-bit major release  (build 9200)
+| Command      : report_bus_skew -file E:/Github_Project/RAMP_FPGA_v0/build/usb_hardware_20260917/bus_skew_final.rpt
+| Design       : ramp_extended_top
+| Device       : 7a35t-fgg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Bus Skew Report
+
+Table of Contents
+-----------------
+1. Bus Skew Report Summary
+2. Bus Skew Report Per Constraint
+
+1. Bus Skew Report Summary
+--------------------------
+
+Id  Position  From                            To                              Corner  Requirement(ns)  Actual(ns)  Slack(ns)
+--  --------  ------------------------------  ------------------------------  ------  ---------------  ----------  ---------
+1   18        [all_fanin -flat -startpoints_only -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/incoming/wr_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]]
+                                              [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/incoming/wr_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]
+                                                                              Slow             16.667       0.859     15.808
+2   20        [all_fanin -flat -startpoints_only -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/incoming/rd_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]]
+                                              [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/incoming/rd_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]
+                                                                              Slow              5.000       0.781      4.219
+3   23        [all_fanin -flat -startpoints_only -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/outgoing/wr_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]]
+                                              [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/outgoing/wr_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]
+                                                                              Slow              5.000       0.721      4.279
+4   25        [all_fanin -flat -startpoints_only -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/outgoing/rd_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]]
+                                              [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/outgoing/rd_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]
+                                                                              Slow             16.667       0.656     16.011
+
+
+2. Bus Skew Report Per Constraint
+---------------------------------
+
+Id: 1
+set_bus_skew -from [all_fanin -flat -startpoints_only -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/incoming/wr_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]] -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/incoming/wr_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}] 16.667
+Requirement: 16.667ns
+Endpoints: 10
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+usb_clk               clk_out1_clk_core_ip  u_usb/incoming/wr_gray_sync1_reg[7]/D
+                                                                            u_usb/incoming/wr_gray_sync1_reg[8]/D
+                                                                                                            Slow         0.859     15.808
+
+
+Slack (MET) :             15.808ns  (requirement - actual skew)
+  Endpoint Source:        u_usb/incoming/wr_gray_reg[7]/C
+                            (rising edge-triggered cell FDCE clocked by usb_clk)
+  Endpoint Destination:   u_usb/incoming/wr_gray_sync1_reg[7]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_core_ip)
+  Reference Source:       u_usb/incoming/wr_gray_reg[8]/C
+                            (rising edge-triggered cell FDCE clocked by usb_clk)
+  Reference Destination:  u_usb/incoming/wr_gray_sync1_reg[8]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_core_ip)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            16.667ns
+  Endpoint Relative Delay:    6.867ns
+  Reference Relative Delay:   5.348ns
+  Relative CRPR:              0.660ns
+  Actual Bus Skew:            0.859ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.439     1.439 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.689     3.127    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081     3.208 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.412     4.621    u_usb/incoming/wr_clk
+    SLICE_X64Y71         FDCE                                         r  u_usb/incoming/wr_gray_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y71         FDCE (Prop_fdce_C_Q)         0.398     5.019 r  u_usb/incoming/wr_gray_reg[7]/Q
+                         net (fo=1, routed)           0.693     5.712    u_usb/incoming/wr_gray[7]
+    SLICE_X63Y72         FDCE                                         r  u_usb/incoming/wr_gray_sync1_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_core_ip rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clock/u_ip/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.366     1.366 r  u_clock/u_ip/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.004     2.369    u_clock/u_ip/inst/clk_in1_clk_core_ip
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.057    -3.688 r  u_clock/u_ip/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.352    -2.335    u_clock/u_ip/inst/clk_out1_clk_core_ip
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -2.258 r  u_clock/u_ip/inst/clkout1_buf/O
+                         net (fo=17628, routed)       1.305    -0.953    u_usb/incoming/rd_clk
+    SLICE_X63Y72         FDCE                                         r  u_usb/incoming/wr_gray_sync1_reg[7]/C
+                         clock pessimism              0.000    -0.953    
+    SLICE_X63Y72         FDCE (Setup_fdce_C_D)       -0.202    -1.155    u_usb/incoming/wr_gray_sync1_reg[7]
+  -------------------------------------------------------------------
+                         data arrival                           5.712    
+                         clock arrival                         -1.155    
+  -------------------------------------------------------------------
+                         relative delay                         6.867    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.372     1.372 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.599     2.972    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077     3.049 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.307     4.356    u_usb/incoming/wr_clk
+    SLICE_X63Y70         FDCE                                         r  u_usb/incoming/wr_gray_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y70         FDCE (Prop_fdce_C_Q)         0.304     4.660 r  u_usb/incoming/wr_gray_reg[8]/Q
+                         net (fo=1, routed)           0.318     4.978    u_usb/incoming/wr_gray[8]
+    SLICE_X62Y69         FDCE                                         r  u_usb/incoming/wr_gray_sync1_reg[8]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_core_ip rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clock/u_ip/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.432     1.432 r  u_clock/u_ip/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.065     2.497    u_clock/u_ip/inst/clk_in1_clk_core_ip
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -5.921    -3.424 r  u_clock/u_ip/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.421    -2.004    u_clock/u_ip/inst/clk_out1_clk_core_ip
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -1.923 r  u_clock/u_ip/inst/clkout1_buf/O
+                         net (fo=17628, routed)       1.415    -0.507    u_usb/incoming/rd_clk
+    SLICE_X62Y69         FDCE                                         r  u_usb/incoming/wr_gray_sync1_reg[8]/C
+                         clock pessimism              0.000    -0.507    
+    SLICE_X62Y69         FDCE (Hold_fdce_C_D)         0.138    -0.369    u_usb/incoming/wr_gray_sync1_reg[8]
+  -------------------------------------------------------------------
+                         data arrival                           4.978    
+                         clock arrival                         -0.369    
+  -------------------------------------------------------------------
+                         relative delay                         5.348    
+
+
+
+Id: 2
+set_bus_skew -from [all_fanin -flat -startpoints_only -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/incoming/rd_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]] -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/incoming/rd_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}] 5.000
+Requirement: 5.000ns
+Endpoints: 10
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+clk_out1_clk_core_ip  usb_clk               u_usb/incoming/rd_gray_sync1_reg[6]/D
+                                                                            u_usb/incoming/rd_gray_sync1_reg[4]/D
+                                                                                                            Slow         0.781      4.219
+
+
+Slack (MET) :             4.219ns  (requirement - actual skew)
+  Endpoint Source:        u_usb/incoming/rd_gray_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_core_ip)
+  Endpoint Destination:   u_usb/incoming/rd_gray_sync1_reg[6]/D
+                            (rising edge-triggered cell FDCE clocked by usb_clk)
+  Reference Source:       u_usb/incoming/rd_gray_reg[4]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_core_ip)
+  Reference Destination:  u_usb/incoming/rd_gray_sync1_reg[4]/D
+                            (rising edge-triggered cell FDCE clocked by usb_clk)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:   -3.672ns
+  Reference Relative Delay:  -5.096ns
+  Relative CRPR:              0.644ns
+  Actual Bus Skew:            0.781ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_core_ip rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clock/u_ip/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.432     1.432 r  u_clock/u_ip/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.065     2.497    u_clock/u_ip/inst/clk_in1_clk_core_ip
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -5.921    -3.424 r  u_clock/u_ip/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.421    -2.004    u_clock/u_ip/inst/clk_out1_clk_core_ip
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -1.923 r  u_clock/u_ip/inst/clkout1_buf/O
+                         net (fo=17628, routed)       1.409    -0.513    u_usb/incoming/rd_clk
+    SLICE_X58Y72         FDCE                                         r  u_usb/incoming/rd_gray_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X58Y72         FDCE (Prop_fdce_C_Q)         0.348    -0.165 r  u_usb/incoming/rd_gray_reg[6]/Q
+                         net (fo=2, routed)           0.678     0.513    u_usb/incoming/rd_gray[6]
+    SLICE_X60Y71         FDCE                                         r  u_usb/incoming/rd_gray_sync1_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.372     1.372 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.599     2.972    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077     3.049 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.304     4.353    u_usb/incoming/wr_clk
+    SLICE_X60Y71         FDCE                                         r  u_usb/incoming/rd_gray_sync1_reg[6]/C
+                         clock pessimism              0.000     4.353    
+    SLICE_X60Y71         FDCE (Setup_fdce_C_D)       -0.168     4.185    u_usb/incoming/rd_gray_sync1_reg[6]
+  -------------------------------------------------------------------
+                         data arrival                           0.513    
+                         clock arrival                          4.185    
+  -------------------------------------------------------------------
+                         relative delay                        -3.672    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_core_ip rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clock/u_ip/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.366     1.366 r  u_clock/u_ip/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.004     2.369    u_clock/u_ip/inst/clk_in1_clk_core_ip
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.057    -3.688 r  u_clock/u_ip/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.352    -2.335    u_clock/u_ip/inst/clk_out1_clk_core_ip
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -2.258 r  u_clock/u_ip/inst/clkout1_buf/O
+                         net (fo=17628, routed)       1.305    -0.953    u_usb/incoming/rd_clk
+    SLICE_X62Y72         FDCE                                         r  u_usb/incoming/rd_gray_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y72         FDCE (Prop_fdce_C_Q)         0.304    -0.649 r  u_usb/incoming/rd_gray_reg[4]/Q
+                         net (fo=2, routed)           0.310    -0.340    u_usb/incoming/rd_gray[4]
+    SLICE_X61Y71         FDCE                                         r  u_usb/incoming/rd_gray_sync1_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.439     1.439 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.689     3.127    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081     3.208 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.410     4.619    u_usb/incoming/wr_clk
+    SLICE_X61Y71         FDCE                                         r  u_usb/incoming/rd_gray_sync1_reg[4]/C
+                         clock pessimism              0.000     4.619    
+    SLICE_X61Y71         FDCE (Hold_fdce_C_D)         0.138     4.757    u_usb/incoming/rd_gray_sync1_reg[4]
+  -------------------------------------------------------------------
+                         data arrival                          -0.340    
+                         clock arrival                          4.757    
+  -------------------------------------------------------------------
+                         relative delay                        -5.096    
+
+
+
+Id: 3
+set_bus_skew -from [all_fanin -flat -startpoints_only -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/outgoing/wr_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]] -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/outgoing/wr_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}] 5.000
+Requirement: 5.000ns
+Endpoints: 10
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+clk_out1_clk_core_ip  usb_clk               u_usb/outgoing/wr_gray_sync1_reg[7]/D
+                                                                            u_usb/outgoing/wr_gray_sync1_reg[2]/D
+                                                                                                            Slow         0.721      4.279
+
+
+Slack (MET) :             4.279ns  (requirement - actual skew)
+  Endpoint Source:        u_usb/outgoing/wr_gray_reg[7]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_core_ip)
+  Endpoint Destination:   u_usb/outgoing/wr_gray_sync1_reg[7]/D
+                            (rising edge-triggered cell FDCE clocked by usb_clk)
+  Reference Source:       u_usb/outgoing/wr_gray_reg[2]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_core_ip)
+  Reference Destination:  u_usb/outgoing/wr_gray_sync1_reg[2]/D
+                            (rising edge-triggered cell FDCE clocked by usb_clk)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:   -3.748ns
+  Reference Relative Delay:  -5.097ns
+  Relative CRPR:              0.628ns
+  Actual Bus Skew:            0.721ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_core_ip rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clock/u_ip/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.432     1.432 r  u_clock/u_ip/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.065     2.497    u_clock/u_ip/inst/clk_in1_clk_core_ip
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -5.921    -3.424 r  u_clock/u_ip/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.421    -2.004    u_clock/u_ip/inst/clk_out1_clk_core_ip
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -1.923 r  u_clock/u_ip/inst/clkout1_buf/O
+                         net (fo=17628, routed)       1.415    -0.507    u_usb/outgoing/wr_clk
+    SLICE_X60Y67         FDCE                                         r  u_usb/outgoing/wr_gray_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X60Y67         FDCE (Prop_fdce_C_Q)         0.398    -0.109 r  u_usb/outgoing/wr_gray_reg[7]/Q
+                         net (fo=1, routed)           0.517     0.407    u_usb/outgoing/wr_gray[7]
+    SLICE_X61Y67         FDCE                                         r  u_usb/outgoing/wr_gray_sync1_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.372     1.372 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.599     2.972    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077     3.049 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.309     4.358    u_usb/outgoing/rd_clk
+    SLICE_X61Y67         FDCE                                         r  u_usb/outgoing/wr_gray_sync1_reg[7]/C
+                         clock pessimism              0.000     4.358    
+    SLICE_X61Y67         FDCE (Setup_fdce_C_D)       -0.202     4.156    u_usb/outgoing/wr_gray_sync1_reg[7]
+  -------------------------------------------------------------------
+                         data arrival                           0.407    
+                         clock arrival                          4.156    
+  -------------------------------------------------------------------
+                         relative delay                        -3.748    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_core_ip rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clock/u_ip/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.366     1.366 r  u_clock/u_ip/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.004     2.369    u_clock/u_ip/inst/clk_in1_clk_core_ip
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.057    -3.688 r  u_clock/u_ip/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.352    -2.335    u_clock/u_ip/inst/clk_out1_clk_core_ip
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -2.258 r  u_clock/u_ip/inst/clkout1_buf/O
+                         net (fo=17628, routed)       1.309    -0.949    u_usb/outgoing/wr_clk
+    SLICE_X65Y68         FDCE                                         r  u_usb/outgoing/wr_gray_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y68         FDCE (Prop_fdce_C_Q)         0.304    -0.645 r  u_usb/outgoing/wr_gray_reg[2]/Q
+                         net (fo=1, routed)           0.310    -0.335    u_usb/outgoing/wr_gray[2]
+    SLICE_X65Y67         FDCE                                         r  u_usb/outgoing/wr_gray_sync1_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.439     1.439 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.689     3.127    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081     3.208 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.417     4.626    u_usb/outgoing/rd_clk
+    SLICE_X65Y67         FDCE                                         r  u_usb/outgoing/wr_gray_sync1_reg[2]/C
+                         clock pessimism              0.000     4.626    
+    SLICE_X65Y67         FDCE (Hold_fdce_C_D)         0.136     4.762    u_usb/outgoing/wr_gray_sync1_reg[2]
+  -------------------------------------------------------------------
+                         data arrival                          -0.335    
+                         clock arrival                          4.762    
+  -------------------------------------------------------------------
+                         relative delay                        -5.097    
+
+
+
+Id: 4
+set_bus_skew -from [all_fanin -flat -startpoints_only -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/outgoing/rd_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}]] -to [get_pins -quiet -of_objects [get_cells -quiet -hier -filter {NAME =~ u_usb/outgoing/rd_gray_sync1_reg*}] -filter {REF_PIN_NAME == D}] 16.667
+Requirement: 16.667ns
+Endpoints: 10
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+usb_clk               clk_out1_clk_core_ip  u_usb/outgoing/rd_gray_sync1_reg[0]/D
+                                                                            u_usb/outgoing/rd_gray_sync1_reg[1]/D
+                                                                                                            Slow         0.656     16.011
+
+
+Slack (MET) :             16.011ns  (requirement - actual skew)
+  Endpoint Source:        u_usb/outgoing/rd_gray_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by usb_clk)
+  Endpoint Destination:   u_usb/outgoing/rd_gray_sync1_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_core_ip)
+  Reference Source:       u_usb/outgoing/rd_gray_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by usb_clk)
+  Reference Destination:  u_usb/outgoing/rd_gray_sync1_reg[1]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_core_ip)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            16.667ns
+  Endpoint Relative Delay:    6.642ns
+  Reference Relative Delay:   5.326ns
+  Relative CRPR:              0.660ns
+  Actual Bus Skew:            0.656ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.439     1.439 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.689     3.127    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081     3.208 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.418     4.627    u_usb/outgoing/rd_clk
+    SLICE_X63Y66         FDCE                                         r  u_usb/outgoing/rd_gray_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y66         FDCE (Prop_fdce_C_Q)         0.379     5.006 r  u_usb/outgoing/rd_gray_reg[0]/Q
+                         net (fo=2, routed)           0.613     5.619    u_usb/outgoing/rd_gray[0]
+    SLICE_X62Y69         FDCE                                         r  u_usb/outgoing/rd_gray_sync1_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_core_ip rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clock/u_ip/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.366     1.366 r  u_clock/u_ip/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.004     2.369    u_clock/u_ip/inst/clk_in1_clk_core_ip
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.057    -3.688 r  u_clock/u_ip/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.352    -2.335    u_clock/u_ip/inst/clk_out1_clk_core_ip
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -2.258 r  u_clock/u_ip/inst/clkout1_buf/O
+                         net (fo=17628, routed)       1.308    -0.950    u_usb/outgoing/wr_clk
+    SLICE_X62Y69         FDCE                                         r  u_usb/outgoing/rd_gray_sync1_reg[0]/C
+                         clock pessimism              0.000    -0.950    
+    SLICE_X62Y69         FDCE (Setup_fdce_C_D)       -0.073    -1.023    u_usb/outgoing/rd_gray_sync1_reg[0]
+  -------------------------------------------------------------------
+                         data arrival                           5.619    
+                         clock arrival                         -1.023    
+  -------------------------------------------------------------------
+                         relative delay                         6.642    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.372     1.372 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.599     2.972    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077     3.049 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.310     4.359    u_usb/outgoing/rd_clk
+    SLICE_X64Y67         FDCE                                         r  u_usb/outgoing/rd_gray_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y67         FDCE (Prop_fdce_C_Q)         0.347     4.706 r  u_usb/outgoing/rd_gray_reg[1]/Q
+                         net (fo=2, routed)           0.301     5.007    u_usb/outgoing/rd_gray[1]
+    SLICE_X64Y68         FDCE                                         r  u_usb/outgoing/rd_gray_sync1_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_core_ip rise edge)
+                                                      0.000     0.000 r  
+    R4                                                0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clock/u_ip/inst/clk_in1
+    R4                   IBUF (Prop_ibuf_I_O)         1.432     1.432 r  u_clock/u_ip/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.065     2.497    u_clock/u_ip/inst/clk_in1_clk_core_ip
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -5.921    -3.424 r  u_clock/u_ip/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.421    -2.004    u_clock/u_ip/inst/clk_out1_clk_core_ip
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -1.923 r  u_clock/u_ip/inst/clkout1_buf/O
+                         net (fo=17628, routed)       1.416    -0.506    u_usb/outgoing/wr_clk
+    SLICE_X64Y68         FDCE                                         r  u_usb/outgoing/rd_gray_sync1_reg[1]/C
+                         clock pessimism              0.000    -0.506    
+    SLICE_X64Y68         FDCE (Hold_fdce_C_D)         0.187    -0.319    u_usb/outgoing/rd_gray_sync1_reg[1]
+  -------------------------------------------------------------------
+                         data arrival                           5.007    
+                         clock arrival                         -0.319    
+  -------------------------------------------------------------------
+                         relative delay                         5.326    
+
+
+

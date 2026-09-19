@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ramp Studio · 资源能力与下发检查</title><style>
+:root{color-scheme:light;--blue:#2563eb;--ink:#17365c;--muted:#526885;--line:#dce7f5}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}
+body{margin:0;background:#f2f6fd;color:var(--ink);font:16px/1.85 'Segoe UI','Microsoft YaHei',sans-serif}
+a{color:#1d4ed8;text-underline-offset:3px}a:hover{color:#163e9e}
+aside{position:fixed;inset:0 auto 0 0;width:290px;background:#fff;border-right:1px solid var(--line);padding:26px 22px;overflow:auto}
+.brand{font-size:23px;font-weight:750;letter-spacing:-.5px}.tag{color:var(--muted);font-size:12px;margin-bottom:22px}
+.switch{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}.switch a,button{border:1px solid var(--line);background:#edf4ff;border-radius:10px;padding:5px 10px;font:inherit;font-size:13px;text-decoration:none;color:#1d4ed8;cursor:pointer}
+.toc{font-size:13px;line-height:1.6}.toc ul{list-style:none;padding-left:12px}.toc>ul{padding:0}.toc li{margin:8px 0}.toc a{display:block;text-decoration:none;color:var(--muted)}.toc a:hover{color:var(--blue)}.toc>ul>li>ul{padding-left:0}.toc>ul>li>a{font-weight:700;color:var(--ink)}
+main{margin:30px 32px 40px 322px;max-width:1120px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px 46px;box-shadow:0 10px 35px #24467808}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--blue)}h1{font-size:32px;line-height:1.4;letter-spacing:-.7px;margin:12px 0 20px}h2{font-size:24px;margin:45px 0 18px;padding-top:18px;border-top:1px solid var(--line);line-height:1.5}h3{font-size:19px;margin-top:27px}p{margin:14px 0}strong{color:#123c77}li{margin:6px 0}img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:14px;margin:22px auto}table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;margin:20px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{background:#edf4ff;font-weight:650}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f8fbff}code{font-family:Consolas,'Microsoft YaHei',monospace;font-size:.9em;background:#edf4ff;padding:2px 5px;border-radius:5px;overflow-wrap:anywhere}pre{padding:17px 20px;border:1px solid var(--line);border-radius:12px;background:#f5f8fe;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}pre code{padding:0;background:transparent}blockquote{margin:20px 0;padding:1px 20px;border-left:4px solid #72a4f8;background:#f3f7ff;border-radius:0 12px 12px 0}footer{margin-top:45px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.top{float:right}
+@media(min-width:1600px){main{margin-left:340px}}
+@media(max-width:1000px){aside{position:static;width:auto;max-height:330px;border-bottom:1px solid var(--line)}main{margin:18px;padding:25px}.toc>ul>li>ul>li>ul{display:none}h1{font-size:27px}}
+@media print{aside,.top{display:none}main{margin:0;padding:0;border:0;box-shadow:none;max-width:none}body{font-size:10pt;background:white}h2,h3{break-after:avoid}img,pre,tr{break-inside:avoid}a{color:inherit;text-decoration:none}h1{font-size:22pt}h2{font-size:16pt}table{font-size:9pt}@page{size:A4;margin:16mm}}
+</style></head>
+<body id="top"><aside aria-label="文档导航"><div class="brand">Ramp Studio</div><div class="tag">200 MHz 波形工作台 · 离线文档</div><nav class="switch"><a href="%E8%BD%AF%E4%BB%B6%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html">软件详细使用手册</a><a href="UART%E8%87%AA%E5%8A%A8%E6%B3%A2%E7%89%B9%E7%8E%87.html">UART自动波特率</a><a href="UART%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">UART实板验证_2026-09-17</a><a href="USB_FIFO_R2%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">USB_FIFO_R2实板验证_2026-09-17</a><a href="%E8%BE%93%E5%87%BA%E9%87%87%E6%A0%B7%E7%8E%87%E4%B8%8E3PD5651E.html">输出采样率与3PD5651E</a><a href="%E9%AB%98%E9%80%9FUSB%E4%B8%8E%E4%B8%B2%E5%8F%A3.html">高速USB与串口</a><a href="USB%E5%AE%9E%E6%9D%BF%E6%95%B0%E5%AD%97%E9%AA%8C%E8%AF%81_2026-09-17.html">USB实板数字验证_2026-09-17</a><a href="14%E4%BD%8D%E9%AB%98%E6%96%AF%E5%88%86%E6%AE%B5%E6%8F%92%E5%80%BC.html">14位高斯分段插值</a><a href="%E8%B5%84%E6%BA%90%E8%83%BD%E5%8A%9B%E4%B8%8E%E4%B8%8B%E5%8F%91%E6%A3%80%E6%9F%A5.html">资源能力与下发检查</a><a href="%E6%9D%BF%E5%8D%A1%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8.html">板卡硬件资源占用</a><a href="%E6%89%A7%E8%A1%8C%E5%BA%8F%E5%88%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">执行序列使用说明</a><a href="%E8%A7%A6%E5%8F%91%E6%AD%A5%E8%BF%9B%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">触发步进使用说明</a><a href="%E5%8F%82%E8%80%83%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE.html">参考时钟配置</a><a href="%E8%BF%81%E7%A7%BB%E5%88%B0%E5%85%B6%E4%BB%96%E7%94%B5%E8%84%91.html">迁移到其他电脑</a><a href="%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97.html">开发日志</a><a href="%E7%9B%AE%E5%BD%95%E4%B8%8E%E5%BD%92%E6%A1%A3%E8%AF%B4%E6%98%8E.html">目录与归档说明</a><button onclick="window.print()">打印 / 保存 PDF</button></nav><div class="toc">
+<ul>
+<li><a href="#_2">在哪里查看</a></li>
+<li><a href="#_3">分清能力来源</a></li>
+<li><a href="#_4">容量为什么用“码段”表示</a></li>
+<li><a href="#_5">不同模块检查什么</a></li>
+<li><a href="#_6">准备和下载时的流程</a></li>
+<li><a href="#_7">超限后如何调整</a></li>
+<li><a href="#fpga-lutff-bram">能否自动得到整颗 FPGA 的 LUT、FF 和 BRAM 总量</a></li>
+</ul>
+</div>
+</aside>
+<main><div class="eyebrow">DOCUMENTATION / 2026.09.17</div><h1 id="_1">资源能力与波形下发检查</h1>
+<p>软件连接设备时读取 FPGA 固件的能力回报，并在准备或下载前再次核对。界面显示当前方案需要的容量、设备允许的上限和检查结果；超限或不兼容的方案会阻止下发。</p>
+<h2 id="_2">在哪里查看</h2>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>显示内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>板卡与连接</td>
+<td>当前能力来源、DAC 数量与位数、每路码段容量、事件步骤容量；“刷新能力”重新读取连接设备</td>
+</tr>
+<tr>
+<td>方案设计与保存</td>
+<td>编辑后的完整离散与容量检查结果；检查完成前显示等待或检查中</td>
+</tr>
+<tr>
+<td>DAC 单路页面</td>
+<td>分配给该 DAC 的本地保存方案需要多少容量，是否符合当前设备能力</td>
+</tr>
+<tr>
+<td>输出总览</td>
+<td>各路已分配方案的检查状态，便于在“准备所选”前发现超限通道</td>
+</tr>
+</tbody>
+</table>
+<p>这些结果检查的是<strong>即将准备的本地方案</strong>。修改本地方案或更换分配不会自动更改已经加载的波形；设备上的活动版本仍以状态回读和已确认加载记录为准。</p>
+<h2 id="_3">分清能力来源</h2>
+<ul>
+<li><strong>已连接实板</strong>：以固件 GET_INFO 回报为准。修改软件中的 FPGA 型号、DAC 数量或位数，不会修改板上已烧录的能力。</li>
+<li><strong>未连接</strong>：按当前板卡配置和默认固件规则预估，不能作为实板已通过的结论。连接后会用设备回报重新检查。</li>
+<li><strong>演示设备</strong>：使用模拟能力，可验证软件操作流程，不代表检测到了真实 FPGA。</li>
+</ul>
+<p>“刷新能力”只读取当前连接固件的信息，不重新烧写 FPGA，也不下载波形。已有支持 GET_INFO 的固件可以直接使用容量检查；个别波形功能仍需固件提供对应能力，例如无限重复、触发步进和事件序列。</p>
+<h2 id="_4">容量为什么用“码段”表示</h2>
+<p>波形仍按 <strong>200 MHz，即每 5 ns 一个采样点</strong> 完整计算、取整。相邻采样点的整数原码相同时，软件把它们保存为“原码＋持续周期数”的一个连续码段，执行时按原时钟保持对应原码，不降低采样率。</p>
+<p>例如，恒定原码保持 100 ms，包含 2000 万个时钟周期，却只需要一个码段。快速振荡波形可能每拍改变原码，在很短时间内就用完容量。因此，波形总时长、预览图的绘制点数都不能直接代表需要多少存储槽位。</p>
+<p>当前默认独立多路固件分配如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">固件中的 DAC 数量</th>
+<th style="text-align: right;">每路可容纳的连续码段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8192</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4096</td>
+</tr>
+<tr>
+<td style="text-align: right;">3～4</td>
+<td style="text-align: right;">2048</td>
+</tr>
+<tr>
+<td style="text-align: right;">5～8</td>
+<td style="text-align: right;">1024</td>
+</tr>
+</tbody>
+</table>
+<p><strong>连接后以设备实际回报为准。</strong> 这是固件预先为各路分配的容量：DAC 2 没有加载方案，也不能把它的空闲槽位借给 DAC 1。仅取消某路参与输出不会扩大其他通道的容量。</p>
+<p>固件还设有活动和待提交两个存储 bank，确保完整下载后才切换配置。界面显示的是一份方案能使用的容量，不能把两个 bank 相加。例如四路默认固件的单路上限仍为 2048，而不是 4096。</p>
+<h2 id="_5">不同模块检查什么</h2>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>容量与兼容性检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ramp、固定时长自定义函数</td>
+<td>一轮完整离散后实际连续码段数，以及位数、原码和触发配置；选择无限循环时额外检查无限重复能力</td>
+</tr>
+<tr>
+<td>电平门控</td>
+<td>进入段与返回段合计码段数；外部高电平的未知保持时长不展开为采样表</td>
+</tr>
+<tr>
+<td>固定时间表</td>
+<td>包含时间间隔和步骤重复后，整张时间表的最终码段数</td>
+</tr>
+<tr>
+<td>事件／门控步骤</td>
+<td>本 DAC 波形池码段数及事件步骤数；当前固件最多 64 步，相同波形数据可在同一通道的步骤之间复用</td>
+</tr>
+<tr>
+<td>触发步进</td>
+<td>固件是否支持、点数 1～65535、起点、步长和末点范围；只下载配置参数，不逐点写入波形码段</td>
+</tr>
+<tr>
+<td>旧版分段方案</td>
+<td>旧分段容量与固件兼容性；独立多路固件不直接支持历史双输出分段／FM 协议</td>
+</tr>
+</tbody>
+</table>
+<p>触发步进的 65535 点是当前协议规定的上限，不是从波形 RAM 推导出来的。它不使用采样表，但相关硬件逻辑及波形 RAM 仍已包含在固件中，因此不能理解成扫描模式让 FPGA 的物理 BRAM 占用归零。</p>
+<p>固定时长 Ramp、自定义函数和固定时间表的无限循环都复用一轮数据，不按循环次数扩展码段。单波形仍须通过完整离散和每路容量检查，不能因选择无限循环而跳过这些限制。未连接时可保存无限方案；连接后的准备或下载会检查 <code>infinite_repeat</code> 能力，不支持时在波形写入前拒绝下发。已支持该能力的固件无需仅为增加界面选项重烧。</p>
+<p>主机也有自己的编译边界，例如单次函数最多计算 2 亿个采样点、当前采样编译器最多生成 8192 个码段。超过这些边界会显示编译限制；即使未超过，仍需继续满足连接设备的每路容量。函数原码越界、无定义采样值或位数不匹配也会阻止下发。</p>
+<h2 id="_6">准备和下载时的流程</h2>
+<ol>
+<li>读取当前连接设备的最新能力。</li>
+<li>对本次所选 DAC 的本地保存方案完整编译，检查功能、位数、触发、码段数和事件步骤数。</li>
+<li>任一路不通过，停止本次准备，不向所选 DAC 写入新波形。</li>
+<li>全部通过后，沿用版本匹配规则，下载需要更新的通道；已确认匹配的配置可以复用。</li>
+<li>回读确认后布防。后续播放和外部触发仍由 FPGA 执行。</li>
+</ol>
+<p>编辑参数后，上一次检查结果会失效；必须等待新结果。预览只取部分位置显示，不能替代完整离散检查。离线通过也不能代替连接后的能力复核。</p>
+<p>多路准备会先统一检查，再逐路完成配置提交。各通道有自己的双 bank；这不等同于所有通道在同一时钟同时切换新配置。同步开始输出仍通过准备完成后的分组布防或触发完成。</p>
+<h2 id="_7">超限后如何调整</h2>
+<p>例如 <code>2,401 / 2,048 码段</code> 表示超过该 DAC 容量 353 个码段，应先调整波形，再等待重新检查。</p>
+<ul>
+<li>对反复振荡的函数，适当减少周期数、降低变化频率或缩短需要播放的时间。</li>
+<li>对事件序列，复用同一波形快照，检查是否存在不必要的不同波形副本。</li>
+<li>若实验允许，拆为不同时间执行的独立方案；分别准备会改变使用方式，不能代替原来要求连续输出的完整波形。</li>
+<li>确实需要更大单路容量时，调整固件的存储分配，重新构建并检查资源与时序后再烧写。只修改上位机显示的 DAC 数量不会增加实板容量。</li>
+</ul>
+<p>软件不会为使波形“通过”而自动降采样、截断、缩放原码或减少步骤。</p>
+<h2 id="fpga-lutff-bram">能否自动得到整颗 FPGA 的 LUT、FF 和 BRAM 总量</h2>
+<p>当前串口能力回报提供的是<strong>板上固件向波形播放开放的能力</strong>，不含芯片型号、LUT、FF、DSP 或物理 BRAM 的实时占用。协议中的平台 ID 只是固件类别，也不能用来识别具体 FPGA。</p>
+<p>左侧栏底部的「硬件资源」常驻显示 LUT、FF、BRAM、DSP 占用百分比；点击后可在完整报告窗口查看已用 / 总量与来源。软件自动读取本机构建报告，也可在该窗口点击「导入报告」选择 Vivado <code>utilization.rpt</code>；没有本机构建记录且器件匹配时，提供明确标注的发布固件参考。来源、生成阶段、时间与配置关联说明见<a href="%E6%9D%BF%E5%8D%A1%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8.html">板卡硬件资源占用</a>。</p>
+<p>已有报告只对应它所构建的型号、参数和镜像，不能当作任意连接设备的实时结果。波形下载是在已分配内存中写数据，不会重新综合逻辑，因而日常下发主要需要检查每路码段容量及功能限制。</p>
+<p>配置和波形掉电保存方式保持原有行为，见<a href="%E8%BD%AF%E4%BB%B6%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html">软件详细使用手册</a>；通信字段见<a href="协议-v1.md">协议 v1</a>。</p><footer><a class="top" href="#top">返回顶部 ↑</a>Ramp Studio · 本地离线文档；截图为演示状态。以设备实际能力和对应验证记录为准。</footer></main></body></html>

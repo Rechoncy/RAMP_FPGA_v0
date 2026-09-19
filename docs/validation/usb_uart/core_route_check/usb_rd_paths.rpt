@@ -1,0 +1,66 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Wed Sep 16 22:33:19 2026
+| Host         : Quantum running 64-bit major release  (build 9200)
+| Command      : report_timing -to [get_ports usb_rd_n] -max_paths 5 -file E:/Github_Project/RAMP_FPGA_v0/build/usb_uart_final_20260916/vivado_iob_final/core_route_check/usb_rd_paths.rpt
+| Design       : ramp_extended_top
+| Device       : 7a35t-fgg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             1.292ns  (required time - arrival time)
+  Source:                 u_usb/physical/read_n_reg_rep/C
+                            (rising edge-triggered cell FDPE clocked by usb_clk  {rise@0.000ns fall@8.333ns period=16.667ns})
+  Destination:            usb_rd_n
+                            (output port clocked by usb_clk  {rise@0.000ns fall@8.333ns period=16.667ns})
+  Path Group:             usb_clk
+  Path Type:              Max at Slow Process Corner
+  Requirement:            16.667ns  (usb_clk rise@16.667ns - usb_clk rise@0.000ns)
+  Data Path Delay:        3.188ns  (logic 3.187ns (99.969%)  route 0.001ns (0.031%))
+  Logic Levels:           1  (OBUF=1)
+  Output Delay:           7.500ns
+  Clock Path Skew:        -4.651ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.000ns = ( 16.667 - 16.667 ) 
+    Source Clock Delay      (SCD):    4.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock usb_clk rise edge)    0.000     0.000 r  
+    Y4                                                0.000     0.000 r  usb_clk (IN)
+                         net (fo=0)                   0.000     0.000    usb_clk
+    Y4                   IBUF (Prop_ibuf_I_O)         1.439     1.439 r  usb_clk_IBUF_inst/O
+                         net (fo=1, routed)           1.689     3.127    usb_clk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081     3.208 r  usb_clk_IBUF_BUFG_inst/O
+                         net (fo=223, routed)         1.443     4.651    u_usb/physical/usb_clk_IBUF_BUFG
+    OLOGIC_X1Y26         FDPE                                         r  u_usb/physical/read_n_reg_rep/C
+  -------------------------------------------------------------------    -------------------
+    OLOGIC_X1Y26         FDPE (Prop_fdpe_C_Q)         0.418     5.069 r  u_usb/physical/read_n_reg_rep/Q
+                         net (fo=1, routed)           0.001     5.070    usb_rd_n_OBUF
+    V4                   OBUF (Prop_obuf_I_O)         2.769     7.840 r  usb_rd_n_OBUF_inst/O
+                         net (fo=0)                   0.000     7.840    usb_rd_n
+    V4                                                                r  usb_rd_n (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         (clock usb_clk rise edge)   16.667    16.667 r  
+                         clock pessimism              0.000    16.667    
+                         clock uncertainty           -0.035    16.632    
+                         output delay                -7.500     9.132    
+  -------------------------------------------------------------------
+                         required time                          9.132    
+                         arrival time                          -7.840    
+  -------------------------------------------------------------------
+                         slack                                  1.292    
+
+
+
+

@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "updated_at": "2026-09-16T14:32:13.338527+00:00",
+  "mode": "check",
+  "status": "success",
+  "error": "",
+  "board_part": "xc7a35tfgg484-2",
+  "board_fingerprint": "a17d92f3f85ff194ef65f88c6ba09190631110fce591fc0f8167fc553480918f",
+  "board_context": {
+    "part": "xc7a35tfgg484-2",
+    "dac_count": 4,
+    "dac_bits": 10,
+    "trigger_count": 2,
+    "ref_mhz": 50.0,
+    "clock_input": "single_ended",
+    "uart_baud": 115200,
+    "boot_channels": []
+  },
+  "source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+  "final_source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+  "sources_changed": false,
+  "reports": [
+    {
+      "schema": 1,
+      "path": "utilization_synth.rpt",
+      "sha256": "34c0a6cc47bfdd9027c916c5521f497b67dffc23e6e621a6eb9b3fb07c074f71",
+      "device": "xc7a35tfgg484-2",
+      "date": "Wed Sep 16 22:26:35 2026",
+      "design": "ramp_extended_top",
+      "design_state": "Synthesized",
+      "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+      "stage": "synth",
+      "metrics": {
+        "lut": {
+          "label": "Slice LUTs*",
+          "unit": "LUT",
+          "used": 13007,
+          "available": 20800,
+          "percent": 62.53,
+          "raw_percent": "62.53"
+        },
+        "ff": {
+          "label": "Slice Registers",
+          "unit": "FF",
+          "used": 16127,
+          "available": 41600,
+          "percent": 38.77,
+          "raw_percent": "38.77"
+        },
+        "bram": {
+          "label": "Block RAM Tile",
+          "unit": "36 Kb",
+          "used": 32,
+          "available": 50,
+          "percent": 64,
+          "raw_percent": "64.00"
+        },
+        "dsp": {
+          "label": "DSPs",
+          "unit": "DSP",
+          "used": 4,
+          "available": 90,
+          "percent": 4.44,
+          "raw_percent": "4.44"
+        }
+      },
+      "warnings": []
+    },
+    {
+      "schema": 1,
+      "path": "core_route_check/utilization.rpt",
+      "sha256": "90615b0b1c447d8d1788777721f8733aefce0c00196233d024ce5163ef66be86",
+      "device": "xc7a35tfgg484-2",
+      "date": "Wed Sep 16 22:32:03 2026",
+      "design": "ramp_extended_top",
+      "design_state": "Routed",
+      "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+      "stage": "routed",
+      "metrics": {
+        "lut": {
+          "label": "Slice LUTs",
+          "unit": "LUT",
+          "used": 12946,
+          "available": 20800,
+          "percent": 62.24,
+          "raw_percent": "62.24"
+        },
+        "ff": {
+          "label": "Slice Registers",
+          "unit": "FF",
+          "used": 16240,
+          "available": 41600,
+          "percent": 39.04,
+          "raw_percent": "39.04"
+        },
+        "bram": {
+          "label": "Block RAM Tile",
+          "unit": "36 Kb",
+          "used": 32,
+          "available": 50,
+          "percent": 64,
+          "raw_percent": "64.00"
+        },
+        "dsp": {
+          "label": "DSPs",
+          "unit": "DSP",
+          "used": 4,
+          "available": 90,
+          "percent": 4.44,
+          "raw_percent": "4.44"
+        }
+      },
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "xdc_sha256": "07a7d6ef7f117cb90d4db82bee0af26cbb1625ee4baad0ef77264c54be86e04f",
+  "interface_sources": {
+    "ramp_extended_top.v": "9ef3e0637ec48aeef98a27d2ff641df25deff7a844b1dae14d26da0d1b0375a6"
+  },
+  "final_interface_sources": {
+    "ramp_extended_top.v": "9ef3e0637ec48aeef98a27d2ff641df25deff7a844b1dae14d26da0d1b0375a6"
+  },
+  "interfaces_changed": false
+}

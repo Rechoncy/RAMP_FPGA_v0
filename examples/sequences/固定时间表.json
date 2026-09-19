@@ -1,0 +1,195 @@
+{
+  "name": "示例 · 三波形固定时间表",
+  "initial": 512,
+  "safe": 512,
+  "update_us": 1.0,
+  "repeat": 1,
+  "trigger": "external",
+  "fm_initial": 0,
+  "fm_step": 1,
+  "fm_points": 1024,
+  "segments": [
+    {
+      "target": 800,
+      "duration_ms": 20
+    },
+    {
+      "target": 800,
+      "duration_ms": 100
+    },
+    {
+      "target": 100,
+      "duration_ms": 50
+    }
+  ],
+  "id": "c9e5c6f7b3a152c19b7b17ffa38de469",
+  "schema": 1,
+  "mode": "sequence",
+  "dac_bits": 10,
+  "amplitude": 112,
+  "rise_ms": 20.0,
+  "hold_ms": 100.0,
+  "fall_ms": 50.0,
+  "function": "I - 400 * sin(2*pi*t/T)",
+  "function_ms": 0.01,
+  "function_layout": "staged",
+  "rise_function": "I + (A-I)*(exp(-4.5*(1-t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+  "fall_function": "I + (A-I)*(exp(-4.5*(t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+  "channel": 0,
+  "trigger_input": 0,
+  "trigger_edge": "rising",
+  "timing_mode": "fixed",
+  "sequence_mode": "timeline",
+  "sequence_steps": [
+    {
+      "waveform": {
+        "name": "Ramp A",
+        "initial": 512,
+        "safe": 512,
+        "update_us": 1.0,
+        "repeat": 1,
+        "trigger": "external",
+        "fm_initial": 0,
+        "fm_step": 1,
+        "fm_points": 1024,
+        "segments": [
+          {
+            "target": 800,
+            "duration_ms": 20
+          },
+          {
+            "target": 800,
+            "duration_ms": 100
+          },
+          {
+            "target": 100,
+            "duration_ms": 50
+          }
+        ],
+        "id": "cec2383983fe58158d8c108559666e2d",
+        "schema": 1,
+        "mode": "ramp",
+        "dac_bits": 10,
+        "amplitude": 256,
+        "rise_ms": 0.05,
+        "hold_ms": 0.02,
+        "fall_ms": 0.05,
+        "function": "I - 400 * sin(2*pi*t/T)",
+        "function_ms": 0.01,
+        "function_layout": "staged",
+        "rise_function": "I + (A-I)*(exp(-4.5*(1-t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+        "fall_function": "I + (A-I)*(exp(-4.5*(t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+        "channel": 0,
+        "trigger_input": 0,
+        "trigger_edge": "rising",
+        "timing_mode": "fixed"
+      },
+      "kind": "edge",
+      "start_ms": 0,
+      "delay_ms": 0,
+      "input": 0,
+      "edge": "rising",
+      "repeat": 1
+    },
+    {
+      "waveform": {
+        "name": "Ramp B",
+        "initial": 512,
+        "safe": 512,
+        "update_us": 1.0,
+        "repeat": 1,
+        "trigger": "external",
+        "fm_initial": 0,
+        "fm_step": 1,
+        "fm_points": 1024,
+        "segments": [
+          {
+            "target": 800,
+            "duration_ms": 20
+          },
+          {
+            "target": 800,
+            "duration_ms": 100
+          },
+          {
+            "target": 100,
+            "duration_ms": 50
+          }
+        ],
+        "id": "6f995ed573905ecfb1f59f03d658af95",
+        "schema": 1,
+        "mode": "ramp",
+        "dac_bits": 10,
+        "amplitude": 128,
+        "rise_ms": 0.03,
+        "hold_ms": 0.02,
+        "fall_ms": 0.03,
+        "function": "I - 400 * sin(2*pi*t/T)",
+        "function_ms": 0.01,
+        "function_layout": "staged",
+        "rise_function": "I + (A-I)*(exp(-4.5*(1-t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+        "fall_function": "I + (A-I)*(exp(-4.5*(t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+        "channel": 0,
+        "trigger_input": 0,
+        "trigger_edge": "rising",
+        "timing_mode": "fixed"
+      },
+      "kind": "edge",
+      "start_ms": 0.2,
+      "delay_ms": 0,
+      "input": 1,
+      "edge": "rising",
+      "repeat": 1
+    },
+    {
+      "waveform": {
+        "name": "Ramp C",
+        "initial": 512,
+        "safe": 512,
+        "update_us": 1.0,
+        "repeat": 1,
+        "trigger": "external",
+        "fm_initial": 0,
+        "fm_step": 1,
+        "fm_points": 1024,
+        "segments": [
+          {
+            "target": 800,
+            "duration_ms": 20
+          },
+          {
+            "target": 800,
+            "duration_ms": 100
+          },
+          {
+            "target": 100,
+            "duration_ms": 50
+          }
+        ],
+        "id": "726f751f4d555be5954a615c71c2d213",
+        "schema": 1,
+        "mode": "ramp",
+        "dac_bits": 10,
+        "amplitude": 400,
+        "rise_ms": 0.04,
+        "hold_ms": 0.02,
+        "fall_ms": 0.04,
+        "function": "I - 400 * sin(2*pi*t/T)",
+        "function_ms": 0.01,
+        "function_layout": "staged",
+        "rise_function": "I + (A-I)*(exp(-4.5*(1-t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+        "fall_function": "I + (A-I)*(exp(-4.5*(t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+        "channel": 0,
+        "trigger_input": 0,
+        "trigger_edge": "rising",
+        "timing_mode": "fixed"
+      },
+      "kind": "edge",
+      "start_ms": 0.4,
+      "delay_ms": 0,
+      "input": 0,
+      "edge": "falling",
+      "repeat": 1
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+.venv/
+build/
+user_data/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.jou
+*.log
+.Xil/
+release/
+
+# Local history archives and machine-specific shortcuts
+/archive/
+*.lnk
+/FinalUnmatchedCellsToUnplace.txt
+/tight_setup_hold_pins.txt
+
+# Vivado generated caches and implementation products (keep .srcs and .xpr)
+/Assistant_FPGA/*.cache/
+/Assistant_FPGA/*.hw/
+/Assistant_FPGA/*.ip_user_files/
+/Assistant_FPGA/*.runs/
+/Assistant_FPGA/*.sim/
+/Assistant_FPGA/*.gen/
+*.dcp
+*.bit
+*.mcs
+*.bin
+*.wdb
+*.vvp
+*.vcd
+
+# Local environment settings
+.env
+.env.*
+!.env.example

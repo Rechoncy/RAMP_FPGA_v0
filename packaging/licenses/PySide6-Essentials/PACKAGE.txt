@@ -1,0 +1,2 @@
+PySide6_Essentials 6.11.2
+

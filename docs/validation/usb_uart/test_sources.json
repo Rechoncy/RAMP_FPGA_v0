@@ -1,0 +1,176 @@
+{
+  "source_report": "platform_final_tests.xml",
+  "source_sha256": "4b1d3e404b4cd06880b9ab2d390672cee0e1188c14c76d5b4d5b95a58bd02f81",
+  "source_timestamp": "2026-09-16T21:37:51.827771+08:00",
+  "source_group_seconds": 1.997,
+  "previous_full_report_sha256": "6bc48991eb2aaa4ba69d2ed24704f574e5d9a79feaf9ad8913ccbb65e1cfd8e7",
+  "method": "Replace only matching test modules; testcase identity is (classname, name). Per-file durations use sum of testcase times because source run combines three files.",
+  "replaced_files": [
+    {
+      "file": "test_uart_build_tcl.py",
+      "classname": "tests.test_uart_build_tcl",
+      "previous_tests": 33,
+      "tests": 33
+    },
+    {
+      "file": "test_utilization.py",
+      "classname": "tests.test_utilization",
+      "previous_tests": 14,
+      "tests": 15
+    },
+    {
+      "file": "test_extended_build.py",
+      "classname": "tests.test_extended_build",
+      "previous_tests": 14,
+      "tests": 14
+    }
+  ],
+  "full_report": "full_regression.xml",
+  "full_report_sha256": "b1eab39960fc4311af1c5078f0684707967800cf6bc5b84ae81f8990099c5f39",
+  "file_count": 55,
+  "unique_test_count": 648,
+  "passed": 647,
+  "skipped": 1,
+  "failures": 0,
+  "errors": 0,
+  "subsequent_merges": [
+    {
+      "source_report": "usb_elastic_final/test_usb_rtl.xml",
+      "source_sha256": "0fbc8d9b308fc06b1fb96bf462a282e6ef47874d274d9e48ee5a059215504b24",
+      "previous_full_report_sha256": "ae13ddce9f345062773b27ef51e3d5e072a1da0de3c8e82a6cc701f3ca094704",
+      "files": [
+        "test_usb_rtl.py"
+      ],
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reason": "Re-run after elastic register between FIFO and 200 MHz parser",
+      "rtl_file": "rtl/common/usb_packet_link.v",
+      "rtl_sha256": "d4e3444c22b455f959c157f23ae1471d27799b3eabefb1765adcce679b678a51"
+    },
+    {
+      "previous_full_report_sha256": "eedb96e6b9a3da318de408bedce87b5cac3d299981466d658c70958aa38c56fd",
+      "sources": [
+        {
+          "file": "test_usb_rtl.py",
+          "tests": 9,
+          "source_report": "controller_pipeline_final/test_usb_rtl.xml",
+          "source_sha256": "0dcf34f0202eee8635858a8835ce9c205bf5c20038bfd3923dd5802ddb2e8c54"
+        },
+        {
+          "file": "test_linear_controller.py",
+          "tests": 9,
+          "source_report": "controller_pipeline_final/test_linear_controller.xml",
+          "source_sha256": "f0b8383fc81584fd981682a5fae158e449886f7d3bd2574548dc1d472b91405f"
+        },
+        {
+          "file": "test_linear_cycle_compatibility.py",
+          "tests": 9,
+          "source_report": "controller_pipeline_final/test_linear_cycle_compatibility.xml",
+          "source_sha256": "8adb86b52d5eba0a5bc4c800074dbd52f8c809f5227392046798ef40a3a01e69"
+        },
+        {
+          "file": "test_parallel_cycle_compatibility.py",
+          "tests": 3,
+          "source_report": "controller_pipeline_final/test_parallel_cycle_compatibility.xml",
+          "source_sha256": "6964face8af8f74f6d7490683bca31526eb83fb265f0753f9dd7ad3dde33918b"
+        },
+        {
+          "file": "test_sample_cycle_compatibility.py",
+          "tests": 9,
+          "source_report": "controller_pipeline_final/test_sample_cycle_compatibility.xml",
+          "source_sha256": "d56d6fab9cf56e7e2831d057a44ad80d5daa961b006d29486abf32fc4b15c73b"
+        },
+        {
+          "file": "test_gate_cycle_compatibility.py",
+          "tests": 3,
+          "source_report": "controller_pipeline_final/test_gate_cycle_compatibility.xml",
+          "source_sha256": "8b5209ea9628c1180dcd339843f26ddc93fc787868dc99ce0b8c8014286fcca9"
+        },
+        {
+          "file": "test_widths.py",
+          "tests": 8,
+          "source_report": "controller_pipeline_final/test_widths.xml",
+          "source_sha256": "f31ac70d84012aa0814bb24f8b6807a40d8b16e7a069cd5c84e4dad8dfe37a89"
+        },
+        {
+          "file": "test_rtl.py",
+          "tests": 3,
+          "source_report": "controller_pipeline_final/test_rtl.xml",
+          "source_sha256": "ff893d4444617dab4d52887dc9943621ba626316d2ec2969cd8fb7f64816aaad"
+        },
+        {
+          "file": "test_boot.py",
+          "tests": 7,
+          "source_report": "controller_pipeline_final/test_boot.xml",
+          "source_sha256": "e66c1a50b8e9bc4b9fd275e2a129784477eb69b031704056c690fe31b9ed0876"
+        },
+        {
+          "file": "test_legacy_disabled.py",
+          "tests": 1,
+          "source_report": "controller_pipeline_final/test_legacy_disabled.xml",
+          "source_sha256": "8ba30f0f567f3afdec6bf437ad36508c843c7969c0be947f4f3c9587a3d927c4"
+        },
+        {
+          "file": "test_uart_baud_rtl.py",
+          "tests": 9,
+          "source_report": "controller_pipeline_final/test_uart_baud_rtl.xml",
+          "source_sha256": "d4c7c7a20fa868738f55bd4c6b2c9dcc585dcad0b2479899d418114901d9a17f"
+        },
+        {
+          "file": "test_hardware_interfaces.py",
+          "tests": 13,
+          "source_report": "usb_io_tests.xml",
+          "source_sha256": "a2243a30cc354b1779a1a6315414f646fa1ae39e436b21008469d9a935f01785"
+        }
+      ],
+      "reason": "RUN_BATCH two-stage validation and fixed-slice shift; USB SLEW FAST constraints",
+      "rtl_file": "rtl/common/controller.v",
+      "rtl_sha256": "afd5c8d6dd7d032ea7be40afe98fe042d634d799273ed694e9ccb97399f5f3d3",
+      "affected_passed": 83
+    },
+    {
+      "previous_full_report_sha256": "c6f239b9d31819060755d80383f87c93c59e565fd59607f7901645b1e720c996",
+      "sources": [
+        {
+          "file": "test_usb_rtl.py",
+          "tests": 11,
+          "source_report": "registered_io_final/test_usb_rtl.xml",
+          "source_sha256": "f27b6a7e8e4668217bdb37b63104dc8f5f389c1df1e2c2ffc9b453c24e071db5"
+        },
+        {
+          "file": "test_refine_timing.py",
+          "tests": 2,
+          "source_report": "tcl_final_tests.xml",
+          "source_sha256": "5ddacfe799b8986c79d8b97a868d444626a9d002ae1dcefe7f387963da646761"
+        },
+        {
+          "file": "test_uart_build_tcl.py",
+          "tests": 33,
+          "source_report": "tcl_final_tests.xml",
+          "source_sha256": "5ddacfe799b8986c79d8b97a868d444626a9d002ae1dcefe7f387963da646761"
+        }
+      ],
+      "reason": "Registered FT245 output controls and two-slot reserved RX buffering; bounded timing refinement tests",
+      "rtl_file": "rtl/common/ft245_sync.v",
+      "rtl_sha256": "ed0ebfc0208791d5b92794d59a9c624bce2dc487090420911155481f20ba4a76",
+      "affected_passed": 46
+    },
+    {
+      "previous_full_report_sha256": "4ef0801df5068f37a4bbbe5635b7aac8b93d4a3214f9be540a72b77b1d976fd9",
+      "source_report": "tristate_iob_final/test_usb_rtl.xml",
+      "source_sha256": "b1160b8b48841e40d2671e289991257e331f432568560979d078216398a590be",
+      "files": [
+        "test_usb_rtl.py"
+      ],
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reason": "IOB attribute on registered FT245 bus enable; no functional RTL change",
+      "rtl_file": "rtl/common/ft245_sync.v",
+      "rtl_sha256": "a604d57644e75498053b107e83d2c1da12cae5220bb1be30d1c53690b5048433"
+    }
+  ]
+}

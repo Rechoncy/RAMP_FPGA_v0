@@ -1,0 +1,6 @@
+Qt/LGPL-3.0-only.txt: https://raw.githubusercontent.com/qt/qtbase/v6.11.2/LICENSES/LGPL-3.0-only.txt
+Qt/GPL-3.0-only.txt: https://raw.githubusercontent.com/qt/qtbase/v6.11.2/LICENSES/GPL-3.0-only.txt
+Qt/BSD-3-Clause.txt: https://raw.githubusercontent.com/qt/qtbase/v6.11.2/LICENSES/BSD-3-Clause.txt
+pyserial/LICENSE.txt: https://raw.githubusercontent.com/pyserial/pyserial/v3.5/LICENSE.txt
+Qt 6.11.2 sources: https://download.qt.io/archive/qt/6.11/6.11.2/submodules/
+PySide6 6.11.2 sources: https://code.qt.io/cgit/pyside/pyside-setup.git/?h=v6.11.2

@@ -1,0 +1,150 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Wed Sep 16 22:33:24 2026
+| Host         : Quantum running 64-bit major release  (build 9200)
+| Command      : check_timing -verbose -file E:/Github_Project/RAMP_FPGA_v0/build/usb_uart_final_20260916/vivado_iob_final/core_route_check/check_timing.rpt
+| Design       : ramp_extended_top
+| Device       : 7a35t-fgg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (0)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (0)
+5. checking no_input_delay (3)
+6. checking no_output_delay (45)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (0)
+------------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (0)
+------------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (3)
+------------------------------
+ There are 0 input ports with no input delay specified.
+
+ There are 3 input ports with no input delay but user has a false path constraint. (MEDIUM)
+
+trigger_in[0]
+trigger_in[1]
+uart_rx
+
+
+6. checking no_output_delay (45)
+--------------------------------
+ There are 40 ports with no output delay specified. (HIGH)
+
+dac_data[0]
+dac_data[10]
+dac_data[11]
+dac_data[12]
+dac_data[13]
+dac_data[14]
+dac_data[15]
+dac_data[16]
+dac_data[17]
+dac_data[18]
+dac_data[19]
+dac_data[1]
+dac_data[20]
+dac_data[21]
+dac_data[22]
+dac_data[23]
+dac_data[24]
+dac_data[25]
+dac_data[26]
+dac_data[27]
+dac_data[28]
+dac_data[29]
+dac_data[2]
+dac_data[30]
+dac_data[31]
+dac_data[32]
+dac_data[33]
+dac_data[34]
+dac_data[35]
+dac_data[36]
+dac_data[37]
+dac_data[38]
+dac_data[39]
+dac_data[3]
+dac_data[4]
+dac_data[5]
+dac_data[6]
+dac_data[7]
+dac_data[8]
+dac_data[9]
+
+ There is 1 port with no output delay but user has a false path constraint (MEDIUM)
+
+uart_tx
+
+ There are 4 ports with no output delay but with a timing clock defined on it or propagating through it (LOW)
+
+dac_clk[0]
+dac_clk[1]
+dac_clk[2]
+dac_clk[3]
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+

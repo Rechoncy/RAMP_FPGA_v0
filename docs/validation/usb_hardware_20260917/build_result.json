@@ -1,0 +1,1 @@
+{"result":"passed with assumed DAC timing","usr_access":"09171701","setup_ns":0.001,"hold_ns":0.058,"pulse_width_ns":1.370,"dac_sample_edge":"rising","dac_min_ns":-0.5,"dac_max_ns":1.0,"external_dac_parameters_verified":false,"fpga_programmed":false,"flash_programmed":false}

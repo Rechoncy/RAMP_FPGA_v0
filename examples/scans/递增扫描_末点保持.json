@@ -1,0 +1,46 @@
+{
+  "name": "递增扫描_末点保持",
+  "initial": 512,
+  "safe": 512,
+  "update_us": 1.0,
+  "repeat": 1,
+  "trigger": "external",
+  "fm_initial": 0,
+  "fm_step": 1,
+  "fm_points": 1024,
+  "segments": [
+    {
+      "target": 800,
+      "duration_ms": 20
+    },
+    {
+      "target": 800,
+      "duration_ms": 100
+    },
+    {
+      "target": 100,
+      "duration_ms": 50
+    }
+  ],
+  "id": "b26ff23981605208900bca23ec1b4dce",
+  "schema": 1,
+  "mode": "scan",
+  "dac_bits": 10,
+  "amplitude": 112,
+  "rise_ms": 20.0,
+  "hold_ms": 100.0,
+  "fall_ms": 50.0,
+  "function": "I - 400 * sin(2*pi*t/T)",
+  "function_ms": 0.01,
+  "function_layout": "staged",
+  "rise_function": "I + (A-I)*(exp(-4.5*(1-t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+  "fall_function": "I + (A-I)*(exp(-4.5*(t/T)**2)-exp(-4.5))/(1-exp(-4.5))",
+  "channel": 0,
+  "trigger_input": 0,
+  "trigger_edge": "rising",
+  "timing_mode": "fixed",
+  "scan_start": 112,
+  "scan_step": 50,
+  "scan_points": 9,
+  "scan_end": "hold"
+}

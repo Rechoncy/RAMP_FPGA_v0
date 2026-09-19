@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ramp Studio · USB实板数字验证_2026-09-17</title><style>
+:root{color-scheme:light;--blue:#2563eb;--ink:#17365c;--muted:#526885;--line:#dce7f5}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}
+body{margin:0;background:#f2f6fd;color:var(--ink);font:16px/1.85 'Segoe UI','Microsoft YaHei',sans-serif}
+a{color:#1d4ed8;text-underline-offset:3px}a:hover{color:#163e9e}
+aside{position:fixed;inset:0 auto 0 0;width:290px;background:#fff;border-right:1px solid var(--line);padding:26px 22px;overflow:auto}
+.brand{font-size:23px;font-weight:750;letter-spacing:-.5px}.tag{color:var(--muted);font-size:12px;margin-bottom:22px}
+.switch{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}.switch a,button{border:1px solid var(--line);background:#edf4ff;border-radius:10px;padding:5px 10px;font:inherit;font-size:13px;text-decoration:none;color:#1d4ed8;cursor:pointer}
+.toc{font-size:13px;line-height:1.6}.toc ul{list-style:none;padding-left:12px}.toc>ul{padding:0}.toc li{margin:8px 0}.toc a{display:block;text-decoration:none;color:var(--muted)}.toc a:hover{color:var(--blue)}.toc>ul>li>ul{padding-left:0}.toc>ul>li>a{font-weight:700;color:var(--ink)}
+main{margin:30px 32px 40px 322px;max-width:1120px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px 46px;box-shadow:0 10px 35px #24467808}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--blue)}h1{font-size:32px;line-height:1.4;letter-spacing:-.7px;margin:12px 0 20px}h2{font-size:24px;margin:45px 0 18px;padding-top:18px;border-top:1px solid var(--line);line-height:1.5}h3{font-size:19px;margin-top:27px}p{margin:14px 0}strong{color:#123c77}li{margin:6px 0}img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:14px;margin:22px auto}table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;margin:20px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{background:#edf4ff;font-weight:650}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f8fbff}code{font-family:Consolas,'Microsoft YaHei',monospace;font-size:.9em;background:#edf4ff;padding:2px 5px;border-radius:5px;overflow-wrap:anywhere}pre{padding:17px 20px;border:1px solid var(--line);border-radius:12px;background:#f5f8fe;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}pre code{padding:0;background:transparent}blockquote{margin:20px 0;padding:1px 20px;border-left:4px solid #72a4f8;background:#f3f7ff;border-radius:0 12px 12px 0}footer{margin-top:45px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.top{float:right}
+@media(min-width:1600px){main{margin-left:340px}}
+@media(max-width:1000px){aside{position:static;width:auto;max-height:330px;border-bottom:1px solid var(--line)}main{margin:18px;padding:25px}.toc>ul>li>ul>li>ul{display:none}h1{font-size:27px}}
+@media print{aside,.top{display:none}main{margin:0;padding:0;border:0;box-shadow:none;max-width:none}body{font-size:10pt;background:white}h2,h3{break-after:avoid}img,pre,tr{break-inside:avoid}a{color:inherit;text-decoration:none}h1{font-size:22pt}h2{font-size:16pt}table{font-size:9pt}@page{size:A4;margin:16mm}}
+</style></head>
+<body id="top"><aside aria-label="文档导航"><div class="brand">Ramp Studio</div><div class="tag">200 MHz 波形工作台 · 离线文档</div><nav class="switch"><a href="%E8%BD%AF%E4%BB%B6%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html">软件详细使用手册</a><a href="UART%E8%87%AA%E5%8A%A8%E6%B3%A2%E7%89%B9%E7%8E%87.html">UART自动波特率</a><a href="UART%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">UART实板验证_2026-09-17</a><a href="USB_FIFO_R2%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">USB_FIFO_R2实板验证_2026-09-17</a><a href="%E8%BE%93%E5%87%BA%E9%87%87%E6%A0%B7%E7%8E%87%E4%B8%8E3PD5651E.html">输出采样率与3PD5651E</a><a href="%E9%AB%98%E9%80%9FUSB%E4%B8%8E%E4%B8%B2%E5%8F%A3.html">高速USB与串口</a><a href="USB%E5%AE%9E%E6%9D%BF%E6%95%B0%E5%AD%97%E9%AA%8C%E8%AF%81_2026-09-17.html">USB实板数字验证_2026-09-17</a><a href="14%E4%BD%8D%E9%AB%98%E6%96%AF%E5%88%86%E6%AE%B5%E6%8F%92%E5%80%BC.html">14位高斯分段插值</a><a href="%E8%B5%84%E6%BA%90%E8%83%BD%E5%8A%9B%E4%B8%8E%E4%B8%8B%E5%8F%91%E6%A3%80%E6%9F%A5.html">资源能力与下发检查</a><a href="%E6%9D%BF%E5%8D%A1%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8.html">板卡硬件资源占用</a><a href="%E6%89%A7%E8%A1%8C%E5%BA%8F%E5%88%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">执行序列使用说明</a><a href="%E8%A7%A6%E5%8F%91%E6%AD%A5%E8%BF%9B%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">触发步进使用说明</a><a href="%E5%8F%82%E8%80%83%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE.html">参考时钟配置</a><a href="%E8%BF%81%E7%A7%BB%E5%88%B0%E5%85%B6%E4%BB%96%E7%94%B5%E8%84%91.html">迁移到其他电脑</a><a href="%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97.html">开发日志</a><a href="%E7%9B%AE%E5%BD%95%E4%B8%8E%E5%BD%92%E6%A1%A3%E8%AF%B4%E6%98%8E.html">目录与归档说明</a><button onclick="window.print()">打印 / 保存 PDF</button></nav><div class="toc">
+<ul>
+<li><a href="#1">1. 本次配置与时序假设</a></li>
+<li><a href="#2-jtag">2. 实现和 JTAG 结果</a></li>
+<li><a href="#3-usb">3. USB 实测结果</a></li>
+<li><a href="#4">4. 交付与复现</a></li>
+</ul>
+</div>
+</aside>
+<main><div class="eyebrow">DOCUMENTATION / 2026.09.17</div><h1 id="usb-fifo-2026-09-17">USB FIFO 实板数字验证 · 2026-09-17</h1>
+<p>已将 USB FIFO + UART 双接口诊断固件 <strong>09171701</strong> 通过 JTAG 临时下载到 XC7A35T，完成 FT232H 数据接口的真实数字联调。<strong>未写 Flash，断电后仍启动原 Flash 固件 09112040。</strong> 测试结束四路均为原码 512、未布防，电脑端连接已关闭。</p>
+<h2 id="1">1. 本次配置与时序假设</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>本次配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FPGA / DAC / 触发</td>
+<td>xc7a35tfgg484-2 / 4 路 10 位 / 2 路</td>
+</tr>
+<tr>
+<td>参考 / 核心 / DAC / USB 时钟</td>
+<td>50 MHz 单端 / 200 MHz / 200 MHz / 60 MHz</td>
+</tr>
+<tr>
+<td>USB 数据接口</td>
+<td>FT232H，序列号 FTAE79DQ</td>
+</tr>
+<tr>
+<td>JTAG</td>
+<td>Digilent，序列号 210512180081</td>
+</tr>
+<tr>
+<td>UART</td>
+<td>固件保留 115200；本次没有连接独立 USB UART，未重复实测串口</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>每路每 bank 2048 段 BRAM，活动与待提交容量不相加</td>
+</tr>
+<tr>
+<td>DAC 采样边沿</td>
+<td>默认上升沿</td>
+</tr>
+<tr>
+<td>诊断输出延迟</td>
+<td>min <strong>−0.5 ns</strong> / max <strong>1.0 ns</strong></td>
+</tr>
+<tr>
+<td>固件上电内容</td>
+<td>无内置实验波形；四路等待码 512</td>
+</tr>
+</tbody>
+</table>
+<p>延迟值是本次诊断假设：先按 DAC 保持时间 0.5 ns、建立时间 1.0 ns 处理，尚未计入未知走线差。它们可保存并重复使用，<strong>不是对所有 DAC 和板卡永久有效的参数</strong>。输出延迟反映外部接收器的建立／保持时间和板级时钟、数据偏斜，不是串口或软件通信延迟。参见 <a href="https://docs.amd.com/r/2023.2-English/ug1387-acap-hardware-ip-platform-dev-methodology/Defining-Output-Delays">AMD 输出延迟定义</a>。</p>
+<p>在“板卡与连接 → DAC 时序”增加“填入诊断默认值”按钮；逐路覆盖仍优先。当前电脑的 <code>release/user_data/board.json</code> 和退出会话已保存 USB 引脚及上述默认值，下次启动可继续使用，实验方案和 Flash 上电快照保留。原文件备份于 <code>build/usb_hardware_20260917/user_settings_before/</code>。软件不会自动连接或布防。</p>
+<h2 id="2-jtag">2. 实现和 JTAG 结果</h2>
+<p>本次复用 9 月 16 日已核验源码和已布线 DCP，先核对哈希，再补入四路 DAC 的上述输出约束。最初出现 −0.795 ns 保持违例，经过物理优化和重新布线后才生成 BIT；没有通过放宽时钟或删除约束使其通过。</p>
+<table>
+<thead>
+<tr>
+<th>最终检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全局 setup / hold</td>
+<td><strong>+0.001 / +0.058 ns</strong></td>
+</tr>
+<tr>
+<td>脉宽裕量</td>
+<td>+1.370 ns</td>
+</tr>
+<tr>
+<td>DAC 输出最差 setup / hold</td>
+<td>+0.066 / +0.068 ns（基于假设延迟）</td>
+</tr>
+<tr>
+<td>LUT / FF</td>
+<td>12,959 / 16,240（62.30% / 39.04%）</td>
+</tr>
+<tr>
+<td>BRAM36 / DSP</td>
+<td>32 / 4（64.00% / 4.44%）</td>
+</tr>
+<tr>
+<td>DRC</td>
+<td>0 错误，4 条扫描 DSP 输入流水建议</td>
+</tr>
+<tr>
+<td>USB Gray 指针 bus skew</td>
+<td>四组均通过，最小裕量 +4.219 ns</td>
+</tr>
+<tr>
+<td>JTAG 回读</td>
+<td>USR_ACCESS=09171701，DONE=1，CRC_ERROR=0</td>
+</tr>
+</tbody>
+</table>
+<p>建立裕量仅 0.001 ns，不能推广到其他位数、通道数、引脚或重新布局。CDC 的两条复位组合输入告警继续保留：它们进入三级异步置位／同步释放链；未隐藏告警或称为全部清零。Gray 指针及 FIFO 数据跨时钟约束沿用已核验设计，并在本次最终布线后重新检查。</p>
+<p>最终时序包含这次假设的 DAC 输出约束，但未知器件的真实建立／保持时间没有因此得到确认。静态时序通过也不等于模拟电压或全部环境条件通过验证。</p>
+<h2 id="3-usb">3. USB 实测结果</h2>
+<p><strong>85 项数字检查全部通过</strong>，包含：</p>
+<ul>
+<li>实际读取四路、10 位、200 MHz、2048 段和 USB／批量／插值能力。</li>
+<li>四路分别输出 504、508、516、520，并通过 FPGA 状态核对通道隔离。</li>
+<li>8 组、每组 16 帧 INFO 窗口，共 128 帧，检查 CRC、序号和应答状态。</li>
+<li>各路实际下载并提交 2048 个描述符；这组满容量数据只下载，不触发播放。</li>
+<li>四路逐码保持与线性插值波形各播放两轮，观察目标平台、计数和返回初始码。</li>
+<li>无限重复、软件中止返回 512；门控模式布防、触发输入分配与取消。</li>
+<li>结束四路恢复 512、空闲；随后断开并重连 3 次，状态一致。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>满容量下载</th>
+<th>DAC 1</th>
+<th>DAC 2</th>
+<th>DAC 3</th>
+<th>DAC 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>描述符数</td>
+<td>2048</td>
+<td>2048</td>
+<td>2048</td>
+<td>2048</td>
+</tr>
+<tr>
+<td>BEGIN 至 COMMIT 耗时</td>
+<td>90.512 ms</td>
+<td>90.019 ms</td>
+<td>89.998 ms</td>
+<td>90.051 ms</td>
+</tr>
+</tbody>
+</table>
+<p>每路有效描述符为 12,288 字节，相当于本次操作约 136 kB/s 的描述符有效吞吐量；包含命令应答开销，不含波形函数编译，也不是 USB 总线物理带宽。后续测试、其他电脑和驱动可能不同。四路分次上传，不能把这个结果解释为四路模拟输出同步偏差测量。</p>
+<p>FT232H 的 128 个 EEPROM 字在联调前后读取一致，未改 EEPROM 或驱动。发现 Digilent JTAG 下载器也会枚举为 FT232H，现已从数据接口列表排除其专用设备描述，避免误设置 FIFO 模式。相关主机／配置回归 42 项通过，最终 EXE 三组便携检查通过。</p>
+<p>用户选择暂不使用示波器，因此本轮没有模拟电压、实际 DAC 管脚波形、200 MHz 时钟边沿或外部触发脉冲测量。门控测试是布防／取消；正常及提前下降沿的实物返回过程未在本轮施加受控外部信号测试。</p>
+<h2 id="4">4. 交付与复现</h2>
+<ul>
+<li>软件：<code>release/Ramp Studio.exe</code>，迁移使用 <code>release/Ramp-Studio-Windows-x64.zip</code> 加实际 <code>release/user_data/</code>。</li>
+<li>固件：<code>release/FPGA-XC7A35T-USB-UART-20260917/ramp_usb_uart_4x10_09171701.bit</code>，也提供同名目录的 ZIP 包。</li>
+<li>诊断板卡模板：<code>boards/xc7a35t_usb_uart_diagnostic.json</code>；便携包中为 <code>板卡示例/xc7a35t_usb_uart_diagnostic.json</code>。</li>
+<li>本地完整证据：<code>build/usb_hardware_20260917/</code>；随文档提供 <a href="validation/usb_hardware_20260917/summary.json">验证摘要</a>。</li>
+</ul>
+<p>保持本次 FPGA 上电时，在设备列表选择 <code>USB FIFO · FTAE79DQ</code>，连接后准备自己的方案即可。<strong>如果重新断电上电，需重新临时下载本次 BIT 才能继续使用 USB 新固件。</strong> 需要长期掉电保留时，可在另一次明确固化操作中写入 Flash；普通波形下载仍只写 BRAM。</p>
+<p>复现数字测试：先下载匹配的诊断 BIT，再运行下列命令。脚本会覆盖板上暂存波形，结束恢复四路 512，拒绝在已布防或运行的通道上开始测试；不会烧写 FPGA、Flash 或 EEPROM。</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe scripts\verify_usb_device.py --port usb:FTAE79DQ --execute-hardware --output build\new_usb_check.json
+</code></pre><footer><a class="top" href="#top">返回顶部 ↑</a>Ramp Studio · 本地离线文档；截图为演示状态。以设备实际能力和对应验证记录为准。</footer></main></body></html>

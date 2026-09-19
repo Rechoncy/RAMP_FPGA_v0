@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "updated_at": "2026-09-16T14:37:07.110493+00:00",
+  "mode": "check",
+  "status": "success",
+  "error": "",
+  "board_part": "xc7a35tfgg484-2",
+  "board_fingerprint": "a17d92f3f85ff194ef65f88c6ba09190631110fce591fc0f8167fc553480918f",
+  "board_context": {
+    "part": "xc7a35tfgg484-2",
+    "dac_count": 4,
+    "dac_bits": 10,
+    "trigger_count": 2,
+    "ref_mhz": 50.0,
+    "clock_input": "single_ended",
+    "uart_baud": 115200,
+    "boot_channels": []
+  },
+  "source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+  "final_source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+  "sources_changed": false,
+  "reports": [
+    {
+      "schema": 1,
+      "path": "utilization_synth.rpt",
+      "sha256": "34c0a6cc47bfdd9027c916c5521f497b67dffc23e6e621a6eb9b3fb07c074f71",
+      "device": "xc7a35tfgg484-2",
+      "date": "Wed Sep 16 22:26:35 2026",
+      "design": "ramp_extended_top",
+      "design_state": "Synthesized",
+      "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+      "stage": "synth",
+      "metrics": {
+        "lut": {
+          "label": "Slice LUTs*",
+          "unit": "LUT",
+          "used": 13007,
+          "available": 20800,
+          "percent": 62.53,
+          "raw_percent": "62.53"
+        },
+        "ff": {
+          "label": "Slice Registers",
+          "unit": "FF",
+          "used": 16127,
+          "available": 41600,
+          "percent": 38.77,
+          "raw_percent": "38.77"
+        },
+        "bram": {
+          "label": "Block RAM Tile",
+          "unit": "36 Kb",
+          "used": 32,
+          "available": 50,
+          "percent": 64,
+          "raw_percent": "64.00"
+        },
+        "dsp": {
+          "label": "DSPs",
+          "unit": "DSP",
+          "used": 4,
+          "available": 90,
+          "percent": 4.44,
+          "raw_percent": "4.44"
+        }
+      },
+      "warnings": []
+    },
+    {
+      "schema": 1,
+      "path": "core_route_check/utilization.rpt",
+      "sha256": "de351836cba1dca0db4ce69b96a186e8c331024d9ba939a85720f606a67bf6d5",
+      "device": "xc7a35tfgg484-2",
+      "date": "Wed Sep 16 22:33:29 2026",
+      "design": "ramp_extended_top",
+      "design_state": "Routed",
+      "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+      "stage": "routed",
+      "metrics": {
+        "lut": {
+          "label": "Slice LUTs",
+          "unit": "LUT",
+          "used": 12946,
+          "available": 20800,
+          "percent": 62.24,
+          "raw_percent": "62.24"
+        },
+        "ff": {
+          "label": "Slice Registers",
+          "unit": "FF",
+          "used": 16240,
+          "available": 41600,
+          "percent": 39.04,
+          "raw_percent": "39.04"
+        },
+        "bram": {
+          "label": "Block RAM Tile",
+          "unit": "36 Kb",
+          "used": 32,
+          "available": 50,
+          "percent": 64,
+          "raw_percent": "64.00"
+        },
+        "dsp": {
+          "label": "DSPs",
+          "unit": "DSP",
+          "used": 4,
+          "available": 90,
+          "percent": 4.44,
+          "raw_percent": "4.44"
+        }
+      },
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "xdc_sha256": "07a7d6ef7f117cb90d4db82bee0af26cbb1625ee4baad0ef77264c54be86e04f",
+  "interface_sources": {
+    "ramp_extended_top.v": "9ef3e0637ec48aeef98a27d2ff641df25deff7a844b1dae14d26da0d1b0375a6"
+  },
+  "final_interface_sources": {
+    "ramp_extended_top.v": "9ef3e0637ec48aeef98a27d2ff641df25deff7a844b1dae14d26da0d1b0375a6"
+  },
+  "interfaces_changed": false,
+  "read_only_audit": {
+    "kind": "read-only report export from completed routed checkpoint; no re-route or source change",
+    "original_completed_manifest": "resource_report_at_build_completion.json",
+    "original_completed_manifest_sha256": "96571c42a851d4dda2d46219fab4368687fd9cf8a29db63d4b45322d290bd5ef",
+    "completed_at": "2026-09-16T14:32:13.338527+00:00",
+    "routed_checkpoint": "core_route_check/routed.dcp",
+    "routed_checkpoint_sha256": "a22dd7aa1b7496a2ff54d7e667a68dbf24c72124c2384e9a92a45ada3cd691d6",
+    "synth_checkpoint_sha256": "8f286b6d3b25f449fce1cf945257bb31d3da678a66e277ebb054b8e47ca9d91d",
+    "audit_script_sha256": "401d9dd07be3e07305201cf44e59bba8c0b9cb7fd0d2f50d3e34df8b01eb8cd6",
+    "audit_log_sha256": "c29c87c820595586235922194f08af7c5bbf2bd3478ba6a3343b43590660f9c8"
+  }
+}

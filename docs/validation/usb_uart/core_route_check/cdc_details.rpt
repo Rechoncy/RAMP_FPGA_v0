@@ -1,0 +1,71 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Wed Sep 16 22:33:20 2026
+| Host         : Quantum running 64-bit major release  (build 9200)
+| Command      : report_cdc -details -file E:/Github_Project/RAMP_FPGA_v0/build/usb_uart_final_20260916/vivado_iob_final/core_route_check/cdc_details.rpt
+| Design       : ramp_extended_top
+| Device       : 7a35t-fgg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CDC Report
+
+ID      Severity  Count  Description
+------  --------  -----  -------------------------------------------------------
+CDC-3   Info          5  1-bit synchronized with ASYNC_REG property
+CDC-6   Warning       4  Multi-bit synchronized with ASYNC_REG property
+CDC-9   Info          1  Asynchronous reset synchronized with ASYNC_REG property
+CDC-10  Critical      2  Combinational logic detected before a synchronizer
+CDC-15  Warning      16  Clock enable controlled CDC structure detected
+
+Source Clock: input port clock
+Destination Clock: clk_out1_clk_core_ip
+CDC Type: No Common Primary Clock
+
+Row  ID     Severity  Description                                 Depth  Exception   Source (From)  Destination (To)
+---  -----  --------  ------------------------------------------  -----  ----------  -------------  ---------------------------------
+  1  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  trigger_in[0]  inputs[0].u_sync/sync_ff_reg[0]/D
+  2  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  trigger_in[1]  inputs[1].u_sync/sync_ff_reg[0]/D
+  3  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  uart_rx        u_uart/u_rx/sync_ff_reg[0]/D
+
+Source Clock: usb_clk
+Destination Clock: clk_out1_clk_core_ip
+CDC Type: No Common Primary Clock
+
+Row  ID      Severity  Description                                         Depth  Exception                Source (From)                                   Destination (To)
+---  ------  --------  --------------------------------------------------  -----  -----------------------  ----------------------------------------------  ---------------------------------------
+  1  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               usb_reset_reg[2]/C                              u_usb/core_reset_pipe_reg[0]/PRE
+  2  CDC-6   Warning   Multi-bit synchronized with ASYNC_REG property          2  Max Delay Datapath Only  u_usb/incoming/wr_gray_reg[8:0]/C               u_usb/incoming/wr_gray_sync1_reg[8:0]/D
+  3  CDC-3   Info      1-bit synchronized with ASYNC_REG property              2  Max Delay Datapath Only  u_usb/incoming/wr_binary_reg[9]/C               u_usb/incoming/wr_gray_sync1_reg[9]/D
+  4  CDC-6   Warning   Multi-bit synchronized with ASYNC_REG property          2  Max Delay Datapath Only  u_usb/outgoing/rd_gray_reg[9:0]/C               u_usb/outgoing/rd_gray_sync1_reg[9:0]/D
+  5  CDC-15  Warning   Clock enable controlled CDC structure detected          0  Max Delay Datapath Only  u_usb/incoming/memory_reg_256_319_0_2/RAMA/CLK  u_usb/packet_rx_data_reg[0]/D
+  6  CDC-15  Warning   Clock enable controlled CDC structure detected          0  Max Delay Datapath Only  u_usb/incoming/memory_reg_256_319_0_2/RAMB/CLK  u_usb/packet_rx_data_reg[1]/D
+  7  CDC-15  Warning   Clock enable controlled CDC structure detected          0  Max Delay Datapath Only  u_usb/incoming/memory_reg_256_319_0_2/RAMC/CLK  u_usb/packet_rx_data_reg[2]/D
+  8  CDC-15  Warning   Clock enable controlled CDC structure detected          0  Max Delay Datapath Only  u_usb/incoming/memory_reg_256_319_3_5/RAMA/CLK  u_usb/packet_rx_data_reg[3]/D
+  9  CDC-15  Warning   Clock enable controlled CDC structure detected          0  Max Delay Datapath Only  u_usb/incoming/memory_reg_256_319_3_5/RAMB/CLK  u_usb/packet_rx_data_reg[4]/D
+ 10  CDC-15  Warning   Clock enable controlled CDC structure detected          0  Max Delay Datapath Only  u_usb/incoming/memory_reg_256_319_3_5/RAMC/CLK  u_usb/packet_rx_data_reg[5]/D
+ 11  CDC-15  Warning   Clock enable controlled CDC structure detected          0  Max Delay Datapath Only  u_usb/incoming/memory_reg_256_319_6_7/RAMA/CLK  u_usb/packet_rx_data_reg[6]/D
+ 12  CDC-15  Warning   Clock enable controlled CDC structure detected          0  Max Delay Datapath Only  u_usb/incoming/memory_reg_256_319_6_7/RAMB/CLK  u_usb/packet_rx_data_reg[7]/D
+
+Source Clock: clk_out1_clk_core_ip
+Destination Clock: usb_clk
+CDC Type: No Common Primary Clock
+
+Row  ID      Severity  Description                                              Depth  Exception                Source (From)                                   Destination (To)
+---  ------  --------  -------------------------------------------------------  -----  -----------------------  ----------------------------------------------  ---------------------------------------
+  1  CDC-6   Warning   Multi-bit synchronized with ASYNC_REG property               2  Max Delay Datapath Only  u_usb/incoming/rd_gray_reg[9:0]/C               u_usb/incoming/rd_gray_sync1_reg[9:0]/D
+  2  CDC-6   Warning   Multi-bit synchronized with ASYNC_REG property               2  Max Delay Datapath Only  u_usb/outgoing/wr_gray_reg[8:0]/C               u_usb/outgoing/wr_gray_sync1_reg[8:0]/D
+  3  CDC-3   Info      1-bit synchronized with ASYNC_REG property                   2  Max Delay Datapath Only  u_usb/outgoing/wr_binary_reg[9]/C               u_usb/outgoing/wr_gray_sync1_reg[9]/D
+  4  CDC-15  Warning   Clock enable controlled CDC structure detected               0  Max Delay Datapath Only  u_usb/outgoing/memory_reg_256_319_0_2/RAMA/CLK  u_usb/physical/write_data_reg[0]/D
+  5  CDC-15  Warning   Clock enable controlled CDC structure detected               0  Max Delay Datapath Only  u_usb/outgoing/memory_reg_256_319_0_2/RAMB/CLK  u_usb/physical/write_data_reg[1]/D
+  6  CDC-15  Warning   Clock enable controlled CDC structure detected               0  Max Delay Datapath Only  u_usb/outgoing/memory_reg_256_319_0_2/RAMC/CLK  u_usb/physical/write_data_reg[2]/D
+  7  CDC-15  Warning   Clock enable controlled CDC structure detected               0  Max Delay Datapath Only  u_usb/outgoing/memory_reg_256_319_3_5/RAMA/CLK  u_usb/physical/write_data_reg[3]/D
+  8  CDC-15  Warning   Clock enable controlled CDC structure detected               0  Max Delay Datapath Only  u_usb/outgoing/memory_reg_256_319_3_5/RAMB/CLK  u_usb/physical/write_data_reg[4]/D
+  9  CDC-15  Warning   Clock enable controlled CDC structure detected               0  Max Delay Datapath Only  u_usb/outgoing/memory_reg_256_319_3_5/RAMC/CLK  u_usb/physical/write_data_reg[5]/D
+ 10  CDC-15  Warning   Clock enable controlled CDC structure detected               0  Max Delay Datapath Only  u_usb/outgoing/memory_reg_256_319_6_7/RAMA/CLK  u_usb/physical/write_data_reg[6]/D
+ 11  CDC-15  Warning   Clock enable controlled CDC structure detected               0  Max Delay Datapath Only  u_usb/outgoing/memory_reg_256_319_6_7/RAMB/CLK  u_usb/physical/write_data_reg[7]/D
+ 12  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path               u_clock/core_sync_reg[2]/C                      u_usb/usb_reset_pipe_reg[0]/PRE
+ 13  CDC-9   Info      Asynchronous reset synchronized with ASYNC_REG property      3  False Path               u_clock/core_sync_reg[2]/C                      usb_reset_reg[0]/PRE
+

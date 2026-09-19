@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "updated_at": "2026-09-17T02:48:24.822561+00:00",
+  "mode": "implement",
+  "status": "success",
+  "error": "",
+  "board_part": "xc7a35tfgg484-2",
+  "board_fingerprint": "e03967c02fa4dfa3f2e0d82228ce3707e3cf661a2bfdca5f36b95e91e14a9e48",
+  "board_context": {
+    "part": "xc7a35tfgg484-2",
+    "dac_count": 4,
+    "dac_bits": 10,
+    "trigger_count": 2,
+    "ref_mhz": 50.0,
+    "clock_input": "single_ended",
+    "uart_baud": 115200,
+    "boot_channels": []
+  },
+  "source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+  "final_source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+  "sources_changed": false,
+  "reports": [
+    {
+      "schema": 1,
+      "path": "utilization_routed.rpt",
+      "sha256": "e73454106c112508d8b00a2e37adbb080038c78f404402a5cf1f5251747cfcdb",
+      "device": "xc7a35tfgg484-2",
+      "date": "Thu Sep 17 10:29:15 2026",
+      "design": "ramp_extended_top",
+      "design_state": "Routed",
+      "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+      "stage": "routed",
+      "metrics": {
+        "lut": {
+          "label": "Slice LUTs",
+          "unit": "LUT",
+          "used": 12959,
+          "available": 20800,
+          "percent": 62.3,
+          "raw_percent": "62.30"
+        },
+        "ff": {
+          "label": "Slice Registers",
+          "unit": "FF",
+          "used": 16240,
+          "available": 41600,
+          "percent": 39.04,
+          "raw_percent": "39.04"
+        },
+        "bram": {
+          "label": "Block RAM Tile",
+          "unit": "36 Kb",
+          "used": 32,
+          "available": 50,
+          "percent": 64,
+          "raw_percent": "64.00"
+        },
+        "dsp": {
+          "label": "DSPs",
+          "unit": "DSP",
+          "used": 4,
+          "available": 90,
+          "percent": 4.44,
+          "raw_percent": "4.44"
+        }
+      },
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "xdc_sha256": "6fb714efeb0f0e0d8f174aa3548447599015a68312e07ebde74ff681ec2e5aee",
+  "interface_sources": {
+    "ramp_extended_top.v": "9ef3e0637ec48aeef98a27d2ff641df25deff7a844b1dae14d26da0d1b0375a6"
+  },
+  "final_interface_sources": {
+    "ramp_extended_top.v": "9ef3e0637ec48aeef98a27d2ff641df25deff7a844b1dae14d26da0d1b0375a6"
+  },
+  "interfaces_changed": false,
+  "provenance": "Reopened verified routed DCP; added diagnostic DAC constraints; physical optimization and route; generated and temporarily programmed BIT.",
+  "external_dac_parameters_verified": false,
+  "usr_access": "09171701"
+}

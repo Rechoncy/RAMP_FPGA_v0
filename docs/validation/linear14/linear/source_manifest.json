@@ -1,0 +1,43 @@
+{
+  "rtl_sha256": {
+    "controller.v": "227b104b81e7f2384f36e36fb4ce40888b6e81d6c9f2f70f0cbb1ce98b710296",
+    "gate_engine.v": "bec2cb748dc098731318ef222920c080ffa230a1591d1c5b721b5ff606943ac0",
+    "linear_engine.v": "d23f5f2143792c94296a3763f4da051106c4a0475577b9b5b47ac7b078d64dca",
+    "packet_link.v": "09b426d2945a91e8d5ea04678e59082320948c1df4db123c1ddbc7174fbf7871",
+    "parallel_controller.v": "d59a1bb61b77e6120e982192c4c836245e9b2da49824be06fc6f3139f1ea19d4",
+    "program_sequencer.v": "0309da22fd0dce337e4b3659b854632e4decad800a1bf78598ddbd04b79fff13",
+    "sample_engine.v": "b6ebbb54cf5c7fa6b5b6e4153be32a13b3c4e94d440d1f43e7f442cc9bc48555",
+    "scan_engine.v": "48d4a85a726ecc06ac5a3dda58cdf011b3d848238fc54f42c748eb9e73b5cdeb",
+    "sequence_engine.v": "e4d88a9ce12eab34eec16964152bee12b1adbb0b6b947b2c0a6b243eeb114198",
+    "trigger_sync.v": "5aea2fa38c2f634759cc214af46bd4bdfa92013516c7891cc7cbac755aed6275",
+    "uart.v": "5f801b7e453eac0165a67ca3d38c05eec09bb8268c2ef706644c0bbcd57886f6"
+  },
+  "scripts_sha256": {
+    "actual_export_core_constraints.tcl": "893974212bfccf73c235e2ae706c7d4d4a4a611e8889082c06d7c831e40ddb1e",
+    "check_linear_core.tcl": "8a8679cdb3ba8c0f5e8b77149ed731cadcb0046d971900354fcd7efc928b759f",
+    "refine_grouped_core.tcl": "2d223583afc797136af07b4a506b4fa454a1b246dbb1c55b4b33a0bd22bab644",
+    "refine_timing.tcl": "1a88d7e7334443835b3126ff943e6c3cbcc5aaa4e445990ffabf0c553bf6f042",
+    "report_internal_core.tcl": "2518c6cb4f48e47b1c8eec9567037dea82aa108852ee9138140ea372f2d54b4d"
+  },
+  "wrapper_sha256": "932e4f38a28ad73579c2655b4b36cf0fd8bfd2647c24f40f3979f1b3c9aaca7b",
+  "constraints_sha256": "c0f2386143cccb3b4493e2f2d427123e91b52657dce57e848b9cd694c176abdb",
+  "result": {
+    "part": "xc7a35tfgg484-2",
+    "clock_hz": 200000000,
+    "dac_count": 4,
+    "dac_bits": 14,
+    "runs_per_channel_per_bank": 2048,
+    "descriptor_bits": 46,
+    "scope": "all internal synchronous register/BRAM/DSP checks (including CE and synchronous R) with routed BUFG tree; full OOC port paths preserved but not signed off; excludes MMCM and external DAC/UART/reset timing",
+    "setup_slack_ns": 0.006,
+    "hold_slack_ns": 0.056,
+    "internal_setup_slack_ns": 0.006,
+    "internal_hold_slack_ns": 0.056,
+    "full_setup_slack_ns": -0.267,
+    "full_hold_slack_ns": -0.88,
+    "internal_cells": 16067,
+    "bram_cells": 36,
+    "dsp_cells": 4
+  },
+  "note": "The new RTL uses a fresh before_place implementation; the baseline uses an ungrouped checkpoint followed by grouped refinement. See REPRODUCE_CORE.md for the actual commands, preserved 5 ns and IO constraints, and timing scope."
+}

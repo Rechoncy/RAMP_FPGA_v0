@@ -1,0 +1,94 @@
+{
+  "core": {
+    "part": "xc7a35tfgg484-2",
+    "clock_hz": 200000000,
+    "dac_count": 4,
+    "dac_bits": 14,
+    "runs_per_channel_per_bank": 2048,
+    "descriptor_bits": 46,
+    "scope": "all internal synchronous register/BRAM/DSP checks (including CE and synchronous R) with routed BUFG tree; full OOC port paths preserved but not signed off; excludes MMCM and external DAC/UART/reset timing",
+    "setup_slack_ns": 0.006,
+    "hold_slack_ns": 0.056,
+    "internal_setup_slack_ns": 0.006,
+    "internal_hold_slack_ns": 0.056,
+    "full_setup_slack_ns": -0.267,
+    "full_hold_slack_ns": -0.88,
+    "internal_cells": 16067,
+    "bram_cells": 36,
+    "dsp_cells": 4
+  },
+  "resources": {
+    "baseline": {
+      "lut": {
+        "label": "Slice LUTs",
+        "unit": "LUT",
+        "used": 8078,
+        "available": 20800,
+        "percent": 38.84,
+        "raw_percent": "38.84"
+      },
+      "ff": {
+        "label": "Slice Registers",
+        "unit": "FF",
+        "used": 11207,
+        "available": 41600,
+        "percent": 26.94,
+        "raw_percent": "26.94"
+      },
+      "bram": {
+        "label": "Block RAM Tile",
+        "unit": "36 Kb",
+        "used": 34,
+        "available": 50,
+        "percent": 68,
+        "raw_percent": "68.00"
+      },
+      "dsp": {
+        "label": "DSPs",
+        "unit": "DSP",
+        "used": 4,
+        "available": 90,
+        "percent": 4.44,
+        "raw_percent": "4.44"
+      }
+    },
+    "linear": {
+      "lut": {
+        "label": "Slice LUTs",
+        "unit": "LUT",
+        "used": 12284,
+        "available": 20800,
+        "percent": 59.06,
+        "raw_percent": "59.06"
+      },
+      "ff": {
+        "label": "Slice Registers",
+        "unit": "FF",
+        "used": 14571,
+        "available": 41600,
+        "percent": 35.03,
+        "raw_percent": "35.03"
+      },
+      "bram": {
+        "label": "Block RAM Tile",
+        "unit": "36 Kb",
+        "used": 34,
+        "available": 50,
+        "percent": 68,
+        "raw_percent": "68.00"
+      },
+      "dsp": {
+        "label": "DSPs",
+        "unit": "DSP",
+        "used": 4,
+        "available": 90,
+        "percent": 4.44,
+        "raw_percent": "4.44"
+      }
+    }
+  },
+  "tests_passed": 566,
+  "tests_skipped": 1,
+  "hardware_programmed": false,
+  "physical_serial_tested": false
+}

@@ -1,0 +1,18 @@
+{
+  "tests": 47,
+  "passed": 46,
+  "skipped": 1,
+  "new_tests_passed": 6,
+  "simulated_link_detection_cases": 4,
+  "native_ntfs_junction_cases": 2,
+  "native_symbolic_link_result": "skipped: Windows error 1314; privilege not held",
+  "system_settings_changed": false,
+  "application_changed": false,
+  "fpga_changed": false,
+  "hardware_programmed": false,
+  "source": "tests/test_workspace_archive.py",
+  "source_sha256": "63e5a35c39c005732847741548175d6cebc2d46aad7c65a23fc69b17cbf70ad4",
+  "junit": "symlink-workspace-archive.xml",
+  "junit_sha256": "5a1977f95e2a15b6dc6c7097d2e87e869e8d117bbdb66bc606479f6f86165f2a",
+  "executable_sha256": "70035a21abbf9981fd8a1f2774cacd2733a79ea55a51b6632e2f9276a5eb7303"
+}

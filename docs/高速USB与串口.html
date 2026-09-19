@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ramp Studio · 高速USB与串口</title><style>
+:root{color-scheme:light;--blue:#2563eb;--ink:#17365c;--muted:#526885;--line:#dce7f5}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}
+body{margin:0;background:#f2f6fd;color:var(--ink);font:16px/1.85 'Segoe UI','Microsoft YaHei',sans-serif}
+a{color:#1d4ed8;text-underline-offset:3px}a:hover{color:#163e9e}
+aside{position:fixed;inset:0 auto 0 0;width:290px;background:#fff;border-right:1px solid var(--line);padding:26px 22px;overflow:auto}
+.brand{font-size:23px;font-weight:750;letter-spacing:-.5px}.tag{color:var(--muted);font-size:12px;margin-bottom:22px}
+.switch{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}.switch a,button{border:1px solid var(--line);background:#edf4ff;border-radius:10px;padding:5px 10px;font:inherit;font-size:13px;text-decoration:none;color:#1d4ed8;cursor:pointer}
+.toc{font-size:13px;line-height:1.6}.toc ul{list-style:none;padding-left:12px}.toc>ul{padding:0}.toc li{margin:8px 0}.toc a{display:block;text-decoration:none;color:var(--muted)}.toc a:hover{color:var(--blue)}.toc>ul>li>ul{padding-left:0}.toc>ul>li>a{font-weight:700;color:var(--ink)}
+main{margin:30px 32px 40px 322px;max-width:1120px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px 46px;box-shadow:0 10px 35px #24467808}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--blue)}h1{font-size:32px;line-height:1.4;letter-spacing:-.7px;margin:12px 0 20px}h2{font-size:24px;margin:45px 0 18px;padding-top:18px;border-top:1px solid var(--line);line-height:1.5}h3{font-size:19px;margin-top:27px}p{margin:14px 0}strong{color:#123c77}li{margin:6px 0}img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:14px;margin:22px auto}table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;margin:20px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{background:#edf4ff;font-weight:650}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f8fbff}code{font-family:Consolas,'Microsoft YaHei',monospace;font-size:.9em;background:#edf4ff;padding:2px 5px;border-radius:5px;overflow-wrap:anywhere}pre{padding:17px 20px;border:1px solid var(--line);border-radius:12px;background:#f5f8fe;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}pre code{padding:0;background:transparent}blockquote{margin:20px 0;padding:1px 20px;border-left:4px solid #72a4f8;background:#f3f7ff;border-radius:0 12px 12px 0}footer{margin-top:45px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.top{float:right}
+@media(min-width:1600px){main{margin-left:340px}}
+@media(max-width:1000px){aside{position:static;width:auto;max-height:330px;border-bottom:1px solid var(--line)}main{margin:18px;padding:25px}.toc>ul>li>ul>li>ul{display:none}h1{font-size:27px}}
+@media print{aside,.top{display:none}main{margin:0;padding:0;border:0;box-shadow:none;max-width:none}body{font-size:10pt;background:white}h2,h3{break-after:avoid}img,pre,tr{break-inside:avoid}a{color:inherit;text-decoration:none}h1{font-size:22pt}h2{font-size:16pt}table{font-size:9pt}@page{size:A4;margin:16mm}}
+</style></head>
+<body id="top"><aside aria-label="文档导航"><div class="brand">Ramp Studio</div><div class="tag">200 MHz 波形工作台 · 离线文档</div><nav class="switch"><a href="%E8%BD%AF%E4%BB%B6%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html">软件详细使用手册</a><a href="UART%E8%87%AA%E5%8A%A8%E6%B3%A2%E7%89%B9%E7%8E%87.html">UART自动波特率</a><a href="UART%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">UART实板验证_2026-09-17</a><a href="USB_FIFO_R2%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">USB_FIFO_R2实板验证_2026-09-17</a><a href="%E8%BE%93%E5%87%BA%E9%87%87%E6%A0%B7%E7%8E%87%E4%B8%8E3PD5651E.html">输出采样率与3PD5651E</a><a href="%E9%AB%98%E9%80%9FUSB%E4%B8%8E%E4%B8%B2%E5%8F%A3.html">高速USB与串口</a><a href="USB%E5%AE%9E%E6%9D%BF%E6%95%B0%E5%AD%97%E9%AA%8C%E8%AF%81_2026-09-17.html">USB实板数字验证_2026-09-17</a><a href="14%E4%BD%8D%E9%AB%98%E6%96%AF%E5%88%86%E6%AE%B5%E6%8F%92%E5%80%BC.html">14位高斯分段插值</a><a href="%E8%B5%84%E6%BA%90%E8%83%BD%E5%8A%9B%E4%B8%8E%E4%B8%8B%E5%8F%91%E6%A3%80%E6%9F%A5.html">资源能力与下发检查</a><a href="%E6%9D%BF%E5%8D%A1%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8.html">板卡硬件资源占用</a><a href="%E6%89%A7%E8%A1%8C%E5%BA%8F%E5%88%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">执行序列使用说明</a><a href="%E8%A7%A6%E5%8F%91%E6%AD%A5%E8%BF%9B%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">触发步进使用说明</a><a href="%E5%8F%82%E8%80%83%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE.html">参考时钟配置</a><a href="%E8%BF%81%E7%A7%BB%E5%88%B0%E5%85%B6%E4%BB%96%E7%94%B5%E8%84%91.html">迁移到其他电脑</a><a href="%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97.html">开发日志</a><a href="%E7%9B%AE%E5%BD%95%E4%B8%8E%E5%BD%92%E6%A1%A3%E8%AF%B4%E6%98%8E.html">目录与归档说明</a><button onclick="window.print()">打印 / 保存 PDF</button></nav><div class="toc">
+<ul>
+<li><a href="#1">1. 存储和播放保持原有规则</a></li>
+<li><a href="#2">2. 一份固件，两种连接方式</a></li>
+<li><a href="#3-xdc">3. 板卡信息及 XDC</a></li>
+<li><a href="#4">4. 驱动和实际速度</a></li>
+<li><a href="#5">5. 协议与兼容</a></li>
+<li><a href="#6-2026-09-16">6. 2026-09-16 开发验证记录</a></li>
+</ul>
+</div>
+</aside>
+<main><div class="eyebrow">DOCUMENTATION / 2026.09.17</div><h1 id="usb-fifo-uart">高速 USB FIFO 与 UART 串口</h1>
+<p>本版增加 FT232H 同步并行 FIFO 通信和批量上传，保留 UART 串口。按用户要求，DDR3 扩展已经撤除，软件不再提供 DDR3、MIG 或外部波形池设置。</p>
+<p><strong>2026-09-17 更新：</strong>双接口固件 <code>09171701</code> 已通过 JTAG 临时烧写和真实 USB 数字联调，85 项检查通过；每路 2048 段下载约 90 ms。Flash 未改写，断电会恢复旧固件。DAC 暂用上升沿、min −0.5 ns / max 1.0 ns 的诊断假设，具体范围见 <a href="USB%E5%AE%9E%E6%9D%BF%E6%95%B0%E5%AD%97%E9%AA%8C%E8%AF%81_2026-09-17.html">USB 实板数字验证</a>。</p>
+<h2 id="1">1. 存储和播放保持原有规则</h2>
+<ul>
+<li>波形存储使用片内 BRAM。四路配置每路、每 bank 为 <strong>2048 段</strong>，活动与待提交 bank 不相加。事件步骤共用本通道波形池。</li>
+<li>原逐码保持最短 <strong>1 拍 / 5 ns</strong>；线性插值最短 <strong>32 拍 / 160 ns</strong>，每拍仍输出一个 DAC 原码。</li>
+<li>不存在 DDR3 方案的 256 拍 / 1.28 µs 下限；不会为了传输接口而改变波形时长、位数、原码或允许误差。</li>
+<li>14 位高斯可以继续使用已验证的 BRAM 插值方案；USB 只改变下载路径，不改变触发与播放时钟。</li>
+</ul>
+<h2 id="2">2. 一份固件，两种连接方式</h2>
+<p>启用 USB 后，生成的固件同时保留 UART。电脑连接 <strong>USB SLAVE / FT232H</strong> 时，软件设备列表选择 <code>USB FIFO · 序列号</code>；连接 <strong>USB UART / CH340</strong> 时选择对应 <code>COM</code> 端口和所需波特率（旧固定速率固件须匹配原值）。</p>
+<p>在软件中先断开当前连接，再选择另一个接口连接即可，切换不需要重新生成或烧录固件。新版串口固件通过连接时同步自动识别九档速率，无需为每档重烧；旧固件先升级一次，见 <a href="UART%E8%87%AA%E5%8A%A8%E6%B3%A2%E7%89%B9%E7%8E%87.html">UART 自动波特率</a>。串口波特率最高 1,000,000 baud；USB FIFO 不使用波特率，因此选择 USB 时隐藏波特率输入。</p>
+<p>两个物理接口的命令经过同一控制器，应答返回请求来源。<strong>同一时刻只使用一个上位机控制端配置板卡</strong>，不支持两个客户端交错上传同一路波形或争用当前 DAC 选择。切换传输入口后应重新读取设备能力和实际状态，软件不把旧连接记录当作新下载确认。</p>
+<p>没有启用 USB 的旧 UART 固件仍可使用；USB 能力、批量能力均由实际固件回报，不以勾选板卡设置代替固件升级。</p>
+<h2 id="3-xdc">3. 板卡信息及 XDC</h2>
+<ol>
+<li>打开 <strong>板卡与连接 → 板卡信息 → 高速 USB 通信</strong>。</li>
+<li>勾选 <strong>增加 FT232H USB FIFO 接口，同时保留 UART 串口</strong>。</li>
+<li>展开 <strong>USB 接口参数与达芬奇引脚模板</strong>，点击 <strong>应用 USB 引脚</strong>。</li>
+<li>点击 <strong>查看 USB 引脚</strong>，在独立引脚页逐项核对。已有引脚冲突会报错，不覆盖 DAC、触发或 UART 接线。</li>
+<li>在 <strong>XDC 预览</strong>检查 USB 的 60 MHz 时钟、引脚和输入输出延迟；在 <strong>构建与日志</strong>生成工程、综合及检查时序。</li>
+</ol>
+<p>达芬奇 V2.1 的模板如下。<code>input/output</code> 方向以 FPGA 为参照。</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>管脚</th>
+<th>方向 / 用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>usb_clk</td>
+<td>Y4</td>
+<td>input，FT232H 60 MHz CLKOUT</td>
+</tr>
+<tr>
+<td>usb_data[0:7]</td>
+<td>AB5、AA4、AB3、AA3、AB2、AB1、AA1、Y1</td>
+<td>双向，D0～D7</td>
+</tr>
+<tr>
+<td>usb_rxf_n</td>
+<td>W1</td>
+<td>input，接收非空，低有效</td>
+</tr>
+<tr>
+<td>usb_txe_n</td>
+<td>AA5</td>
+<td>input，可发送，低有效</td>
+</tr>
+<tr>
+<td>usb_rd_n</td>
+<td>V4</td>
+<td>output，读使能，低有效</td>
+</tr>
+<tr>
+<td>usb_wr_n</td>
+<td>Y3</td>
+<td>output，写使能，低有效</td>
+</tr>
+<tr>
+<td>usb_oe_n</td>
+<td>U3</td>
+<td>output，FT232H 驱动数据总线，低有效</td>
+</tr>
+<tr>
+<td>usb_siwu_n</td>
+<td>V3</td>
+<td>output，本实现保持非有效</td>
+</tr>
+<tr>
+<td>uart_rx / uart_tx</td>
+<td>U5 / T6</td>
+<td>原串口，独立于 USB FIFO</td>
+</tr>
+</tbody>
+</table>
+<p>USB 独立 IO 标准默认 LVCMOS33，不改变其他接口标准。FT232H 同步 FIFO 默认输入延迟 min/max 为 0/9 ns，输出为 0/7.5 ns；来自 <a href="https://ftdichip.com/wp-content/uploads/2024/09/DS_FT232H.pdf">FT232H 数据手册表 4.1</a>，更换板卡应计入走线偏斜。跨时钟 FIFO 的 Gray 指针路径单独约束，不通过整体时钟域 false path 掩盖路径。</p>
+<p>生成的 XDC 对 USB 数据和 RD# / WR# / OE# 输出使用 <code>SLEW FAST</code>，以满足 60 MHz 接口时序；不会改变 DAC 引脚的转换率或放宽上述延迟要求。USB 数据、控制和总线方向输出使用 IO 寄存器；接收侧设置两字节缓冲并预留下一拍空间，200 MHz 侧另有一级字节缓存。批量校验在控制器的准备周期内完成，均不改变波形存储数量和播放节拍。</p>
+<p>更换板卡时可导入/导出板卡 JSON 或全局工作区，逐项改引脚、时钟和 IO 标准，然后重新构建。USB 管脚会自动进入生成的 XDC。FPGA 系列、FTDI 芯片或物理协议不同可能需要新适配器，不能只修改管脚名称。</p>
+<h2 id="4">4. 驱动和实际速度</h2>
+<p>Windows 需要安装 FTDI 官方 x64 D2XX 驱动，FT232H 的 EEPROM 需允许同步 245 FIFO 模式。程序只枚举 FT232H 数据接口，也排除设备描述为 Digilent / JTAG 的 FT232H 下载器，不自动安装驱动或改写 EEPROM。</p>
+<p>USB FIFO 的物理总线是 8 bit / 60 MHz。厂商标称速度不等于应用层实测下载速度；实际速度受 USB 调度、CRC 帧、应答及控制器写入开销影响。9 月 17 日本机实测每路 2048 段约 90 ms，描述符有效吞吐量约 136 kB/s，包含 BEGIN / COMMIT 应答，不含波形编译；不是标称总线峰值。</p>
+<h2 id="5">5. 协议与兼容</h2>
+<p>32 字节帧及 CRC16 不变，INFO payload[19] bit1 表示 RUN_BATCH，bit2 表示 USB FIFO 能力。payload[22] 为批量版本 1，payload[23] 为每帧最多 3 段。</p>
+<p><code>RUN_BATCH (0x36)</code> 的 payload 为：起始索引 u16、数量 u8（1～3）、保留 0，随后 <code>数量 × (原码 u16 + 持续拍数 u32)</code>，其余字节为 0。固件先验证整批，再写待提交 bank，上传全部成功后仍需 COMMIT。</p>
+<p>USB 采用最多 16 帧 / 512 字节的有界传输窗口，逐帧检查序号、CRC 和状态。窗口失败不盲目重发、不误提交半份波形。UART 保持逐帧应答；不支持新能力的旧固件继续用旧逐段命令。</p>
+<p>曾使用未发布 DDR3 测试固件或启用 DDR3 的测试 JSON 会被明确拒绝，避免错误解释其容量；请使用本版 BRAM 配置重新构建。</p>
+<h2 id="6-2026-09-16">6. 2026-09-16 开发验证记录</h2>
+<p>软件与 RTL 回归共 648 项：<strong>647 通过，1 项因 Windows 创建符号链接权限（错误 1314）跳过，0 失败</strong>。链接拒绝策略和真实 NTFS 目录联接测试通过；没有为测试修改系统权限。覆盖旧 UART、USB 字节 FIFO、0/9 ns FT232H 输入延迟边界、实际控制器批量上传、非法整批原子拒绝、DAC 隔离、无 USB 时钟时 UART 可用，以及不复位切换接口。USB 专项 11 项全部通过。</p>
+<p>Vivado 2023.1 对 <strong>XC7A35T、四路 10 位、两触发、50 MHz 单端参考、200 MHz 核心 / DAC、60 MHz USB</strong> 完成综合和布局布线检查。最终 setup WNS 为 <strong>0.000 ns</strong>、TNS 为 0，hold 裕量 <strong>+0.058 ns</strong>，脉宽裕量 +1.370 ns；USB 域 setup / hold 为 +1.146 / +0.082 ns。核心建立时序是报告精度下的边界通过，没有可宣称的额外裕量。不能推广至 14 位、更多通道或其他器件；修改硬件配置后应重新构建检查。</p>
+<table>
+<thead>
+<tr>
+<th>布局布线后资源</th>
+<th>已用 / 可用</th>
+<th>占用率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LUT</td>
+<td>12,946 / 20,800</td>
+<td>62.24%</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>16,240 / 41,600</td>
+<td>39.04%</td>
+</tr>
+<tr>
+<td>BRAM36 等效</td>
+<td>32 / 50</td>
+<td>64.00%</td>
+</tr>
+<tr>
+<td>DSP</td>
+<td>4 / 90</td>
+<td>4.44%</td>
+</tr>
+</tbody>
+</table>
+<p>相较上一份四路 10 位 UART 诊断实现（11,500 LUT / 13,962 FF / 32 BRAM36 / 4 DSP），本配置增加 1,446 LUT 和 2,278 FF，BRAM 与 DSP 数量不变。这是两次实际实现报告的差值，包含物理优化差异。此次布局配置没有上电波形；包含上电波形、100 MHz 差分输入和 1M 串口的 USB 工程另外通过生成与仿真检查，未对该组合重复布局布线。</p>
+<p>8 个 USB 总线方向寄存器均实际放置在 IOB 的 TFF；4 项 Gray 指针 bus-skew 检查通过，最小裕量 +4.279 ns。CDC 报告仍有 2 项复位组合路径告警，对应异步置位、三级同步释放的复位链，需保留人工审查记录；不能称为所有 CDC 告警清零。DRC 没有错误，4 项告警为扫描端点 DSP 输入流水建议。具体资源、报告与源码关联见 <a href="validation/usb_uart/summary.json">验证摘要</a>。</p>
+<p>本次检查没有 DAC 外部采样边沿、建立 / 保持时间及板级输出延迟，因此仅完成内部核心和已约束 USB 数字接口检查，<strong>没有完整系统时序签核，也没有生成本轮 BIT</strong>。本机未枚举到 FT232H 数据接口，尚未测试真实 USB 下载速度、线缆、驱动和模拟 DAC 电压。软件选择 USB 与真实设备可用是两件独立的事。</p>
+<p>以上是 9 月 16 日开发阶段的记录，后续实际烧写、延迟假设和 USB 测量见本文开头的 9 月 17 日记录。更新 EXE 不会更新 FPGA；其他板卡首次使用 USB 仍需要匹配的固件。普通 USB / UART 波形下载不写 Flash。</p>
+<p>最终 EXE 已通过三组便携检查：中文 / 空格路径离屏自检、移动目录后的 Windows Qt 自检，以及通过打包程序调用真实 Vivado 生成含 USB、1M UART、100 MHz 差分参考和 BRAM 上电快照的工程。生成工程的 USB / UART / 波形 RTL 与时序脚本逐字节匹配本次源码。检查记录见 <a href="validation/usb_uart/executable_validation.json">EXE 验证</a>，源码与报告的对应关系见验证摘要；后续改动源码或配置后应重新验证。</p><footer><a class="top" href="#top">返回顶部 ↑</a>Ramp Studio · 本地离线文档；截图为演示状态。以设备实际能力和对应验证记录为准。</footer></main></body></html>

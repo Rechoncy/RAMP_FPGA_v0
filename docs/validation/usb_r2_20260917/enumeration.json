@@ -1,0 +1,9 @@
+[
+  {
+    "port": "usb:FTAE79DQ",
+    "serial": "FTAE79DQ",
+    "description": "USB <-> Serial Converter",
+    "type": 8,
+    "opened": false
+  }
+]

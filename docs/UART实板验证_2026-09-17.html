@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ramp Studio · UART实板验证_2026-09-17</title><style>
+:root{color-scheme:light;--blue:#2563eb;--ink:#17365c;--muted:#526885;--line:#dce7f5}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}
+body{margin:0;background:#f2f6fd;color:var(--ink);font:16px/1.85 'Segoe UI','Microsoft YaHei',sans-serif}
+a{color:#1d4ed8;text-underline-offset:3px}a:hover{color:#163e9e}
+aside{position:fixed;inset:0 auto 0 0;width:290px;background:#fff;border-right:1px solid var(--line);padding:26px 22px;overflow:auto}
+.brand{font-size:23px;font-weight:750;letter-spacing:-.5px}.tag{color:var(--muted);font-size:12px;margin-bottom:22px}
+.switch{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}.switch a,button{border:1px solid var(--line);background:#edf4ff;border-radius:10px;padding:5px 10px;font:inherit;font-size:13px;text-decoration:none;color:#1d4ed8;cursor:pointer}
+.toc{font-size:13px;line-height:1.6}.toc ul{list-style:none;padding-left:12px}.toc>ul{padding:0}.toc li{margin:8px 0}.toc a{display:block;text-decoration:none;color:var(--muted)}.toc a:hover{color:var(--blue)}.toc>ul>li>ul{padding-left:0}.toc>ul>li>a{font-weight:700;color:var(--ink)}
+main{margin:30px 32px 40px 322px;max-width:1120px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px 46px;box-shadow:0 10px 35px #24467808}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--blue)}h1{font-size:32px;line-height:1.4;letter-spacing:-.7px;margin:12px 0 20px}h2{font-size:24px;margin:45px 0 18px;padding-top:18px;border-top:1px solid var(--line);line-height:1.5}h3{font-size:19px;margin-top:27px}p{margin:14px 0}strong{color:#123c77}li{margin:6px 0}img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:14px;margin:22px auto}table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;margin:20px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{background:#edf4ff;font-weight:650}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f8fbff}code{font-family:Consolas,'Microsoft YaHei',monospace;font-size:.9em;background:#edf4ff;padding:2px 5px;border-radius:5px;overflow-wrap:anywhere}pre{padding:17px 20px;border:1px solid var(--line);border-radius:12px;background:#f5f8fe;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}pre code{padding:0;background:transparent}blockquote{margin:20px 0;padding:1px 20px;border-left:4px solid #72a4f8;background:#f3f7ff;border-radius:0 12px 12px 0}footer{margin-top:45px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.top{float:right}
+@media(min-width:1600px){main{margin-left:340px}}
+@media(max-width:1000px){aside{position:static;width:auto;max-height:330px;border-bottom:1px solid var(--line)}main{margin:18px;padding:25px}.toc>ul>li>ul>li>ul{display:none}h1{font-size:27px}}
+@media print{aside,.top{display:none}main{margin:0;padding:0;border:0;box-shadow:none;max-width:none}body{font-size:10pt;background:white}h2,h3{break-after:avoid}img,pre,tr{break-inside:avoid}a{color:inherit;text-decoration:none}h1{font-size:22pt}h2{font-size:16pt}table{font-size:9pt}@page{size:A4;margin:16mm}}
+</style></head>
+<body id="top"><aside aria-label="文档导航"><div class="brand">Ramp Studio</div><div class="tag">200 MHz 波形工作台 · 离线文档</div><nav class="switch"><a href="%E8%BD%AF%E4%BB%B6%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html">软件详细使用手册</a><a href="UART%E8%87%AA%E5%8A%A8%E6%B3%A2%E7%89%B9%E7%8E%87.html">UART自动波特率</a><a href="UART%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">UART实板验证_2026-09-17</a><a href="USB_FIFO_R2%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">USB_FIFO_R2实板验证_2026-09-17</a><a href="%E8%BE%93%E5%87%BA%E9%87%87%E6%A0%B7%E7%8E%87%E4%B8%8E3PD5651E.html">输出采样率与3PD5651E</a><a href="%E9%AB%98%E9%80%9FUSB%E4%B8%8E%E4%B8%B2%E5%8F%A3.html">高速USB与串口</a><a href="USB%E5%AE%9E%E6%9D%BF%E6%95%B0%E5%AD%97%E9%AA%8C%E8%AF%81_2026-09-17.html">USB实板数字验证_2026-09-17</a><a href="14%E4%BD%8D%E9%AB%98%E6%96%AF%E5%88%86%E6%AE%B5%E6%8F%92%E5%80%BC.html">14位高斯分段插值</a><a href="%E8%B5%84%E6%BA%90%E8%83%BD%E5%8A%9B%E4%B8%8E%E4%B8%8B%E5%8F%91%E6%A3%80%E6%9F%A5.html">资源能力与下发检查</a><a href="%E6%9D%BF%E5%8D%A1%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8.html">板卡硬件资源占用</a><a href="%E6%89%A7%E8%A1%8C%E5%BA%8F%E5%88%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">执行序列使用说明</a><a href="%E8%A7%A6%E5%8F%91%E6%AD%A5%E8%BF%9B%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">触发步进使用说明</a><a href="%E5%8F%82%E8%80%83%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE.html">参考时钟配置</a><a href="%E8%BF%81%E7%A7%BB%E5%88%B0%E5%85%B6%E4%BB%96%E7%94%B5%E8%84%91.html">迁移到其他电脑</a><a href="%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97.html">开发日志</a><a href="%E7%9B%AE%E5%BD%95%E4%B8%8E%E5%BD%92%E6%A1%A3%E8%AF%B4%E6%98%8E.html">目录与归档说明</a><button onclick="window.print()">打印 / 保存 PDF</button></nav><div class="toc">
+<ul>
+<li><a href="#_1">初始状态与发现的问题</a></li>
+<li><a href="#fpga">FPGA 内部诊断与修复</a></li>
+<li><a href="#_2">低速首包等待修复</a></li>
+<li><a href="#_3">最终实板结果</a></li>
+<li><a href="#_4">综合、回归与交付</a></li>
+<li><a href="#_5">测量范围</a></li>
+</ul>
+</div>
+</aside>
+<main><div class="eyebrow">DOCUMENTATION / 2026.09.17</div><h1 id="uart-2026-09-17">UART 自动波特率实板验证 · 2026-09-17</h1>
+<p>本轮使用达芬奇 XC7A35T 板卡、Digilent JTAG 与板载 CH340（COM3），目标为四路 10 位、125 MSPS、两路触发、每路 2048 个码段的自动波特率固件。用户授权临时 JTAG 下载及数字联调，本轮不改写 Flash。</p>
+<h2 id="_1">初始状态与发现的问题</h2>
+<p>JTAG 首次回报器件 <code>xc7a35t</code>、用户标识 <code>09171701</code>，DONE=1、配置 CRC 错误=0。串口回报原固件仍为 200 MHz、无 UART 自动识别能力，四路均空闲并输出原码 512。</p>
+<p>加载上一轮新生成的 125 MSPS BIT 后，能力回读正确，但实板 921600 和 1M 不能同步。9600、19200、38400、57600、115200、230400、460800 可以连接。首次验证失败的报告保存在 <code>build/uart_live_20260917/uart_validation.json</code>，已执行清理并恢复四路中间码；未将仿真通过替代为实板通过。</p>
+<h2 id="fpga">FPGA 内部诊断与修复</h2>
+<p>为避免依赖示波器，生成了临时串口诊断固件，保持四路静态原码 512、DAC 时钟 125 MHz，使用独立固定 115200 的查询链路读取 FPGA 捕获的 64 个串口边沿间隔。该镜像只用于诊断，不作为最终播放器发布。</p>
+<p>FPGA 以 125 MHz 核心时钟拍记录得到：</p>
+<table>
+<thead>
+<tr>
+<th>主机选择</th>
+<th>数据位间隔 / 拍</th>
+<th>部分字节末尾高电平 / 拍</th>
+<th>原识别器结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>115200</td>
+<td>1076～1078</td>
+<td>与正常位间隔相同</td>
+<td>锁定</td>
+</tr>
+<tr>
+<td>460800</td>
+<td>268～270</td>
+<td>与正常位间隔相同</td>
+<td>锁定</td>
+</tr>
+<tr>
+<td>921600</td>
+<td>134～135</td>
+<td>269～270</td>
+<td>未锁定</td>
+</tr>
+<tr>
+<td>1,000,000</td>
+<td>123～125</td>
+<td>248～249</td>
+<td>未锁定</td>
+</tr>
+</tbody>
+</table>
+<p>高速档位在字节之间出现约两个位时间的高电平，即在一个停止位之外多留一位空闲。原识别器要求 24 个连续等间隔，把这些合法空闲看成另一个速率或无效间隔，不断清空累计结果。记录在 <code>build/uart_live_20260917/scope_measurements.json</code>。</p>
+<p>修复后的识别器在已观察到九个稳定间隔（一个起始位及八个数据位）之后，允许字节之间的长高电平空闲；空闲本身不计入有效间隔。仍需累计 24 个同档位有效间隔才准备锁定，低电平异常、短数据串和速率改变会清空累计。保留 10 ms BREAK 门槛、250 ms 训练超时以及 TX 完全空闲后切换分频的规则。软件仍发送原来的 20 ms BREAK 和 16 个 0x55。</p>
+<p>新增仿真覆盖额外 1～4 位的字节间空闲，以及不足一个完整字节的间断脉冲不能累积为有效训练。正常无间隙发送与旧固定波特率接收器的行为继续回归检查。</p>
+<h2 id="_2">低速首包等待修复</h2>
+<p>R2 FPGA 加载后，1M 连续 128 次 INFO 已无重试，但第一次降至 9600 时首个 INFO 仍需内部重试。CH340 的 <code>flush()</code> 返回不能作为最后一个训练字节已经离开 UART FIFO 的证明。现在软件在 flush 后，额外等待完整训练串的保守发送预算 <code>16 × 12 / baud</code> 秒，再加 <code>max(10 ms, 24 / baud)</code> 的线路空闲等待，然后才发 INFO。各档位等待预算均有测试；连接时只执行一次，不降低后续传输速率。</p>
+<p>该中间失败保存在 <code>uart_validation_fixed.json</code>；修复后整套测试从头重跑，没有用内部重试掩盖首包失败。</p>
+<h2 id="_3">最终实板结果</h2>
+<p>已通过 JTAG 临时加载完整 R2 播放固件，用户标识 <strong>09171830</strong>，DONE=1、配置 CRC 错误=0。诊断镜像已被替换。最终报告为 <code>build/uart_live_20260917/uart_validation_final.json</code>，<strong>53 项检查通过，3549 次正常命令交换、0 次重试</strong>，另有一次故意发送的错误 CRC 帧。检查包括：</p>
+<ul>
+<li>同一份 BIT 连续切换全部九档波特率；1M 两轮各连续查询 128 次，其余速率每轮查询 24 次，均正确应答。</li>
+<li>四路静态码与配置 ID 在连接切换后保留。</li>
+<li>四路同时连续播放，分别使用 Ramp / 高斯、逐码保持 / 线性插值；多次以 9600、115200、921600、1M 重新训练后，运行状态、配置 ID 和递增的循环计数正常。</li>
+<li>错误 CRC 的中止帧被忽略，正常群组中止返回原码 512。</li>
+<li>1M 下四路分别完整下载并提交 2048 个码段，耗时为 0.603、0.603、0.605、0.604 秒。这项满容量数据只检查提交，不播放。</li>
+<li>测试结束后四路均为空闲原码 512；最后以 115200 重新连接只读确认，见 <code>final_status.json</code>。</li>
+</ul>
+<p>软件使用时，在“板卡与连接”<strong>断开 → 选择波特率 → 连接</strong>即可，无需再次烧写。当前 FPGA RAM 中为 125 MSPS（8 ns/点）、四路 10 位、两路触发、每路 2048 段。<strong>本轮没有写 Flash；掉电或从 Flash 重新加载会恢复 Flash 原有版本，自动波特率能力不保证保留。</strong> 本 BIT 未包含用户上电波形，复位为空闲 512、不自动布防。</p>
+<h2 id="_4">综合、回归与交付</h2>
+<p>Vivado 2023.1 对四路 10 位、125 MSPS、USB FIFO + UART 配置完成综合、布局布线及 BIT 生成，使用 R1 布局作增量参考，未放宽时钟、DAC 和 USB 约束：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>R2 结果</th>
+<th>相对 R1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LUT</td>
+<td>13,070 / 20,800（62.84%）</td>
+<td>+36</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>16,267 / 41,600（39.10%）</td>
+<td>+6</td>
+</tr>
+<tr>
+<td>BRAM</td>
+<td>32 / 50（64%）</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>DSP</td>
+<td>4 / 90（4.44%）</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>WNS / WHS</td>
+<td>+0.091 / +0.054 ns</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>USB bus skew</td>
+<td>通过</td>
+<td>原约束保留</td>
+</tr>
+</tbody>
+</table>
+<p>最终源码的回归结果为 <strong>700 项通过、1 项跳过</strong>（691 项其他软件/RTL 检查，加 9 项自动波特率 RTL 检查）。跳过项是 Windows 无原生符号链接创建权限的可选用例，相关路径保护与 NTFS junction 用例仍运行。Flash 模拟测试首次整组执行出现 Tcl 标准句柄跨 pytest 捕获边界失效，单例通过；将测试解释器生命周期限制在同一次捕获暂停内后，相关 38 项 Flash/串口测试通过。修复仅改变测试夹具，没有对硬件 Flash 执行任何操作。初始失败与最终记录均保留。</p>
+<p>新版 EXE 在含中文、空格的迁移目录，移除 Python/Qt PATH 依赖后，通过 offscreen 与 Windows 两组启动和工作区检查。源文件、测试结果、BIT、板卡配置与实现证据分别位于：</p>
+<ul>
+<li><code>release/Ramp Studio.exe</code>，便携包 <code>release/Ramp-Studio-Windows-x64.zip</code>。</li>
+<li><strong><code>release/FPGA-XC7A35T-AutoBaud-20260917-R2/125MSPS/ramp_studio.bit</code></strong>；同名固件 ZIP 单独提供，便携软件 ZIP 不含固件。</li>
+<li>固件包中的 <code>125MSPS/board.json</code>、<code>board.xdc</code>、<code>resource_report.json</code>、<code>final.dcp</code> 与各项时序/资源报告；<code>source_snapshot.zip</code> 包含本次源码和测试，<code>验证记录/</code> 包含实板与回归证据。</li>
+</ul>
+<p>BIT SHA256：<code>4678a269ea9f152ff8c6da2b4b0edebd4c2ddfeabd4444725a64ad93c0b92b09</code>。R1 目录保留用于追溯，后续使用 R2 及新版 EXE。</p>
+<h2 id="_5">测量范围</h2>
+<p>串口应答经过帧长度、CRC16、命令和序号检查，重发次数单独记录。DAC 原码、循环次数、配置 ID 和运行状态来自真实 FPGA 回报，不能等同于测量了引脚上的每个输出采样点或 DAC 模拟电压。未使用受控外部触发源验证物理触发边沿，也没有接入示波器。</p>
+<p>本轮只枚举到 COM3 数据串口和 JTAG 下载器，没有枚举到 USB FIFO 数据设备。USB FIFO 的真实传输不在本轮实测范围；其 RTL 与软件回归另行执行。</p>
+<p>后续用户切换连接后，同一 R2 固件的 USB FIFO 补测已通过，见 <a href="USB_FIFO_R2%E5%AE%9E%E6%9D%BF%E9%AA%8C%E8%AF%81_2026-09-17.html">USB FIFO R2 实板验证</a>。上述 UART 阶段的原始记录保持不变。</p><footer><a class="top" href="#top">返回顶部 ↑</a>Ramp Studio · 本地离线文档；截图为演示状态。以设备实际能力和对应验证记录为准。</footer></main></body></html>

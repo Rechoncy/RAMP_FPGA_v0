@@ -1,0 +1,282 @@
+All timing path bodies retained. Expanded -from/-to command header omitted.
+Original: build/linear14_validation/baseline_grouped/internal_dsp.rpt
+
+Slack (MET) :             1.082ns  (required time - arrival time)
+  Source:                 controller/channels[3].engine/scan_last_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[3].engine/scan_checks_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (core rise@5.000ns - core rise@0.000ns)
+  Data Path Delay:        3.898ns  (logic 1.751ns (44.917%)  route 2.147ns (55.083%))
+  Logic Levels:           7  (CARRY4=5 LUT2=2)
+  Clock Path Skew:        -0.014ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.225ns = ( 7.225 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.288ns
+    Clock Pessimism Removal (CPR):    0.049ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.787     0.787    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.081     0.868 r  core_buf/O
+                         net (fo=11795, routed)       1.420     2.288    controller/channels[3].engine/core_clk
+    DSP48_X0Y30          DSP48E1                                      r  controller/channels[3].engine/scan_last_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X0Y30          DSP48E1 (Prop_dsp48e1_CLK_P[2])
+                                                      0.370     2.658 r  controller/channels[3].engine/scan_last_reg/P[2]
+                         net (fo=2, routed)           0.721     3.379    controller/channels[3].engine/scan_last_reg_n_103
+    SLICE_X11Y76         LUT2 (Prop_lut2_I0_O)        0.105     3.484 r  controller/channels[3].engine/scan_checks[4]_i_29__2/O
+                         net (fo=1, routed)           0.000     3.484    controller/channels[3].engine/scan_checks[4]_i_29__2_n_0
+    SLICE_X11Y76         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     3.941 r  controller/channels[3].engine/scan_checks_reg[4]_i_15/CO[3]
+                         net (fo=1, routed)           0.000     3.941    controller/channels[3].engine/scan_checks_reg[4]_i_15_n_0
+    SLICE_X11Y77         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.039 r  controller/channels[3].engine/scan_checks_reg[4]_i_10/CO[3]
+                         net (fo=1, routed)           0.000     4.039    controller/channels[3].engine/scan_checks_reg[4]_i_10_n_0
+    SLICE_X11Y78         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.137 r  controller/channels[3].engine/scan_checks_reg[4]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     4.137    controller/channels[3].engine/scan_checks_reg[4]_i_5_n_0
+    SLICE_X11Y79         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.235 r  controller/channels[3].engine/scan_checks_reg[4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     4.235    controller/channels[3].engine/scan_checks_reg[4]_i_3_n_0
+    SLICE_X11Y80         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.216     4.451 r  controller/channels[3].engine/scan_checks_reg[4]_i_2/CO[0]
+                         net (fo=1, routed)           1.427     5.877    controller/channels[3].engine/scan_checks181_in
+    SLICE_X26Y105        LUT2 (Prop_lut2_I0_O)        0.309     6.186 r  controller/channels[3].engine/scan_checks[4]_i_1__2/O
+                         net (fo=1, routed)           0.000     6.186    controller/channels[3].engine/p_10_out[4]
+    SLICE_X26Y105        FDRE                                         r  controller/channels[3].engine/scan_checks_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.748     5.748    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     5.825 r  core_buf/O
+                         net (fo=11795, routed)       1.400     7.225    controller/channels[3].engine/core_clk
+    SLICE_X26Y105        FDRE                                         r  controller/channels[3].engine/scan_checks_reg[4]/C
+                         clock pessimism              0.049     7.274    
+                         clock uncertainty           -0.035     7.239    
+    SLICE_X26Y105        FDRE (Setup_fdre_C_D)        0.030     7.269    controller/channels[3].engine/scan_checks_reg[4]
+  -------------------------------------------------------------------
+                         required time                          7.269    
+                         arrival time                          -6.186    
+  -------------------------------------------------------------------
+                         slack                                  1.082    
+
+Slack (MET) :             1.440ns  (required time - arrival time)
+  Source:                 controller/channels[2].engine/scan_last_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[2].engine/scan_checks_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (core rise@5.000ns - core rise@0.000ns)
+  Data Path Delay:        3.372ns  (logic 1.751ns (51.924%)  route 1.621ns (48.076%))
+  Logic Levels:           7  (CARRY4=5 LUT2=2)
+  Clock Path Skew:        -0.185ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.057ns = ( 7.057 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.291ns
+    Clock Pessimism Removal (CPR):    0.049ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.787     0.787    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.081     0.868 r  core_buf/O
+                         net (fo=11795, routed)       1.423     2.291    controller/channels[2].engine/core_clk
+    DSP48_X0Y28          DSP48E1                                      r  controller/channels[2].engine/scan_last_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X0Y28          DSP48E1 (Prop_dsp48e1_CLK_P[2])
+                                                      0.370     2.661 r  controller/channels[2].engine/scan_last_reg/P[2]
+                         net (fo=2, routed)           0.811     3.472    controller/channels[2].engine/scan_last_reg_n_103
+    SLICE_X11Y70         LUT2 (Prop_lut2_I0_O)        0.105     3.577 r  controller/channels[2].engine/scan_checks[4]_i_29__1/O
+                         net (fo=1, routed)           0.000     3.577    controller/channels[2].engine/scan_checks[4]_i_29__1_n_0
+    SLICE_X11Y70         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     4.034 r  controller/channels[2].engine/scan_checks_reg[4]_i_15/CO[3]
+                         net (fo=1, routed)           0.000     4.034    controller/channels[2].engine/scan_checks_reg[4]_i_15_n_0
+    SLICE_X11Y71         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.132 r  controller/channels[2].engine/scan_checks_reg[4]_i_10/CO[3]
+                         net (fo=1, routed)           0.000     4.132    controller/channels[2].engine/scan_checks_reg[4]_i_10_n_0
+    SLICE_X11Y72         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.230 r  controller/channels[2].engine/scan_checks_reg[4]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     4.230    controller/channels[2].engine/scan_checks_reg[4]_i_5_n_0
+    SLICE_X11Y73         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.328 r  controller/channels[2].engine/scan_checks_reg[4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     4.328    controller/channels[2].engine/scan_checks_reg[4]_i_3_n_0
+    SLICE_X11Y74         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.216     4.544 r  controller/channels[2].engine/scan_checks_reg[4]_i_2/CO[0]
+                         net (fo=1, routed)           0.810     5.354    controller/channels[2].engine/scan_checks181_in
+    SLICE_X44Y72         LUT2 (Prop_lut2_I0_O)        0.309     5.663 r  controller/channels[2].engine/scan_checks[4]_i_1__1/O
+                         net (fo=1, routed)           0.000     5.663    controller/channels[2].engine/p_10_out[4]
+    SLICE_X44Y72         FDRE                                         r  controller/channels[2].engine/scan_checks_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.748     5.748    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     5.825 r  core_buf/O
+                         net (fo=11795, routed)       1.232     7.057    controller/channels[2].engine/core_clk
+    SLICE_X44Y72         FDRE                                         r  controller/channels[2].engine/scan_checks_reg[4]/C
+                         clock pessimism              0.049     7.106    
+                         clock uncertainty           -0.035     7.071    
+    SLICE_X44Y72         FDRE (Setup_fdre_C_D)        0.032     7.103    controller/channels[2].engine/scan_checks_reg[4]
+  -------------------------------------------------------------------
+                         required time                          7.103    
+                         arrival time                          -5.663    
+  -------------------------------------------------------------------
+                         slack                                  1.440    
+
+Slack (MET) :             1.482ns  (required time - arrival time)
+  Source:                 controller/channels[0].engine/scan_last_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/scan_checks_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (core rise@5.000ns - core rise@0.000ns)
+  Data Path Delay:        3.393ns  (logic 1.751ns (51.611%)  route 1.642ns (48.389%))
+  Logic Levels:           7  (CARRY4=5 LUT2=2)
+  Clock Path Skew:        -0.122ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.065ns = ( 7.065 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.295ns
+    Clock Pessimism Removal (CPR):    0.109ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.787     0.787    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.081     0.868 r  core_buf/O
+                         net (fo=11795, routed)       1.427     2.295    controller/channels[0].engine/core_clk
+    DSP48_X0Y32          DSP48E1                                      r  controller/channels[0].engine/scan_last_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X0Y32          DSP48E1 (Prop_dsp48e1_CLK_P[2])
+                                                      0.370     2.665 r  controller/channels[0].engine/scan_last_reg/P[2]
+                         net (fo=2, routed)           0.932     3.597    controller/channels[0].engine/scan_last_reg_n_103
+    SLICE_X11Y82         LUT2 (Prop_lut2_I0_O)        0.105     3.702 r  controller/channels[0].engine/scan_checks[4]_i_29/O
+                         net (fo=1, routed)           0.000     3.702    controller/channels[0].engine/scan_checks[4]_i_29_n_0
+    SLICE_X11Y82         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     4.159 r  controller/channels[0].engine/scan_checks_reg[4]_i_15/CO[3]
+                         net (fo=1, routed)           0.000     4.159    controller/channels[0].engine/scan_checks_reg[4]_i_15_n_0
+    SLICE_X11Y83         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.257 r  controller/channels[0].engine/scan_checks_reg[4]_i_10/CO[3]
+                         net (fo=1, routed)           0.000     4.257    controller/channels[0].engine/scan_checks_reg[4]_i_10_n_0
+    SLICE_X11Y84         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.355 r  controller/channels[0].engine/scan_checks_reg[4]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     4.355    controller/channels[0].engine/scan_checks_reg[4]_i_5_n_0
+    SLICE_X11Y85         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.453 r  controller/channels[0].engine/scan_checks_reg[4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     4.453    controller/channels[0].engine/scan_checks_reg[4]_i_3_n_0
+    SLICE_X11Y86         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.216     4.669 r  controller/channels[0].engine/scan_checks_reg[4]_i_2/CO[0]
+                         net (fo=1, routed)           0.709     5.379    controller/channels[0].engine/scan_checks181_in
+    SLICE_X15Y84         LUT2 (Prop_lut2_I0_O)        0.309     5.688 r  controller/channels[0].engine/scan_checks[4]_i_1/O
+                         net (fo=1, routed)           0.000     5.688    controller/channels[0].engine/p_10_out[4]
+    SLICE_X15Y84         FDRE                                         r  controller/channels[0].engine/scan_checks_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.748     5.748    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     5.825 r  core_buf/O
+                         net (fo=11795, routed)       1.240     7.065    controller/channels[0].engine/core_clk
+    SLICE_X15Y84         FDRE                                         r  controller/channels[0].engine/scan_checks_reg[4]/C
+                         clock pessimism              0.109     7.173    
+                         clock uncertainty           -0.035     7.138    
+    SLICE_X15Y84         FDRE (Setup_fdre_C_D)        0.032     7.170    controller/channels[0].engine/scan_checks_reg[4]
+  -------------------------------------------------------------------
+                         required time                          7.170    
+                         arrival time                          -5.688    
+  -------------------------------------------------------------------
+                         slack                                  1.482    
+
+Slack (MET) :             1.557ns  (required time - arrival time)
+  Source:                 controller/channels[1].engine/scan_last_reg/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[1].engine/scan_checks_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (core rise@5.000ns - core rise@0.000ns)
+  Data Path Delay:        3.329ns  (logic 1.723ns (51.762%)  route 1.606ns (48.238%))
+  Logic Levels:           7  (CARRY4=5 LUT2=2)
+  Clock Path Skew:        -0.109ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.059ns = ( 7.059 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.294ns
+    Clock Pessimism Removal (CPR):    0.127ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.787     0.787    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.081     0.868 r  core_buf/O
+                         net (fo=11795, routed)       1.426     2.294    controller/channels[1].engine/core_clk
+    DSP48_X1Y28          DSP48E1                                      r  controller/channels[1].engine/scan_last_reg/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y28          DSP48E1 (Prop_dsp48e1_CLK_P[2])
+                                                      0.370     2.664 r  controller/channels[1].engine/scan_last_reg/P[2]
+                         net (fo=2, routed)           0.914     3.578    controller/channels[1].engine/scan_last_reg_n_103
+    SLICE_X54Y69         LUT2 (Prop_lut2_I0_O)        0.105     3.683 r  controller/channels[1].engine/scan_checks[4]_i_29__0/O
+                         net (fo=1, routed)           0.000     3.683    controller/channels[1].engine/scan_checks[4]_i_29__0_n_0
+    SLICE_X54Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     4.127 r  controller/channels[1].engine/scan_checks_reg[4]_i_15/CO[3]
+                         net (fo=1, routed)           0.000     4.127    controller/channels[1].engine/scan_checks_reg[4]_i_15_n_0
+    SLICE_X54Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     4.227 r  controller/channels[1].engine/scan_checks_reg[4]_i_10/CO[3]
+                         net (fo=1, routed)           0.000     4.227    controller/channels[1].engine/scan_checks_reg[4]_i_10_n_0
+    SLICE_X54Y71         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     4.327 r  controller/channels[1].engine/scan_checks_reg[4]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     4.327    controller/channels[1].engine/scan_checks_reg[4]_i_5_n_0
+    SLICE_X54Y72         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     4.427 r  controller/channels[1].engine/scan_checks_reg[4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     4.427    controller/channels[1].engine/scan_checks_reg[4]_i_3_n_0
+    SLICE_X54Y73         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.207     4.634 r  controller/channels[1].engine/scan_checks_reg[4]_i_2/CO[0]
+                         net (fo=1, routed)           0.692     5.326    controller/channels[1].engine/scan_checks181_in
+    SLICE_X55Y73         LUT2 (Prop_lut2_I0_O)        0.297     5.623 r  controller/channels[1].engine/scan_checks[4]_i_1__0/O
+                         net (fo=1, routed)           0.000     5.623    controller/channels[1].engine/p_10_out[4]
+    SLICE_X55Y73         FDRE                                         r  controller/channels[1].engine/scan_checks_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.748     5.748    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     5.825 r  core_buf/O
+                         net (fo=11795, routed)       1.234     7.059    controller/channels[1].engine/core_clk
+    SLICE_X55Y73         FDRE                                         r  controller/channels[1].engine/scan_checks_reg[4]/C
+                         clock pessimism              0.127     7.185    
+                         clock uncertainty           -0.035     7.150    
+    SLICE_X55Y73         FDRE (Setup_fdre_C_D)        0.030     7.180    controller/channels[1].engine/scan_checks_reg[4]
+  -------------------------------------------------------------------
+                         required time                          7.180    
+                         arrival time                          -5.623    
+  -------------------------------------------------------------------
+                         slack                                  1.557    
+
+
+
+

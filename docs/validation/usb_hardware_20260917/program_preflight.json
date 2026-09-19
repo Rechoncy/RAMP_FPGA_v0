@@ -1,0 +1,9 @@
+{
+  "bit_sha256": "9dd35f57a501924baa9d6761a9ccaf34ad76b650239a851248e384cc7385b8a5",
+  "part": "7a35tfgg484",
+  "timing_passed": true,
+  "source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+  "jtag_serial": "210512180081",
+  "usb_data_serial": "FTAE79DQ",
+  "operation": "temporary RAM configuration; Flash unchanged"
+}

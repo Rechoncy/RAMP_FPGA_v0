@@ -1,0 +1,19 @@
+{
+  "changes": [
+    "USB enabled with verified template pins",
+    "Diagnostic timing defaults rising/-0.5/+1 ns",
+    "Remember USB data endpoint; no auto-connect"
+  ],
+  "files": {
+    "board.json": {
+      "before_sha256": "5e26de23f384787f0869e5a6e41fba6f4144ab5facd352beb665c2cb7a6d14f8",
+      "after_sha256": "e75db8bdd8a3ce2991f09a3be7d4a73d7dacd93c653b66d8f3df70f4e64e65fa"
+    },
+    "desktop_session.json": {
+      "before_sha256": "08e87d7f150803d2ca5f47a42c956f4e44609016c92d8470d3e573b2ea512813",
+      "after_sha256": "a9fe1156f576a03297bb25fe3d23b9a14012166c9858557057d0e5623d6feeaf"
+    }
+  },
+  "backup": "E:\\Github_Project\\RAMP_FPGA_v0\\build\\usb_hardware_20260917\\user_settings_before",
+  "experimental_profiles_and_boot_snapshots_preserved": true
+}

@@ -1,0 +1,196 @@
+{
+  "schema": 1,
+  "result": "constrained digital timing check passed; not full DAC electrical signoff",
+  "tool": "Vivado 2023.1",
+  "mode": "check",
+  "build_directory": "E:\\Github_Project\\RAMP_FPGA_v0\\build\\usb_uart_final_20260916\\vivado_iob_final",
+  "configuration": {
+    "part": "xc7a35tfgg484-2",
+    "dac_count": 4,
+    "dac_bits": 10,
+    "trigger_count": 2,
+    "reference_clock_mhz": 50,
+    "reference_input": "single_ended",
+    "core_dac_clock_mhz": 200,
+    "usb_clock_period_ns": 16.666667,
+    "uart_baud": 115200,
+    "usb_and_uart_same_firmware": true,
+    "waveform_memory": "BRAM",
+    "slots_per_channel_per_bank": 2048,
+    "boot_profiles_in_routed_check": false
+  },
+  "timing_reported_ns": {
+    "overall_setup_wns": 0.0,
+    "setup_tns": 0.0,
+    "setup_failing_endpoints": 0,
+    "overall_hold_whs": 0.058,
+    "hold_ths": 0.0,
+    "hold_failing_endpoints": 0,
+    "pulse_width_wpws": 1.37,
+    "pulse_width_tpws": 0.0,
+    "pulse_width_failing_endpoints": 0,
+    "core_setup_wns": 0.0,
+    "core_hold_whs": 0.058,
+    "usb_setup_wns": 1.146,
+    "usb_hold_whs": 0.082,
+    "usb_to_core_datapath_only_wns": 2.474,
+    "core_to_usb_datapath_only_wns": 3.883
+  },
+  "timing_margin_note": "Core setup is reported as 0.000 ns: passes this tool run but has no reported positive setup margin.",
+  "bus_skew": [
+    {
+      "crossing": "incoming/write pointer",
+      "requirement_ns": 16.667,
+      "actual_ns": 1.117,
+      "slack_ns": 15.55
+    },
+    {
+      "crossing": "incoming/read pointer",
+      "requirement_ns": 5.0,
+      "actual_ns": 0.616,
+      "slack_ns": 4.384
+    },
+    {
+      "crossing": "outgoing/write pointer",
+      "requirement_ns": 5.0,
+      "actual_ns": 0.721,
+      "slack_ns": 4.279
+    },
+    {
+      "crossing": "outgoing/read pointer",
+      "requirement_ns": 16.667,
+      "actual_ns": 0.656,
+      "slack_ns": 16.011
+    }
+  ],
+  "resources": {
+    "slice_lut": {
+      "used": 12946,
+      "available": 20800,
+      "percent": 62.24
+    },
+    "slice_ff": {
+      "used": 16240,
+      "available": 41600,
+      "percent": 39.04
+    },
+    "bram36_equivalent": {
+      "used": 32,
+      "available": 50,
+      "percent": 64.0
+    },
+    "dsp": {
+      "used": 4,
+      "available": 90,
+      "percent": 4.44
+    }
+  },
+  "cdc": {
+    "endpoints": 62,
+    "safe": 60,
+    "unsafe": 2,
+    "unknown": 0,
+    "missing_async_reg": 0,
+    "detail_groups": {
+      "CDC-3_info": 5,
+      "CDC-6_warning": 4,
+      "CDC-9_info": 1,
+      "CDC-10_critical": 2,
+      "CDC-15_warning": 16
+    },
+    "unsafe_paths": [
+      {
+        "from": "usb_reset_reg[2]/C",
+        "to": "u_usb/core_reset_pipe_reg[0]/PRE"
+      },
+      {
+        "from": "u_clock/core_sync_reg[2]/C",
+        "to": "u_usb/usb_reset_pipe_reg[0]/PRE"
+      }
+    ],
+    "manual_review": "The two CDC-10 paths combine core_rst | usb_rst only before three-stage ASYNC_REG reset chains. Assertion is asynchronous and release is synchronized in each destination domain. The critical classifications remain visible; no CDC waiver or full-clean claim is made.",
+    "gray_review": "Four two-stage Gray buses have source-clock-period datapath max delay and bus skew constraints. Actual C/CLK startpoints are traced through sync1/D, including merged binary MSBs.",
+    "payload_review": "The 16 CDC-15 data endpoints are two 8-bit bundled-data FIFO paths. Each memory RAM CLK startpoint retains write-clock-to-data delay; max delay is one destination period (5 ns incoming /16.667 ns outgoing), while readable indication traverses two read-clock pointer synchronizers. No whole-domain false path or Q/DPO path segmentation is used."
+  },
+  "io_mapping": {
+    "direction_tff_registers": 8,
+    "all_iob_true": true,
+    "bel": "OLOGICE2.TFF",
+    "usb_output_slew": "FAST",
+    "usb_output_drive_ma": 12,
+    "input_delay_min_ns": 0,
+    "input_delay_max_ns": 9,
+    "output_delay_min_ns": 0,
+    "output_delay_max_ns": 7.5
+  },
+  "drc": {
+    "errors": 0,
+    "critical_warnings": 0,
+    "warnings": 4,
+    "warning_rule": "DPIP-1: scan_last_reg DSP input not pipelined, one per channel"
+  },
+  "check_timing": {
+    "no_clock": 0,
+    "unconstrained_internal_endpoints": 0,
+    "loops": 0,
+    "external_ports_without_input_delay_but_false_path": 3,
+    "dac_data_ports_without_output_delay": 40,
+    "uart_tx_false_path": 1,
+    "forwarded_dac_clock_ports": 4
+  },
+  "limitations": [
+    "The 40 DAC data outputs lack external setup/hold/output-delay parameters, so this is not full-system timing signoff.",
+    "Only this four-channel 10-bit, two-trigger, 50 MHz single-ended configuration was routed in this check.",
+    "No bitstream was written and no FPGA/Flash programming or real USB/DAC board validation was performed.",
+    "USB pin-model simulation and static timing do not measure actual hardware transfer throughput.",
+    "Existing USB boot support has simulation coverage but boot profiles were absent in this routed configuration."
+  ],
+  "provenance": {
+    "source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+    "final_source_fingerprint": "8a6dc83f00cef1c88504fc45bb2d918358266aee5314e33fbd722f922029cd48",
+    "sources_changed": false,
+    "interface_sources": {
+      "ramp_extended_top.v": "9ef3e0637ec48aeef98a27d2ff641df25deff7a844b1dae14d26da0d1b0375a6"
+    },
+    "interfaces_changed": false,
+    "xdc_sha256": "07a7d6ef7f117cb90d4db82bee0af26cbb1625ee4baad0ef77264c54be86e04f",
+    "read_only_audit": {
+      "kind": "read-only report export from completed routed checkpoint; no re-route or source change",
+      "original_completed_manifest": "resource_report_at_build_completion.json",
+      "original_completed_manifest_sha256": "96571c42a851d4dda2d46219fab4368687fd9cf8a29db63d4b45322d290bd5ef",
+      "completed_at": "2026-09-16T14:32:13.338527+00:00",
+      "routed_checkpoint": "core_route_check/routed.dcp",
+      "routed_checkpoint_sha256": "a22dd7aa1b7496a2ff54d7e667a68dbf24c72124c2384e9a92a45ada3cd691d6",
+      "synth_checkpoint_sha256": "8f286b6d3b25f449fce1cf945257bb31d3da678a66e277ebb054b8e47ca9d91d",
+      "audit_script_sha256": "401d9dd07be3e07305201cf44e59bba8c0b9cb7fd0d2f50d3e34df8b01eb8cd6",
+      "audit_log_sha256": "c29c87c820595586235922194f08af7c5bbf2bd3478ba6a3343b43590660f9c8"
+    }
+  },
+  "report_sha256": {
+    "audit_iob_final.log": "c29c87c820595586235922194f08af7c5bbf2bd3478ba6a3343b43590660f9c8",
+    "audit_routed.tcl": "401d9dd07be3e07305201cf44e59bba8c0b9cb7fd0d2f50d3e34df8b01eb8cd6",
+    "board.json": "6e6130ae4de83bd29c20e41b1a47b574cedab33a82e6d3cad1de13a04636a16a",
+    "board.xdc": "07a7d6ef7f117cb90d4db82bee0af26cbb1625ee4baad0ef77264c54be86e04f",
+    "build.log": "11a318fdbe4bbb8341cf67a73388e2580e5edf69add89e5bc33c9078d7e42f18",
+    "cdc_synth.rpt": "838f7f7e220e4513bf80ddaeac434a62dda83d965e2cdd2bf76e0ad7470bc6d3",
+    "core_route_check/bus_skew.rpt": "6f669830a9938c27eb708a543c17b7db44c3ec597fbf2fa5339f0a090d7e5c1e",
+    "core_route_check/cdc.rpt": "ad638b81f40dd748030ac66e4c4295522669b93df3f38f86b6c7cdf66b29bc15",
+    "core_route_check/cdc_details.rpt": "315cab40b1a09f22f71fc064f9ee4eca41e48eddb530979a6cca86b49f792bfd",
+    "core_route_check/check_timing.rpt": "5c6e352cf6a94c5424ffeda31828d5832a72cb6a2187f981aeaf409f54752496",
+    "core_route_check/drc.rpt": "1c188d67ad6a0d660fd52b5a9cb1fa7a1bbf993282624ca718957eef1202011d",
+    "core_route_check/exceptions.rpt": "aeabce0289699dbaac79fd2a0a66a36c2051864c850c3d4f69a1ebc30da79139",
+    "core_route_check/hold_paths.rpt": "3d66828136fc95cf4eecae6b04a69805621f1f3b289a6e60cd08ac0933326f83",
+    "core_route_check/setup_before_refinement.rpt": "c3b79665d5f6698f5e7070ba0146809133fe734ef1df03670f1905a600b8a046",
+    "core_route_check/setup_paths.rpt": "ba983204301a5ad328f219c4c893676b741e8e2b76ce4521b8a9b9d37a7453d3",
+    "core_route_check/timing.rpt": "403688690eea9019aaff54a79ecf74a4d31e1abbce139de4ae626e05ad305be9",
+    "core_route_check/timing_before_refinement.rpt": "1cb2bfc95cf5d9527347b237a1de594e613eef74f08bf158766475d03d14562d",
+    "core_route_check/usb_rd_paths.rpt": "0d50a0f55c232c32648278fc8b9212ce563fad95a14bc6c3df7ae8ec5a4b737f",
+    "core_route_check/utilization.rpt": "de351836cba1dca0db4ce69b96a186e8c331024d9ba939a85720f606a67bf6d5",
+    "ramp_extended_top.v": "9ef3e0637ec48aeef98a27d2ff641df25deff7a844b1dae14d26da0d1b0375a6",
+    "resource_report.json": "c40c83b1c1eff221c6defcd3672c2fea9ee09da47a1cc0e80b78a9989a4af9b7",
+    "resource_report_at_build_completion.json": "96571c42a851d4dda2d46219fab4368687fd9cf8a29db63d4b45322d290bd5ef",
+    "source_hashes.json": "e528f3dca8bd4ecabf69d6bb1ff3dd3bceaf9f51a194f04d59bce61e58baf7d5",
+    "timing_synth.rpt": "b0ea9dc5e5a1027e54f6119236d285868854cd9888287600091d5b46474bfe6b",
+    "utilization_synth.rpt": "34c0a6cc47bfdd9027c916c5521f497b67dffc23e6e621a6eb9b3fb07c074f71"
+  }
+}

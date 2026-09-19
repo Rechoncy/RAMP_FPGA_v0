@@ -1,0 +1,293 @@
+{
+  "regression": {
+    "passed": 679,
+    "skipped": 1,
+    "failed": 0
+  },
+  "regression_files": 57,
+  "regression_method": "One fresh Python/Qt process per test file; obsolete expected build argument/manifest assertions updated and affected files rerun",
+  "skip": "Native Windows symbolic-link creation requires unavailable privileges; portable guard and NTFS junction tests passed",
+  "gaussian": [
+    {
+      "sample_hz": 100000000,
+      "samples": 14000,
+      "checked": 14000,
+      "runs": 139,
+      "max_error": 1
+    },
+    {
+      "sample_hz": 125000000,
+      "samples": 17500,
+      "checked": 17500,
+      "runs": 141,
+      "max_error": 1
+    },
+    {
+      "sample_hz": 200000000,
+      "samples": 28000,
+      "checked": 28000,
+      "runs": 139,
+      "max_error": 1
+    }
+  ],
+  "executable_sha256": "76da6bcd6c94c72d8512a830296a4747e965ba31f077486478f8fd2f19c0a719",
+  "executable_checks_passed": true,
+  "hardware_programmed": false,
+  "analog_output_measured": false,
+  "builds": {
+    "100": {
+      "schema": 1,
+      "updated_at": "2026-09-17T08:56:38.156429+00:00",
+      "mode": "implement",
+      "status": "success",
+      "error": "",
+      "board_part": "xc7a35tfgg484-2",
+      "board_fingerprint": "07fcc324d99f8d4619f88acf03973448436bc51bac4ff12cd484bd9078f148d8",
+      "board_context": {
+        "part": "xc7a35tfgg484-2",
+        "dac_count": 4,
+        "dac_bits": 10,
+        "trigger_count": 2,
+        "ref_mhz": 50.0,
+        "clock_input": "single_ended",
+        "core_mhz": 100,
+        "dac_model": "3PD5651E",
+        "uart_baud": 115200,
+        "boot_channels": []
+      },
+      "source_fingerprint": "24ea7d492d190cebaa31c8d4cf254b80d37819cdaeeadb3c6ec5157aff767656",
+      "final_source_fingerprint": "24ea7d492d190cebaa31c8d4cf254b80d37819cdaeeadb3c6ec5157aff767656",
+      "sources_changed": false,
+      "reports": [
+        {
+          "schema": 1,
+          "path": "utilization_synth.rpt",
+          "sha256": "5ca3ee0ea2ff8071a31bc84e4b615be9ea3eadf23570bf7aef7bdf7237acd3d1",
+          "device": "xc7a35tfgg484-2",
+          "date": "Thu Sep 17 16:52:31 2026",
+          "design": "ramp_extended_top",
+          "design_state": "Synthesized",
+          "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+          "stage": "synth",
+          "metrics": {
+            "lut": {
+              "label": "Slice LUTs*",
+              "unit": "LUT",
+              "used": 12885,
+              "available": 20800,
+              "percent": 61.95,
+              "raw_percent": "61.95"
+            },
+            "ff": {
+              "label": "Slice Registers",
+              "unit": "FF",
+              "used": 16139,
+              "available": 41600,
+              "percent": 38.8,
+              "raw_percent": "38.80"
+            },
+            "bram": {
+              "label": "Block RAM Tile",
+              "unit": "36 Kb",
+              "used": 32,
+              "available": 50,
+              "percent": 64,
+              "raw_percent": "64.00"
+            },
+            "dsp": {
+              "label": "DSPs",
+              "unit": "DSP",
+              "used": 4,
+              "available": 90,
+              "percent": 4.44,
+              "raw_percent": "4.44"
+            }
+          },
+          "warnings": []
+        },
+        {
+          "schema": 1,
+          "path": "utilization_routed.rpt",
+          "sha256": "5c40188b2db864baa941e5a6dfae490669c49b8a277ff20cddd97306408c81b8",
+          "device": "xc7a35tfgg484-2",
+          "date": "Thu Sep 17 16:56:09 2026",
+          "design": "ramp_extended_top",
+          "design_state": "Routed",
+          "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+          "stage": "routed",
+          "metrics": {
+            "lut": {
+              "label": "Slice LUTs",
+              "unit": "LUT",
+              "used": 12756,
+              "available": 20800,
+              "percent": 61.33,
+              "raw_percent": "61.33"
+            },
+            "ff": {
+              "label": "Slice Registers",
+              "unit": "FF",
+              "used": 16120,
+              "available": 41600,
+              "percent": 38.75,
+              "raw_percent": "38.75"
+            },
+            "bram": {
+              "label": "Block RAM Tile",
+              "unit": "36 Kb",
+              "used": 32,
+              "available": 50,
+              "percent": 64,
+              "raw_percent": "64.00"
+            },
+            "dsp": {
+              "label": "DSPs",
+              "unit": "DSP",
+              "used": 4,
+              "available": 90,
+              "percent": 4.44,
+              "raw_percent": "4.44"
+            }
+          },
+          "warnings": []
+        }
+      ],
+      "warnings": [],
+      "xdc_sha256": "01bbd825bd388c2bba795a9990e43b3ffea99a2a1c9f53d4d4dee814dd5bae26",
+      "interface_sources": {
+        "ramp_extended_top.v": "a7e227d8a68e858432ebdc4d018f3776411988d392555baff125eb083396ee61"
+      },
+      "final_interface_sources": {
+        "ramp_extended_top.v": "a7e227d8a68e858432ebdc4d018f3776411988d392555baff125eb083396ee61"
+      },
+      "interfaces_changed": false
+    },
+    "125": {
+      "schema": 1,
+      "updated_at": "2026-09-17T08:46:47.314447+00:00",
+      "mode": "implement",
+      "status": "success",
+      "error": "",
+      "board_part": "xc7a35tfgg484-2",
+      "board_fingerprint": "1cdd119c06f6e15cb35759d1c44975c72b0540291a0cab128bcf6c15c013a0d7",
+      "board_context": {
+        "part": "xc7a35tfgg484-2",
+        "dac_count": 4,
+        "dac_bits": 10,
+        "trigger_count": 2,
+        "ref_mhz": 50.0,
+        "clock_input": "single_ended",
+        "core_mhz": 125,
+        "dac_model": "3PD5651E",
+        "uart_baud": 115200,
+        "boot_channels": []
+      },
+      "source_fingerprint": "24ea7d492d190cebaa31c8d4cf254b80d37819cdaeeadb3c6ec5157aff767656",
+      "final_source_fingerprint": "24ea7d492d190cebaa31c8d4cf254b80d37819cdaeeadb3c6ec5157aff767656",
+      "sources_changed": false,
+      "reports": [
+        {
+          "schema": 1,
+          "path": "utilization_synth.rpt",
+          "sha256": "25af23ce1912414ef580b1c8210a7116c08e4108c905db9fdcf8106b435582b2",
+          "device": "xc7a35tfgg484-2",
+          "date": "Thu Sep 17 16:36:00 2026",
+          "design": "ramp_extended_top",
+          "design_state": "Synthesized",
+          "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+          "stage": "synth",
+          "metrics": {
+            "lut": {
+              "label": "Slice LUTs*",
+              "unit": "LUT",
+              "used": 12875,
+              "available": 20800,
+              "percent": 61.9,
+              "raw_percent": "61.90"
+            },
+            "ff": {
+              "label": "Slice Registers",
+              "unit": "FF",
+              "used": 16127,
+              "available": 41600,
+              "percent": 38.77,
+              "raw_percent": "38.77"
+            },
+            "bram": {
+              "label": "Block RAM Tile",
+              "unit": "36 Kb",
+              "used": 32,
+              "available": 50,
+              "percent": 64,
+              "raw_percent": "64.00"
+            },
+            "dsp": {
+              "label": "DSPs",
+              "unit": "DSP",
+              "used": 4,
+              "available": 90,
+              "percent": 4.44,
+              "raw_percent": "4.44"
+            }
+          },
+          "warnings": []
+        },
+        {
+          "schema": 1,
+          "path": "utilization_routed.rpt",
+          "sha256": "0b1b07c5b6cff3430c33b3f4d72cf3c91b8fe44ec1936a3bdf7e4c250bc61b69",
+          "device": "xc7a35tfgg484-2",
+          "date": "Thu Sep 17 16:46:11 2026",
+          "design": "ramp_extended_top",
+          "design_state": "Routed",
+          "tool": "Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023",
+          "stage": "routed",
+          "metrics": {
+            "lut": {
+              "label": "Slice LUTs",
+              "unit": "LUT",
+              "used": 12751,
+              "available": 20800,
+              "percent": 61.3,
+              "raw_percent": "61.30"
+            },
+            "ff": {
+              "label": "Slice Registers",
+              "unit": "FF",
+              "used": 16108,
+              "available": 41600,
+              "percent": 38.72,
+              "raw_percent": "38.72"
+            },
+            "bram": {
+              "label": "Block RAM Tile",
+              "unit": "36 Kb",
+              "used": 32,
+              "available": 50,
+              "percent": 64,
+              "raw_percent": "64.00"
+            },
+            "dsp": {
+              "label": "DSPs",
+              "unit": "DSP",
+              "used": 4,
+              "available": 90,
+              "percent": 4.44,
+              "raw_percent": "4.44"
+            }
+          },
+          "warnings": []
+        }
+      ],
+      "warnings": [],
+      "xdc_sha256": "91477fa0fd949c4a193975f180a2d15a98469bc47ec8a3e8fd2f973ad0084946",
+      "interface_sources": {
+        "ramp_extended_top.v": "de65cf90a9b4afa6b1c47b8669a663b47564a3bb97cc931e8b961d2854d301ab"
+      },
+      "final_interface_sources": {
+        "ramp_extended_top.v": "de65cf90a9b4afa6b1c47b8669a663b47564a3bb97cc931e8b961d2854d301ab"
+      },
+      "interfaces_changed": false
+    }
+  }
+}

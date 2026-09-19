@@ -1,0 +1,20 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Wed Sep 16 22:26:39 2026
+| Host         : Quantum running 64-bit major release  (build 9200)
+| Command      : report_cdc -file E:/Github_Project/RAMP_FPGA_v0/build/usb_uart_final_20260916/vivado_iob_final/cdc_synth.rpt
+| Design       : ramp_extended_top
+| Device       : 7a35t-fgg484
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+CDC Report
+
+Severity  Source Clock          Destination Clock     CDC Type                 Exceptions               Endpoints  Safe  Unsafe  Unknown  No ASYNC_REG  
+--------  --------------------  --------------------  -----------------------  -----------------------  ---------  ----  ------  -------  ------------  
+Critical  usb_clk               clk_out1_clk_core_ip  No Common Primary Clock  Max Delay Datapath Only         29    28       1        0             0  
+Critical  clk_out1_clk_core_ip  usb_clk               No Common Primary Clock  Max Delay Datapath Only         30    29       1        0             0  
+Info      input port clock      clk_out1_clk_core_ip  No Common Primary Clock  False Path                       3     3       0        0             0  
+

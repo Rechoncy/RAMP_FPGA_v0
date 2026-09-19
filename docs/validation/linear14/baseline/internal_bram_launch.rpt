@@ -1,0 +1,210 @@
+All timing path bodies retained. Expanded -from/-to command header omitted.
+Original: build/linear14_validation/baseline_grouped/internal_bram_launch.rpt
+
+Slack (MET) :             0.555ns  (required time - arrival time)
+  Source:                 controller/channels[0].engine/sample_memory_reg_5/CLKBWRCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/u_samples/fifo_reg_0_3_42_45/RAMB_D1/I
+                            (rising edge-triggered cell RAMD32 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (core rise@5.000ns - core rise@0.000ns)
+  Data Path Delay:        4.125ns  (logic 2.125ns (51.519%)  route 2.000ns (48.481%))
+  Logic Levels:           0  
+  Clock Path Skew:        -0.096ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.132ns = ( 7.132 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.271ns
+    Clock Pessimism Removal (CPR):    0.043ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.787     0.787    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.081     0.868 r  core_buf/O
+                         net (fo=11795, routed)       1.403     2.271    controller/channels[0].engine/core_clk
+    RAMB18_X0Y12         RAMB18E1                                     r  controller/channels[0].engine/sample_memory_reg_5/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X0Y12         RAMB18E1 (Prop_ramb18e1_CLKBWRCLK_DOBDO[0])
+                                                      2.125     4.396 r  controller/channels[0].engine/sample_memory_reg_5/DOBDO[0]
+                         net (fo=2, routed)           2.000     6.396    controller/channels[0].engine/u_samples/fifo_reg_0_3_42_45/DIB1
+    SLICE_X6Y65          RAMD32                                       r  controller/channels[0].engine/u_samples/fifo_reg_0_3_42_45/RAMB_D1/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.748     5.748    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     5.825 r  core_buf/O
+                         net (fo=11795, routed)       1.307     7.132    controller/channels[0].engine/u_samples/fifo_reg_0_3_42_45/WCLK
+    SLICE_X6Y65          RAMD32                                       r  controller/channels[0].engine/u_samples/fifo_reg_0_3_42_45/RAMB_D1/CLK
+                         clock pessimism              0.043     7.175    
+                         clock uncertainty           -0.035     7.140    
+    SLICE_X6Y65          RAMD32 (Setup_ramd32_CLK_I)
+                                                     -0.189     6.951    controller/channels[0].engine/u_samples/fifo_reg_0_3_42_45/RAMB_D1
+  -------------------------------------------------------------------
+                         required time                          6.951    
+                         arrival time                          -6.396    
+  -------------------------------------------------------------------
+                         slack                                  0.555    
+
+Slack (MET) :             0.651ns  (required time - arrival time)
+  Source:                 controller/channels[0].engine/sample_memory_reg_1/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/u_samples/fifo_reg_0_3_12_17/RAMB_D1/I
+                            (rising edge-triggered cell RAMD32 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (core rise@5.000ns - core rise@0.000ns)
+  Data Path Delay:        4.026ns  (logic 2.125ns (52.786%)  route 1.901ns (47.214%))
+  Logic Levels:           0  
+  Clock Path Skew:        -0.099ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.135ns = ( 7.135 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.277ns
+    Clock Pessimism Removal (CPR):    0.043ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.787     0.787    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.081     0.868 r  core_buf/O
+                         net (fo=11795, routed)       1.409     2.277    controller/channels[0].engine/core_clk
+    RAMB36_X0Y7          RAMB36E1                                     r  controller/channels[0].engine/sample_memory_reg_1/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X0Y7          RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[6])
+                                                      2.125     4.402 r  controller/channels[0].engine/sample_memory_reg_1/DOBDO[6]
+                         net (fo=2, routed)           1.901     6.303    controller/channels[0].engine/u_samples/fifo_reg_0_3_12_17/DIB1
+    SLICE_X6Y61          RAMD32                                       r  controller/channels[0].engine/u_samples/fifo_reg_0_3_12_17/RAMB_D1/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.748     5.748    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     5.825 r  core_buf/O
+                         net (fo=11795, routed)       1.310     7.135    controller/channels[0].engine/u_samples/fifo_reg_0_3_12_17/WCLK
+    SLICE_X6Y61          RAMD32                                       r  controller/channels[0].engine/u_samples/fifo_reg_0_3_12_17/RAMB_D1/CLK
+                         clock pessimism              0.043     7.178    
+                         clock uncertainty           -0.035     7.143    
+    SLICE_X6Y61          RAMD32 (Setup_ramd32_CLK_I)
+                                                     -0.189     6.954    controller/channels[0].engine/u_samples/fifo_reg_0_3_12_17/RAMB_D1
+  -------------------------------------------------------------------
+                         required time                          6.954    
+                         arrival time                          -6.303    
+  -------------------------------------------------------------------
+                         slack                                  0.651    
+
+Slack (MET) :             0.682ns  (required time - arrival time)
+  Source:                 controller/channels[0].engine/sample_memory_reg_1/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/u_samples/fifo_reg_0_3_6_11/RAMC_D1/I
+                            (rising edge-triggered cell RAMD32 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (core rise@5.000ns - core rise@0.000ns)
+  Data Path Delay:        3.908ns  (logic 2.125ns (54.377%)  route 1.783ns (45.623%))
+  Logic Levels:           0  
+  Clock Path Skew:        -0.167ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.067ns = ( 7.067 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.277ns
+    Clock Pessimism Removal (CPR):    0.043ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.787     0.787    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.081     0.868 r  core_buf/O
+                         net (fo=11795, routed)       1.409     2.277    controller/channels[0].engine/core_clk
+    RAMB36_X0Y7          RAMB36E1                                     r  controller/channels[0].engine/sample_memory_reg_1/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X0Y7          RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.125     4.402 r  controller/channels[0].engine/sample_memory_reg_1/DOBDO[2]
+                         net (fo=2, routed)           1.783     6.185    controller/channels[0].engine/u_samples/fifo_reg_0_3_6_11/DIC1
+    SLICE_X8Y63          RAMD32                                       r  controller/channels[0].engine/u_samples/fifo_reg_0_3_6_11/RAMC_D1/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.748     5.748    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     5.825 r  core_buf/O
+                         net (fo=11795, routed)       1.242     7.067    controller/channels[0].engine/u_samples/fifo_reg_0_3_6_11/WCLK
+    SLICE_X8Y63          RAMD32                                       r  controller/channels[0].engine/u_samples/fifo_reg_0_3_6_11/RAMC_D1/CLK
+                         clock pessimism              0.043     7.110    
+                         clock uncertainty           -0.035     7.075    
+    SLICE_X8Y63          RAMD32 (Setup_ramd32_CLK_I)
+                                                     -0.207     6.868    controller/channels[0].engine/u_samples/fifo_reg_0_3_6_11/RAMC_D1
+  -------------------------------------------------------------------
+                         required time                          6.868    
+                         arrival time                          -6.185    
+  -------------------------------------------------------------------
+                         slack                                  0.682    
+
+Slack (MET) :             0.749ns  (required time - arrival time)
+  Source:                 controller/channels[0].engine/sample_memory_reg_3/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            controller/channels[0].engine/u_samples/fifo_reg_0_3_30_35/RAMC_D1/I
+                            (rising edge-triggered cell RAMD32 clocked by core  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             core_internal
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (core rise@5.000ns - core rise@0.000ns)
+  Data Path Delay:        3.901ns  (logic 2.125ns (54.472%)  route 1.776ns (45.529%))
+  Logic Levels:           0  
+  Clock Path Skew:        -0.107ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.132ns = ( 7.132 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.282ns
+    Clock Pessimism Removal (CPR):    0.043ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core rise edge)       0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.787     0.787    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.081     0.868 r  core_buf/O
+                         net (fo=11795, routed)       1.414     2.282    controller/channels[0].engine/core_clk
+    RAMB36_X0Y9          RAMB36E1                                     r  controller/channels[0].engine/sample_memory_reg_3/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X0Y9          RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOPBDOP[0])
+                                                      2.125     4.407 r  controller/channels[0].engine/sample_memory_reg_3/DOPBDOP[0]
+                         net (fo=2, routed)           1.776     6.184    controller/channels[0].engine/u_samples/fifo_reg_0_3_30_35/DIC1
+    SLICE_X6Y66          RAMD32                                       r  controller/channels[0].engine/u_samples/fifo_reg_0_3_30_35/RAMC_D1/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core rise edge)       5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.748     5.748    clk
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     5.825 r  core_buf/O
+                         net (fo=11795, routed)       1.307     7.132    controller/channels[0].engine/u_samples/fifo_reg_0_3_30_35/WCLK
+    SLICE_X6Y66          RAMD32                                       r  controller/channels[0].engine/u_samples/fifo_reg_0_3_30_35/RAMC_D1/CLK
+                         clock pessimism              0.043     7.175    
+                         clock uncertainty           -0.035     7.140    
+    SLICE_X6Y66          RAMD32 (Setup_ramd32_CLK_I)
+                                                     -0.207     6.933    controller/channels[0].engine/u_samples/fifo_reg_0_3_30_35/RAMC_D1
+  -------------------------------------------------------------------
+                         required time                          6.933    
+                         arrival time                          -6.184    
+  -------------------------------------------------------------------
+                         slack                                  0.749    
+
+
+
+

@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "label": "发布固件参考 · 四路 10 bit · 2026-09-13",
+  "firmware_id": "09133301",
+  "report_sha256": "2e837d45669fb2ca3714c89355b7db7258c4471696c002819457b0fe2dfd8f4e",
+  "board_sha256": "0d5cd0f716c912aa1b2f0a47da96c1a7a7f0efaca8ca57f765660e4fa6531d57",
+  "bitstream_sha256": "01c69a5fb4c91ebd0298140d7bdb1a0b6460ffa1e5bd32b1da103538ea3d435a",
+  "source_manifest_sha256": "8b92cb865a0e61cd58231e0a521545a96d51d5a03c4442c0658919e11b3f1cd3",
+  "original_report": "release/FPGA-XC7A35T-TriggerScan/utilization.rpt",
+  "original_board": "release/FPGA-XC7A35T-TriggerScan/board.json",
+  "original_bitstream": "release/FPGA-XC7A35T-TriggerScan/ramp_scan_parallel4.bit",
+  "original_source_manifest": "release/FPGA-XC7A35T-TriggerScan/source_manifest.json",
+  "original_readme": "release/FPGA-XC7A35T-TriggerScan/使用与验证说明.md",
+  "device": "xc7a35tfgg484-2",
+  "design": "ramp_top",
+  "stage": "Routed",
+  "reported_at": "Sun Sep 13 19:00:18 2026",
+  "tool_version": "Vivado v.2023.1 (win64) Build 3865809",
+  "dac_count": 4,
+  "dac_bits": 10,
+  "trigger_count": 2,
+  "ref_mhz": 50.0,
+  "clock_input": "single_ended",
+  "core_mhz": 200.0,
+  "origin_kind": "bundled_reference",
+  "device_identity_verified": false,
+  "notice": "此报告描述随软件附带的历史发布固件，不能证明当前连接设备的逻辑资源占用，也不代表当前源码重新构建结果。",
+  "firmware_sources": [
+    {
+      "path": "rtl/common/controller.v",
+      "sha256": "9583fed38de34128b57f292b5bc4a7f43d51ac5f6527196fe8d53eb64f634b72"
+    },
+    {
+      "path": "rtl/common/gate_engine.v",
+      "sha256": "147e9ed8ec5e5f01409601fe1f9272deafb764fd45ad85c7e4fe00d407363d23"
+    },
+    {
+      "path": "rtl/common/packet_link.v",
+      "sha256": "09b426d2945a91e8d5ea04678e59082320948c1df4db123c1ddbc7174fbf7871"
+    },
+    {
+      "path": "rtl/common/parallel_controller.v",
+      "sha256": "19ebf8c71490c388e7ac910939c9279074a921114cb5809ec4328b59eb5e35c1"
+    },
+    {
+      "path": "rtl/common/program_sequencer.v",
+      "sha256": "373444a28763e5e8198e3d57827fcf378fca0044a7f5343bb6da06e96d0a750e"
+    },
+    {
+      "path": "rtl/common/sample_engine.v",
+      "sha256": "945cf46175f5f1f3adf274278926a3c7e1e90357bfce833a1c7583b2d35770d1"
+    },
+    {
+      "path": "rtl/common/scan_engine.v",
+      "sha256": "48d4a85a726ecc06ac5a3dda58cdf011b3d848238fc54f42c748eb9e73b5cdeb"
+    },
+    {
+      "path": "rtl/common/sequence_engine.v",
+      "sha256": "e4d88a9ce12eab34eec16964152bee12b1adbb0b6b947b2c0a6b243eeb114198"
+    },
+    {
+      "path": "rtl/common/trigger_sync.v",
+      "sha256": "5aea2fa38c2f634759cc214af46bd4bdfa92013516c7891cc7cbac755aed6275"
+    },
+    {
+      "path": "rtl/common/uart.v",
+      "sha256": "5f801b7e453eac0165a67ca3d38c05eec09bb8268c2ef706644c0bbcd57886f6"
+    },
+    {
+      "path": "rtl/platform/xilinx_7series/clock_reset_adapter.v",
+      "sha256": "8cf5378efb7c8f1462316376ed2cf30cb73c2340cd14e87267ce5233d125ff72"
+    },
+    {
+      "path": "rtl/platform/xilinx_7series/ramp_top.v",
+      "sha256": "4d66df3d385ec4976375215b7a9105d6b7baaa0f723e419464a968260a026a35"
+    },
+    {
+      "path": "scripts/vivado/build_studio.tcl",
+      "sha256": "b1f132cd6235c0bce10b2eaaf5d11540d7aacaba45370acc3fe2ec02f283e7e3"
+    },
+    {
+      "path": "scripts/vivado/check_core_route.tcl",
+      "sha256": "06b17465e56e01931564730778c1fd6cd90697714145e937529269f76795813f"
+    },
+    {
+      "path": "scripts/vivado/check_dac200_sim.tcl",
+      "sha256": "99ec8a697f39144233de680041f522010190b985330c6078bdd22fc07249a059"
+    },
+    {
+      "path": "scripts/vivado/create_clock_check.tcl",
+      "sha256": "7aa5bcf320bd5a90b3ff4702ab7a96525728fbddbeb142ec5690fdc6f96d170a"
+    },
+    {
+      "path": "scripts/vivado/flash_studio.tcl",
+      "sha256": "fe0bd52b0451637cfabde119bbcfd16f7c0b13d700be02e36963ac104316f138"
+    },
+    {
+      "path": "scripts/vivado/refine_timing.tcl",
+      "sha256": "1a88d7e7334443835b3126ff943e6c3cbcc5aaa4e445990ffabf0c553bf6f042"
+    },
+    {
+      "path": "scripts/vivado/verify_flash_boot.tcl",
+      "sha256": "6253626430b775e50c2450eeda600616aefd265cc344685cf766d312441875c1"
+    }
+  ]
+}

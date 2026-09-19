@@ -1,0 +1,291 @@
+[
+  {
+    "test": "test_board_session.py",
+    "code": 0,
+    "seconds": 1.22
+  },
+  {
+    "test": "test_boot.py",
+    "code": 0,
+    "seconds": 2.98
+  },
+  {
+    "test": "test_clock_input.py",
+    "code": 0,
+    "seconds": 1.99
+  },
+  {
+    "test": "test_dac_navigation.py",
+    "code": 0,
+    "seconds": 6.52
+  },
+  {
+    "test": "test_debug.py",
+    "code": 0,
+    "seconds": 4.08
+  },
+  {
+    "test": "test_exit_settings.py",
+    "code": 0,
+    "seconds": 44.16
+  },
+  {
+    "test": "test_expansion.py",
+    "code": 0,
+    "seconds": 1.2
+  },
+  {
+    "test": "test_extended_build.py",
+    "code": 0,
+    "seconds": 1.53
+  },
+  {
+    "test": "test_extended_capacity.py",
+    "code": 0,
+    "seconds": 0.64
+  },
+  {
+    "test": "test_flash.py",
+    "code": 0,
+    "seconds": 1.92
+  },
+  {
+    "test": "test_functions.py",
+    "code": 0,
+    "seconds": 9.09
+  },
+  {
+    "test": "test_gate_cycle_compatibility.py",
+    "code": 0,
+    "seconds": 1.67
+  },
+  {
+    "test": "test_gating.py",
+    "code": 0,
+    "seconds": 13.83
+  },
+  {
+    "test": "test_gui.py",
+    "code": 0,
+    "seconds": 10.19
+  },
+  {
+    "test": "test_hardware_interfaces.py",
+    "code": 0,
+    "seconds": 0.88
+  },
+  {
+    "test": "test_host.py",
+    "code": 0,
+    "seconds": 0.67
+  },
+  {
+    "test": "test_infinite_repeat.py",
+    "code": 0,
+    "seconds": 29.55
+  },
+  {
+    "test": "test_interpolation_compiler.py",
+    "code": 0,
+    "seconds": 0.94
+  },
+  {
+    "test": "test_legacy_designer.py",
+    "code": 0,
+    "seconds": 2.12
+  },
+  {
+    "test": "test_legacy_disabled.py",
+    "code": 0,
+    "seconds": 0.61
+  },
+  {
+    "test": "test_linear_controller.py",
+    "code": 0,
+    "seconds": 3.61
+  },
+  {
+    "test": "test_linear_cycle_compatibility.py",
+    "code": 0,
+    "seconds": 8.67
+  },
+  {
+    "test": "test_linear_engine.py",
+    "code": 0,
+    "seconds": 6.53
+  },
+  {
+    "test": "test_linear_event_boundaries.py",
+    "code": 0,
+    "seconds": 1.2
+  },
+  {
+    "test": "test_linear_protocol.py",
+    "code": 0,
+    "seconds": 2.73
+  },
+  {
+    "test": "test_linear_ui.py",
+    "code": 0,
+    "seconds": 11.97
+  },
+  {
+    "test": "test_output_control.py",
+    "code": 0,
+    "seconds": 1.91
+  },
+  {
+    "test": "test_parallel.py",
+    "code": 0,
+    "seconds": 4.98
+  },
+  {
+    "test": "test_parallel_cycle_compatibility.py",
+    "code": 0,
+    "seconds": 9.88
+  },
+  {
+    "test": "test_plot_autoscale.py",
+    "code": 0,
+    "seconds": 0.88
+  },
+  {
+    "test": "test_refine_timing.py",
+    "code": 0,
+    "seconds": 0.47
+  },
+  {
+    "test": "test_resource_backend.py",
+    "code": 0,
+    "seconds": 0.72
+  },
+  {
+    "test": "test_resource_ui.py",
+    "code": 0,
+    "seconds": 4.69
+  },
+  {
+    "test": "test_rtl.py",
+    "code": 0,
+    "seconds": 12.92
+  },
+  {
+    "test": "test_runtime.py",
+    "code": 0,
+    "seconds": 0.58
+  },
+  {
+    "test": "test_sample_cycle_compatibility.py",
+    "code": 0,
+    "seconds": 4.59
+  },
+  {
+    "test": "test_sample_rate_rtl.py",
+    "code": 0,
+    "seconds": 5.8
+  },
+  {
+    "test": "test_sample_rates.py",
+    "code": 0,
+    "seconds": 1.48
+  },
+  {
+    "test": "test_scan.py",
+    "code": 0,
+    "seconds": 4.03
+  },
+  {
+    "test": "test_sequences.py",
+    "code": 0,
+    "seconds": 6.05
+  },
+  {
+    "test": "test_staged_functions.py",
+    "code": 0,
+    "seconds": 2.38
+  },
+  {
+    "test": "test_time_input.py",
+    "code": 0,
+    "seconds": 2.66
+  },
+  {
+    "test": "test_uart_baud_rtl.py",
+    "code": 0,
+    "seconds": 63.39
+  },
+  {
+    "test": "test_uart_board.py",
+    "code": 0,
+    "seconds": 1.03,
+    "initial_code": 1,
+    "final_log": "test_uart_board.final.log"
+  },
+  {
+    "test": "test_uart_build_tcl.py",
+    "code": 0,
+    "seconds": 0.84
+  },
+  {
+    "test": "test_uart_cli.py",
+    "code": 0,
+    "seconds": 0.53
+  },
+  {
+    "test": "test_uart_host.py",
+    "code": 0,
+    "seconds": 1.75
+  },
+  {
+    "test": "test_ui_logic.py",
+    "code": 0,
+    "seconds": 2.22
+  },
+  {
+    "test": "test_usb_rtl.py",
+    "code": 0,
+    "seconds": 33.53
+  },
+  {
+    "test": "test_usb_transport.py",
+    "code": 0,
+    "seconds": 0.69
+  },
+  {
+    "test": "test_utilization.py",
+    "code": 0,
+    "seconds": 0.84,
+    "initial_code": 1,
+    "final_log": "test_utilization.final.log"
+  },
+  {
+    "test": "test_utilization_ui.py",
+    "code": 0,
+    "seconds": 23.94
+  },
+  {
+    "test": "test_wave_infinite_ui.py",
+    "code": 0,
+    "seconds": 41.39
+  },
+  {
+    "test": "test_waveform_infinite.py",
+    "code": 0,
+    "seconds": 0.92
+  },
+  {
+    "test": "test_widths.py",
+    "code": 0,
+    "seconds": 1.16
+  },
+  {
+    "test": "test_workspace_archive.py",
+    "code": 0,
+    "seconds": 2.5
+  },
+  {
+    "test": "test_workspace_transfer.py",
+    "code": 0,
+    "seconds": 67.55
+  }
+]
