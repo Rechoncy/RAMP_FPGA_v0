@@ -1,6 +1,9 @@
 # Standalone SPI configuration-memory workflow. The job config contains quoted data only.
 if {$argc != 1} {puts stderr "Expected job configuration";exit 1}
 source [lindex $argv 0]
+# Backward-compatible defaults for saved .bit jobs.
+if {![info exists cfg(image_source)]} {set cfg(image_source) bit}
+if {$cfg(image_source) ni {bit image}} {puts stderr "Invalid image source";exit 1}
 file mkdir $cfg(output)
 proc exact_object {objects name description} {
  set i [lsearch -exact $objects $name]
@@ -24,14 +27,33 @@ proc boot_status {dev} {
  }
  puts "DONE/CRC check passed. Cold power-cycle and external DAC measurements are separate checks."
 }
+proc check_image_device {dev expected} {
+ # PART comes from the selected JTAG device, not the user's board JSON. Obtain
+ # its IDCODE from Vivado's part database (same ID across packages/speed grades).
+ set device_part [string tolower [get_property PART $dev]]
+ if {![string match xc7* $device_part]} {error "Existing images currently support Xilinx 7 series only"}
+ set parts [get_parts -quiet -filter [list DEVICE == $device_part]]
+ if {![llength $parts]} {error "Cannot determine selected FPGA IDCODE; no programming was started"}
+ set ids [lsort -unique [get_property IDCODE $parts]]
+ if {[llength $ids]!=1 || [scan [lindex $ids 0] %x actual]!=1 || [scan $expected %x wanted]!=1} {error "Invalid FPGA IDCODE; no programming was started"}
+ if {($actual & 0x0fffffff)!=($wanted & 0x0fffffff)} {error "Image IDCODE does not match selected FPGA; no hardware programming was started"}
+ puts "Image IDCODE matches selected FPGA: $device_part"
+}
 set opened 0
 set rc [catch {
- if {$cfg(operation) in {generate program}} {
+ if {$cfg(operation) in {generate temporary} && $cfg(image_source) ne "bit"} {error "This operation requires a .bit input"}
+ if {$cfg(operation) in {generate program} && $cfg(image_source) eq "bit"} {
   if {$cfg(interface) ni {SPIx1 SPIx2 SPIx4}} {error "Invalid SPI interface"}
   foreach format {MCS BIN} {
    write_cfgmem -force -format $format -size $cfg(size_mib) -interface $cfg(interface) -loadbit [list up 0x0 $cfg(bitfile)] [file join $cfg(output) firmware.[string tolower $format]]
   }
   puts "Images generated at boot address 0. Existing bitstream configuration settings are not rewritten."
+  set cfg(program_file) [file join $cfg(output) firmware.mcs]
+  set cfg(verify_file) [file join $cfg(output) firmware.bin]
+ }
+ if {$cfg(operation) eq "program" && $cfg(image_source) eq "image"} {
+  if {![file isfile $cfg(program_file)] || ![file isfile $cfg(verify_file)] || [file size $cfg(verify_file)]<1 || [file size $cfg(verify_file)]>$cfg(size_mib)*1024*1024} {error "Missing or oversized inspected image"}
+  puts "Using inspected existing image directly; no write_cfgmem, synthesis or implementation."
  }
  if {$cfg(operation) eq "scan"} {
   foreach part [get_cfgmem_parts -quiet *spi*] {puts "RAMP_CFGMEM\t$part"}
@@ -50,7 +72,9 @@ set rc [catch {
    open_hw_target $target;set opened 1
    set dev [exact_object [get_hw_devices] $cfg(device) "FPGA device"]
    current_hw_device $dev
-   if {$cfg(operation) in {program temporary}} {
+   if {$cfg(operation) eq "program" && $cfg(image_source) eq "image"} {
+    check_image_device $dev $cfg(image_idcode)
+   } elseif {$cfg(operation) in {program temporary}} {
     set device_part [string tolower [get_property PART $dev]]
     regsub {^xc} $device_part {} device_part
     if {![string match "${device_part}*" $cfg(bit_part)]} {error "Bitstream part does not match selected FPGA; no hardware programming was started"}
@@ -71,12 +95,13 @@ set rc [catch {
      if {[file size $backup] != $cfg(size_mib)*1024*1024} {error "Backup size differs from selected capacity; Flash erase was not started"}
      puts "Full Flash backup completed: $backup"
     }
-    set_property PROGRAM.FILES [list [file join $cfg(output) firmware.mcs]] $mem
+    set_property PROGRAM.FILES [list $cfg(program_file)] $mem
+    if {[string tolower [file extension $cfg(program_file)]] eq ".bin"} {set_property PROGRAM.BIN_OFFSET 0 $mem}
     set_property PROGRAM.ADDRESS_RANGE use_file $mem
     foreach p {PROGRAM.ERASE PROGRAM.BLANK_CHECK PROGRAM.CFG_PROGRAM PROGRAM.VERIFY} {set_property $p 1 $mem}
     program_hw_cfgmem $mem
     foreach p {PROGRAM.ERASE PROGRAM.BLANK_CHECK PROGRAM.CFG_PROGRAM PROGRAM.VERIFY} {set_property $p 0 $mem}
-    set expected_file [file join $cfg(output) firmware.bin]
+    set expected_file $cfg(verify_file)
     set actual_file [file join $cfg(output) flash_readback.bin]
     readback_hw_cfgmem -offset 0 -datacount [file size $expected_file] -format bin -file $actual_file $mem
     set f [open $expected_file rb];set expected [read $f];close $f

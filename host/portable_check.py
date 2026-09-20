@@ -254,6 +254,26 @@ def main(report_path):
             QSettings.setPath(QSettings.IniFormat,QSettings.UserScope,str(report_path.parent/'preferences'))
         app=QApplication([]); app.setApplicationName("Ramp Studio"); app.setStyle("Fusion")
         result['checks'].extend(check_plot_autoscale(app))
+        from .trigger_debug_page import TriggerDebugPage
+        from .model import Capabilities
+        trigger_panel=TriggerDebugPage();sent=[];trigger_panel.requested.connect(sent.append)
+        trigger_panel.set_context(Capabilities(core_hz=125000000,trigger_count=2,trigger_debug=True),True,False)
+        trigger_panel.set_context(trigger_panel.caps,True,False,
+                                  {0:dict(state=1,code=355,loops=0,ignored=0)})
+        trigger_panel.readback(dict(mask=0,owned=False))
+        assert all(button.isEnabled() for button in trigger_panel.actions)
+        from .trigger_debug_control import control_trigger
+        assert callable(control_trigger)
+        result['checks'].append('Armed waveform on physical input: direct software trigger enabled; handover controller bundled')
+        trigger_panel.readback(dict(mask=3,levels=0,running=False,emitted=0))
+        trigger_panel.high.setValue(.001);trigger_panel.period.setValue(.002);trigger_panel.count.setValue(0)
+        trigger_panel.send('periodic')
+        assert sent==[dict(operation='periodic',input_index=0,high_ticks=125,period_ticks=250,count=0)]
+        trigger_panel.set_context(trigger_panel.caps,False,False)
+        assert not trigger_panel.value and not trigger_panel.stop.isEnabled()
+        trigger_panel.deleteLater()
+        assert (resource_root()/'rtl/common/trigger_debug.v').is_file()
+        result['checks'].append('Trigger debug panel: exact 125 MHz tick parameters, infinite pulse count, disconnected-state clearing and bundled RTL (no hardware command)')
         assets=resource_root()/"host/assets"
         assert not QIcon(str(assets/"ramp-studio.ico")).isNull()
         assert not QPixmap(str(assets/"chevron-down.svg")).isNull()
@@ -404,7 +424,7 @@ def main(report_path):
             assert 'ramp_extended_top' in boot_top and '.usb_data(usb_data)' in boot_top
             interfaces=Path(result['project']).parent.with_name(Path(result['project']).parent.name+'_interfaces')
             interface_top=(interfaces/'ramp_extended_top.v').read_text()
-            assert 'IBUFDS' in interface_top and 'packet_link #(.BAUD(1000000))' in interface_top
+            assert 'IBUFDS' in interface_top and 'packet_link #(.BAUD(1000000),' in interface_top and '.CLK_HZ(200000000)' in interface_top
             assert '.USB_FIFO_ENABLED(1)' in interface_top and '.RUN_ADDR_BITS(12)' in interface_top
             result['checks'].append('Saved per-DAC boot snapshot compiles into persistent RAM initialization files and Vivado boot top')
             result["checks"].append("GUI QProcess launches bundled worker and real Vivado project/200 MHz IP generation, with USB + 1M UART, differential 100 MHz reference and BRAM boot snapshot")
@@ -457,14 +477,34 @@ def main(report_path):
         seqdev.close()
         result['checks'].append('Infinite whole-table selector/save, one-cycle memory, sustained playback past 65535 rounds and explicit abort')
         flash_bit=os.environ.get('RAMP_STUDIO_CHECK_FLASH_BIT')
+        flash=board.flash_page
+        # Exercise the bundled worker without Vivado/JTAG, even on a clean PC.
+        import struct
+        image_path=library.root/'offline_flash_check.bin'
+        words=[0xffffffff,0xaa995566,0x30018001,0x0362d093,0x30004001,0x12345678,0x30008001,13]
+        image_path.write_bytes(struct.pack('>8I',*words))
+        def inspect_existing(paths):
+            flash.source.setCurrentIndex(flash.source.findData('image'))
+            for path in paths:
+                flash.image.setText(str(path));flash.start('inspect')
+                wait_for(lambda:not flash.running(),timeout=60)
+                report=json.loads((flash.job_dir/'result.json').read_text(encoding='utf-8'))
+                assert report['passed'] and report['image']['idcode']=='0362D093',report
+                assert not (flash.job_dir/'config.tcl').exists(),'Offline check must not dispatch Vivado'
+            flash.source.setCurrentIndex(flash.source.findData('bit'))
+        inspect_existing([image_path])
+        result['checks'].append('Existing BIN inspected by packaged worker without Vivado or JTAG; input mode switches preserve .bit flow')
         if flash_bit:
-            flash=board.flash_page;flash.preset();flash.bit.setText(flash_bit)
+            flash.preset();flash.bit.setText(flash_bit)
             flash.start('generate');wait_for(lambda:not flash.running(),timeout=180)
             outcome=json.loads((flash.job_dir/'result.json').read_text(encoding='utf-8'))
             assert outcome['passed'],flash.log.toPlainText()
             assert (flash.job_dir/'firmware.mcs').is_file() and (flash.job_dir/'firmware.bin').is_file()
             result['flash_job']=str(flash.job_dir)
             result['checks'].append('Packaged Flash worker generates MCS/BIN through real Vivado without accessing JTAG')
+            generated=flash.job_dir
+            inspect_existing([generated/'firmware.mcs',generated/'firmware.bin'])
+            result['checks'].append('Real Vivado-generated MCS and BIN pass bundled offline image checks; no hardware programming')
         window.open_dac(1)
         channel=window.channel_page
         channel.plan.setCurrentIndex(channel.plan.findData(window.profile.id))

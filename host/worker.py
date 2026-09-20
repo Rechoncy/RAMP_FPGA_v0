@@ -12,6 +12,7 @@ class DeviceWorker(QObject):
     applied = Signal(object)
     capabilities = Signal(object)
     resources = Signal(object)
+    trigger_status = Signal(object)
 
     def __init__(self):
         super().__init__()
@@ -26,6 +27,8 @@ class DeviceWorker(QObject):
     @Slot(str, object)
     def execute(self, operation, argument):
         try:
+            if self.device and self.device.debug_active and operation in ('upload','prepare','upload_many','compile','compile_sequence','resources','static'):
+                raise ValueError('请先结束触发调试，再编译或下载方案；避免长操作中断调试心跳')
             if operation == "connect":
                 self.disconnect()
                 if isinstance(argument,dict):
@@ -111,6 +114,12 @@ class DeviceWorker(QObject):
                 result=self.device.set_static(**argument)
                 self.result.emit(operation,result)
                 self.poll()
+            elif operation == 'trigger_debug':
+                if self.device is None:raise RuntimeError('请先连接设备')
+                from .trigger_debug_control import control_trigger
+                result=control_trigger(self.device,argument,self.progress.emit)
+                self.trigger_status.emit(result)
+                self.result.emit(operation,result);self.poll()
             elif operation == "external":
                 if not isinstance(self.device.transport, (Simulator,ParallelSimulator)):
                     raise ValueError("仅演示设备可模拟外部触发")
@@ -122,13 +131,15 @@ class DeviceWorker(QObject):
                 self.result.emit(operation, argument)
                 self.poll()
         except Exception as exc:
-            if operation in ('prepare','upload','upload_many','group','command','static'):self.poll()
+            if operation in ('prepare','upload','upload_many','group','command','static','trigger_debug'):self.poll()
             self.failed.emit(operation, str(exc))
 
     def poll(self):
         if not self.device:
             return
         try:
+            if self.device.caps.trigger_debug:
+                self.trigger_status.emit(self.device.trigger_debug())
             if self.device.caps.parallel_channels:
                 states=self.device.status_all()
                 self.status.emit({**states[0],'channels':states})
@@ -146,5 +157,12 @@ class DeviceWorker(QObject):
             self.timer.deleteLater()
             self.timer = None
         if self.device:
-            self.device.close()
-            self.device = None
+            device=self.device
+            self.device=None
+            try:
+                if device.debug_active:device.trigger_debug('stop')
+            except Exception as exc:
+                self.progress.emit(f'主动结束调试未获确认：{exc}；无后续心跳时 FPGA 约 3 秒后自动中止')
+            finally:
+                try:device.close()
+                except Exception as exc:self.progress.emit(f'连接句柄关闭异常：{exc}；本地已断开')

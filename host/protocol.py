@@ -16,6 +16,7 @@ RUN_BATCH=0x36
 BEGIN_SEQUENCE,WRITE_STEP=0x50,0x51
 BEGIN_SEQUENCE_LINEAR=0x52
 SELECT_CHANNEL,GROUP_COMMAND=0x40,0x41
+DEBUG_CONFIG,DEBUG_ACTION,DEBUG_STATUS,DEBUG_STOP=0x60,0x61,0x62,0x63
 ARM, TRIGGER, ABORT, DISARM = 0x20, 0x21, 0x22, 0x23
 ERRORS = {1: "命令或版本不支持", 2: "当前状态不允许此操作", 3: "参数超出范围", 4: "方案未完整下载"}
 STATES = {0: "空闲", 1: "等待触发", 2: "运行中", 3: "已完成"}
@@ -112,6 +113,7 @@ class Device:
         self.transport = transport
         self.sequence = secrets.randbelow(65536)
         self.selected_channel=0
+        self.debug_active=False
         synchronize=getattr(transport,"synchronize",None)
         if synchronize is not None:synchronize()
         self.refresh_capabilities()
@@ -132,7 +134,7 @@ class Device:
             raise ValueError('设备批量下载协议版本或批量段数不受支持')
         if p[19]&8:
             raise ValueError('当前软件不支持该固件的外部存储扩展，请加载片内 BRAM 版本')
-        caps = Capabilities(hz, minimum, maximum, bits, dacdiv, board, struct.unpack_from('<H',p,13)[0],dacs,triggers,routing,bool(p[17]&2),bool(p[17]&4),bool(p[17]&8),bool(p[17]&16),p[18] if p[17]&32 else 0,bool(p[17]&64),bool(p[17]&128),interpolation,p[20] if interpolation else 32,batch,bool(p[19]&4),p[23] if batch else 1,bool(p[19]&16))
+        caps = Capabilities(hz, minimum, maximum, bits, dacdiv, board, struct.unpack_from('<H',p,13)[0],dacs,triggers,routing,bool(p[17]&2),bool(p[17]&4),bool(p[17]&8),bool(p[17]&16),p[18] if p[17]&32 else 0,bool(p[17]&64),bool(p[17]&128),interpolation,p[20] if interpolation else 32,batch,bool(p[19]&4),p[23] if batch else 1,bool(p[19]&16),bool(p[19]&32))
         self.caps=caps
         return self.caps
 
@@ -155,6 +157,34 @@ class Device:
         if self.caps.parallel_channels:
             self.command(SELECT_CHANNEL,bytes([channel]))
             self.selected_channel=channel
+
+    def trigger_debug(self, operation='status', input_index=0, high_ticks=1, period_ticks=2, count=1):
+        if not self.caps.trigger_debug:
+            raise ValueError('当前固件不支持真实触发调试，请生成并临时加载新版 BIT')
+        if operation in ('enable','enable_all'):
+            integer(input_index,'触发输入',0,self.caps.trigger_count-1)
+            mask=(1<<self.caps.trigger_count)-1 if operation=='enable_all' else 1<<input_index
+            self.command(DEBUG_CONFIG,bytes([mask]));self.debug_active=True
+        elif operation=='stop':
+            self.command(DEBUG_STOP);self.debug_active=False
+        elif operation!='status':
+            actions={'low':0,'high':1,'pulse':2,'periodic':3}
+            if operation not in actions:raise ValueError('未知触发调试操作')
+            if not self.debug_active:raise ValueError('本次连接尚未接管输入；请先结束旧调试，再停止全部通道并接管输入')
+            self.refresh_capabilities();self.check_output_clock()
+            integer(input_index,'触发输入',0,self.caps.trigger_count-1)
+            integer(high_ticks,'高电平时钟拍数',1,0xffffffff)
+            integer(period_ticks,'周期时钟拍数',1,0xffffffff)
+            integer(count,'脉冲次数',0,0xffffffff)
+            if operation=='periodic' and period_ticks<=high_ticks:raise ValueError('周期必须大于高电平时间')
+            self.command(DEBUG_ACTION,struct.pack('<BBIII',input_index,actions[operation],high_ticks,period_ticks,count))
+        p=self.command(DEBUG_STATUS,bytes([int(self.debug_active)]))
+        if p[9]!=1:raise ValueError('触发调试协议版本不支持')
+        result=dict(mask=p[1],levels=p[2],running=bool(p[3]&1),expired=bool(p[3]&2),
+                    input=p[4],emitted=struct.unpack_from('<I',p,5)[0])
+        if not result['mask'] or result['expired']:self.debug_active=False
+        result['owned']=self.debug_active
+        return result
 
     def channel_command(self, command, channel):
         self.select_channel(channel)

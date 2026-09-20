@@ -26,6 +26,22 @@ module parallel_controller #(parameter CORE_HZ=200000000,DAC_COUNT=4,TRIGGER_COU
  wire [5:0] monitor [0:DAC_COUNT-1];
  reg [7:0] error_code,group_error,checked_group_error;
  reg [DAC_COUNT-1:0] arm_blocked,trigger_blocked,missing_config;
+ wire [TRIGGER_COUNT-1:0] debug_mask,debug_levels,debug_rise,debug_fall;
+ wire debug_running,debug_expired;
+ wire [2:0] debug_input;
+ wire [31:0] debug_emitted;
+ reg debug_configure,debug_action,debug_heartbeat,debug_release,debug_owner;
+ reg internal_abort,debug_stopping,resume_request;
+ wire [TRIGGER_COUNT-1:0] routed_rise=(trigger_rise & ~debug_mask) | debug_rise;
+ wire [TRIGGER_COUNT-1:0] routed_fall=(trigger_fall & ~debug_mask) | debug_fall;
+ trigger_debug #(.COUNT(TRIGGER_COUNT),.CORE_HZ(CORE_HZ)) debug_bank(
+  .clk(clk),.rst(rst),.configure(debug_configure),.action(debug_action),
+  .heartbeat(debug_heartbeat),.release_debug(debug_release),.halt(debug_stopping),
+  .requested_mask(incoming[48+:TRIGGER_COUNT]),.input_index(incoming[50:48]),
+  .operation(incoming[57:56]),.high_ticks(incoming[95:64]),
+  .period_ticks(incoming[127:96]),.pulse_count(incoming[159:128]),
+  .mask(debug_mask),.levels(debug_levels),.rising(debug_rise),.falling(debug_fall),
+  .running(debug_running),.expired(debug_expired),.active_input(debug_input),.emitted(debug_emitted));
  integer g;
  always @(posedge clk) begin
   for(g=0;g<DAC_COUNT;g=g+1) begin
@@ -43,7 +59,7 @@ module parallel_controller #(parameter CORE_HZ=200000000,DAC_COUNT=4,TRIGGER_COU
    .RUN_ADDR_BITS(RUN_ADDR_BITS),.USB_FIFO_ENABLED(USB_FIFO_ENABLED),.CACHE_ENABLED(0),.LEGACY_ENABLED(0),.BOOT_CONFIG(BOOT_CONFIGS[c*256+:256]),
    .BOOT_MEMORY_FILE(BOOT_FILES[c*2048+:2048])) engine(
    clk,rst,child_request,dispatch[c],child_response[c],child_valid[c],1'b1,
-   trigger_rise,trigger_fall,dac_codes[c*DAC_BITS+:DAC_BITS],monitor[c]);
+   routed_rise,routed_fall,dac_codes[c*DAC_BITS+:DAC_BITS],monitor[c]);
  end endgenerate
  // Preflight rejects the whole group before issuing any command.
  always @* begin
@@ -63,10 +79,20 @@ module parallel_controller #(parameter CORE_HZ=200000000,DAC_COUNT=4,TRIGGER_COU
    state<=0; selected<=0; incoming<=0; child_request<=0; response<=0; reply<=0;
    response_valid<=0; dispatch<=0; destinations<=0; received<=0;
    previous_request<=0;previous_source<=0;cache_valid<=0;equal_chunks<=0;error_code<=0;complete_mask<=0;
+   debug_configure<=0;debug_action<=0;debug_heartbeat<=0;debug_release<=0;debug_owner<=0;
+   internal_abort<=0;debug_stopping<=0;resume_request<=0;
   end else begin
    response_valid<=0;dispatch<=0;
+   debug_configure<=0;debug_action<=0;debug_heartbeat<=0;debug_release<=0;
    case(state)
-    0: if(request_valid && response_ready) begin incoming<=request;state<=1;end
+    0: if(debug_expired && debug_mask!=0) begin
+        child_request<=0;child_request[23:16]<=1;child_request[31:24]<=8'h22;
+        destinations<={DAC_COUNT{1'b1}};received<=0;internal_abort<=1;debug_stopping<=1;state<=4;
+        // The transport has already handed off this pulse. Preserve it across
+        // the autonomous abort, or a coincident request would deadlock its router.
+        resume_request<=request_valid && response_ready;
+        if(request_valid && response_ready) incoming<=request;
+       end else if(request_valid && response_ready) begin incoming<=request;state<=1;end
     1: begin
      for(j=0;j<8;j=j+1) equal_chunks[j]<=incoming[j*30+:30]==previous_request[j*30+:30];
      state<=2;
@@ -86,7 +112,29 @@ module parallel_controller #(parameter CORE_HZ=200000000,DAC_COUNT=4,TRIGGER_COU
        reply[127:120]<=DAC_BITS;reply[135:128]<=1;reply[151:136]<=2;
        reply[167:152]<=(1 << RUN_ADDR_BITS);reply[175:168]<=DAC_COUNT;
        reply[183:176]<=TRIGGER_COUNT;reply[191:184]<=239 | ((BOOT_CONFIGS!=0) ? 16:0);reply[199:192]<=64;
-       reply[207:200]<=3 | (USB_FIFO_ENABLED ? 4:0) | (UART_AUTOBAUD ? 16:0);reply[215:208]<=32;reply[223:216]<=1;reply[231:224]<=1;reply[239:232]<=3;
+       reply[207:200]<=35 | (USB_FIFO_ENABLED ? 4:0) | (UART_AUTOBAUD ? 16:0);reply[215:208]<=32;reply[223:216]<=1;reply[231:224]<=1;reply[239:232]<=3;
+      end
+      8'h60: begin
+       if((incoming[55:48] >> TRIGGER_COUNT)!=0) error_code<=3;
+       else if((|arm_blocked) || debug_running || (debug_mask!=0 && SOURCE_TAGGED && debug_owner!=incoming[240])) error_code<=2;
+       else begin debug_configure<=1;debug_owner<=incoming[240];end
+      end
+      8'h61: begin
+       if(incoming[55:48]>=TRIGGER_COUNT || incoming[63:56]>3) error_code<=3;
+       else if(debug_expired || !debug_mask[incoming[50:48]] || debug_running || (SOURCE_TAGGED && debug_owner!=incoming[240])) error_code<=2;
+       else if(incoming[63:56]>=2 && (debug_levels[incoming[50:48]] || incoming[95:64]==0 || (incoming[63:56]==3 && incoming[127:96]<=incoming[95:64]))) error_code<=3;
+       else debug_action<=1;
+      end
+      8'h62: begin
+       if(incoming[48] && (!SOURCE_TAGGED || debug_owner==incoming[240])) debug_heartbeat<=1;
+       reply[63:56]<=debug_mask;reply[71:64]<=debug_levels;
+       reply[79:72]<={6'b0,debug_expired,debug_running};reply[87:80]<=debug_input;
+       reply[119:88]<=debug_emitted;reply[127:120]<=1;
+      end
+      8'h63: begin
+       // Explicit stop is always allowed, including recovery from another link.
+       destinations<={DAC_COUNT{1'b1}};child_request[31:24]<=8'h22;
+       child_request[239:48]<=0;debug_stopping<=1;state<=4;
       end
       8'h40: if(incoming[55:48]>=DAC_COUNT) error_code<=3;else selected<=incoming[50:48];
       8'h41: begin
@@ -123,13 +171,20 @@ module parallel_controller #(parameter CORE_HZ=200000000,DAC_COUNT=4,TRIGGER_COU
      received<=received | (child_valid & destinations);
      for(j=0;j<DAC_COUNT;j=j+1) if(child_valid[j] && destinations[j]) begin
       if(child_response[j][55:48]!=0) error_code<=child_response[j][55:48];
-      if(incoming[31:24]!=8'h41) begin
+      if(incoming[31:24]!=8'h41 && !debug_stopping) begin
        reply<=child_response[j];
        if(incoming[31:24]==8'h02) reply[191:184]<=selected;
       end
      end
-     if((received & destinations)==destinations) state<=6;
+     if((received & destinations)==destinations) begin
+      if(debug_stopping) begin
+       debug_release<=1;debug_stopping<=0;
+       if(internal_abort) begin internal_abort<=0;cache_valid<=0;state<=9;end
+       else state<=6;
+      end else state<=6;
+     end
     end
+    9: begin state<=resume_request ? 1:0;resume_request<=0;end
     6: begin reply[55:48]<=error_code;state<=8;end
     8: begin response<=reply;cache_valid<=1;state<=7;end
     7: if(response_ready) begin response_valid<=1;state<=0;end

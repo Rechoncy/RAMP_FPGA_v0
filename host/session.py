@@ -57,6 +57,9 @@ class WorkspaceSession:
             scan=dict(profile=scan.collect().to_dict(),saved=scan.saved,fresh=scan.fresh and fingerprint(scan.collect())==scan.loaded),
             assignments=copy.deepcopy(s.parallel_page.store.assignments),
             debug=dict(channel=s.debug_page.channel.currentData(),code=s.debug_page.code.value(),safe=s.debug_page.safe.value()),
+            trigger_debug=dict(input=s.trigger_debug_page.source.currentData(),high=s.trigger_debug_page.high.value(),
+                               period=s.trigger_debug_page.period.value(),count=s.trigger_debug_page.count.value(),
+                               high_unit=s.trigger_debug_page.high.unit.currentData(),period_unit=s.trigger_debug_page.period.unit.currentData()),
             view=dict(page=s.stack.currentIndex(),designer_tab=s.designer_tabs.currentIndex(),board_tab=s.board_page.tabs.currentIndex(),
                       active_dac=s.active_dac,port=s.ports.currentData(),baudrate=s.baudrate.currentData(),search=s.search.text(),
                       connection_expanded=not s.connection_controls.isHidden(),library_expanded=s.library_toggle.isChecked(),
@@ -162,6 +165,13 @@ class WorkspaceSession:
                 if type(value) is int and 0<=value<=16383:
                     field=getattr(page,key);field.setMaximum(max(field.maximum(),value));field.setValue(value)
             page.refresh()
+            td=self.data.get('trigger_debug',{});page=s.trigger_debug_page
+            page.source.setCurrentIndex(max(0,page.source.findData(td.get('input',0))))
+            for name in ('high','period'):
+                value=td.get(name)
+                if type(value) in (int,float) and 0<=value<=1000:
+                    field=getattr(page,name);field.setValue(value);field.setUnit(td.get(name+'_unit','ms'),preserve_duration=True)
+            if type(td.get('count')) is int and 0<=td['count']<=1000000000:page.count.setValue(td['count'])
         except (ValueError,TypeError,KeyError,AttributeError,OverflowError) as exc:self.error=f'界面状态未完整恢复：{exc}'
         if self.error:s.notice(self.error)
         elif self.data:s.notice('已恢复上次退出的设置与草稿 · 设备尚未连接')

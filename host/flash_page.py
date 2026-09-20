@@ -17,12 +17,16 @@ class FlashPage(QWidget):
         self.timer=QTimer(self);self.timer.setInterval(150);self.timer.timeout.connect(self.read_log)
         outer=QVBoxLayout(self);scroll=QScrollArea();scroll.setWidgetResizable(True);outer.addWidget(scroll)
         content=QWidget();scroll.setWidget(content);layout=QVBoxLayout(content);layout.setSpacing(12)
-        hint=QLabel('Flash 可同时固化 FPGA 固件与上电波形。“准备”或“仅下载方案”写入 RAM；需要掉电保留时，在下方纳入上电方案、重新构建 .bit，再固化并重启。');hint.setWordWrap(True);layout.addWidget(hint)
-        def section(text):
-            heading=QLabel(text);heading.setObjectName('section');layout.addWidget(heading)
-        section('1 · 准备上电方案')
+        hint=QLabel('固化后可从 Flash 上电启动。已有 MCS/BIN 可直接使用；要更改上电波形、引脚或时钟，请重新构建 .bit。普通波形下载仍只写 RAM。');hint.setWordWrap(True);layout.addWidget(hint)
+        source_row=QFormLayout();self.source=QComboBox()
+        self.source.addItem('使用 .bit · 生成镜像并固化','bit');self.source.addItem('使用已有 MCS / BIN · 直接固化','image')
+        source_row.addRow('固化来源',self.source);layout.addLayout(source_row)
+        def section(text,target=layout):
+            heading=QLabel(text);heading.setObjectName('section');target.addWidget(heading)
+        self.boot_section=QWidget();boot_layout=QVBoxLayout(self.boot_section);boot_layout.setContentsMargins(0,0,0,0);layout.addWidget(self.boot_section)
+        section('准备上电方案',boot_layout)
         self.boot_profiles=dict(board_page.board.boot_profiles)
-        self.boot_summary=QLabel();self.boot_summary.setWordWrap(True);layout.addWidget(self.boot_summary)
+        self.boot_summary=QLabel();self.boot_summary.setWordWrap(True);boot_layout.addWidget(self.boot_summary)
         from .output_state import OutputState
         self.selection_path=board_page.library.root/'flash_selection.json'
         selection=OutputState.read(self.selection_path,{})
@@ -34,14 +38,14 @@ class FlashPage(QWidget):
         for ch in range(8):
             check=QCheckBox(f'DAC {ch+1}');check.setChecked(selection.get(str(ch),True));select_row.addWidget(check);self.boot_checks.append(check)
             check.toggled.connect(self.save_selection)
-        select_row.addStretch();layout.addLayout(select_row)
+        select_row.addStretch();boot_layout.addLayout(select_row)
         board_page.dac_count.valueChanged.connect(self.refresh_selection);self.refresh_selection()
         boot_row=QHBoxLayout()
         for text,callback in [('纳入上方所选方案',self.capture_boot),('清空上电方案',self.clear_boot),('进入构建',lambda:board_page.tabs.setCurrentWidget(board_page.build_page))]:
             b=SoftButton(text);b.clicked.connect(callback);boot_row.addWidget(b)
-        layout.addLayout(boot_row);self.show_boot()
-        scope=QLabel('上方勾选仅用于 Flash；与输出控制的临时操作范围独立。纳入各 DAC 本地方案及触发设置，未选择方案的通道跳过。');scope.setWordWrap(True);scope.setObjectName('subtitle');layout.addWidget(scope)
-        section('2 · Flash 参数')
+        boot_layout.addLayout(boot_row);self.show_boot()
+        scope=QLabel('上方勾选仅用于 Flash；与输出控制的临时操作范围独立。纳入各 DAC 本地方案及触发设置，未选择方案的通道跳过。');scope.setWordWrap(True);scope.setObjectName('subtitle');boot_layout.addWidget(scope)
+        section('Flash 参数')
         row=QHBoxLayout();preset=SoftButton('填入本机已验证 Flash 参数');preset.clicked.connect(self.preset);row.addWidget(preset)
         row.addStretch();layout.addLayout(row)
         form=QFormLayout();form.setVerticalSpacing(12);self.part=QComboBox();self.part.setEditable(True);self.part.addItem('')
@@ -55,24 +59,28 @@ class FlashPage(QWidget):
         form.addRow('Flash 型号',self.part);form.addRow('容量（MiB ≠ Mbit）',self.size)
         row=QHBoxLayout();row.addWidget(self.interface);row.addWidget(QLabel('配置时钟'));row.addWidget(self.rate);form.addRow('SPI 位宽',row)
         form.addRow(self.falling);form.addRow('启动地址',QLabel('0x00000000 · 单镜像启动'))
-        layout.addLayout(form);section('3 · JTAG 与待固化文件');form=QFormLayout();form.setVerticalSpacing(12)
+        layout.addLayout(form);section('JTAG 与待固化文件');form=QFormLayout();form.setVerticalSpacing(12);self.file_form=form
         self.server=QLineEdit();self.target=QComboBox();self.target.setEditable(True);self.device=QComboBox();self.device.setEditable(True)
         form.addRow('硬件服务器',self.server);form.addRow('JTAG 目标',self.target);form.addRow('FPGA 器件',self.device)
         self.bit=QLineEdit();browse=SoftButton('选择 .bit');browse.clicked.connect(self.browse)
-        row=QHBoxLayout();row.addWidget(self.bit,1);row.addWidget(browse);form.addRow('待固化比特流',row)
+        self.bit_row=QWidget();row=QHBoxLayout(self.bit_row);row.setContentsMargins(0,0,0,0);row.addWidget(self.bit,1);row.addWidget(browse);form.addRow('待固化比特流',self.bit_row)
+        self.image=QLineEdit();self.image.setPlaceholderText('选择以前生成的 .mcs 或 .bin 文件')
+        image_browse=SoftButton('选择 MCS / BIN');image_browse.clicked.connect(self.browse_image)
+        self.image_row=QWidget();row=QHBoxLayout(self.image_row);row.setContentsMargins(0,0,0,0);row.addWidget(self.image,1);row.addWidget(image_browse);form.addRow('已有 Flash 镜像',self.image_row)
         self.expected=QLineEdit();self.expected.setPlaceholderText('可选，例如 09112040；留空只检查 DONE / CRC')
         form.addRow('预期固件 USR_ACCESS',self.expected);form.addRow(self.backup);layout.addLayout(form)
-        note=QLabel('SPI 位宽与配置时钟只对重新构建的比特流生效；把已有 .bit 转为 MCS 不会改写其中的启动设置。这里的配置时钟独立于 DAC 输出采样时钟。需将板上启动跳线设为相应 Master SPI 模式。');note.setWordWrap(True);note.setObjectName('subtitle');layout.addWidget(note)
+        self.source_note=QLabel();self.source_note.setWordWrap(True);self.source_note.setObjectName('subtitle');layout.addWidget(self.source_note)
         note=QLabel('Flash 擦写会替换地址 0 的启动镜像，并临时把 FPGA 配置为烧写辅助电路，DAC 输出会中断。固化期间不要断电；成功后点击“从 Flash 重启”。执行 JTAG 操作前请断开上位机串口。');note.setWordWrap(True);note.setObjectName('notice');layout.addWidget(note)
-        section('4 · 执行与验证')
+        section('执行与验证')
         self.buttons={}
-        for actions in ([('scan','扫描 JTAG / 型号库'),('generate','生成 MCS / BIN'),('temporary','临时下载 .bit')],
+        for actions in ([('scan','扫描 JTAG / 型号库'),('inspect','检查镜像 · 不连接硬件'),('generate','生成 MCS / BIN'),('temporary','临时下载 .bit')],
                         [('program','备份并固化 + 校验'),('boot','从 Flash 重启'),('status','只读检查启动状态')]):
             row=QHBoxLayout()
             for op,title in actions:
                 b=SoftButton(title);b.clicked.connect(lambda checked=False,key=op:self.start(key));row.addWidget(b);self.buttons[op]=b
             layout.addLayout(row)
         self.buttons['program'].setObjectName('primary');self.backup.toggled.connect(self.refresh)
+        self.source.currentIndexChanged.connect(self.refresh)
         self.feedback=QLabel('设置保存在板卡 JSON；操作结果、备份与日志保存在 user_data/flash_jobs。');self.feedback.setWordWrap(True);layout.addWidget(self.feedback)
         self.log=QPlainTextEdit();self.log.setReadOnly(True);self.log.setMinimumHeight(210);self.log.setMaximumBlockCount(2500);layout.addWidget(self.log)
         folder=SoftButton('打开本次输出 / 备份目录');folder.clicked.connect(self.open_folder);layout.addWidget(folder)
@@ -120,6 +128,7 @@ class FlashPage(QWidget):
         cfg=FlashSettings(cfgmem_part=self.part.currentText().strip(),size_mib=self.size.currentData(),interface=self.interface.currentText(),
                           config_rate=self.rate.currentData(),falling_edge=self.falling.isChecked(),server=self.server.text().strip(),
                           target=self.target.currentText().strip(),device=self.device.currentText().strip(),bitfile=self.bit.text().strip(),
+                          image_source=self.source.currentData(),image_file=self.image.text().strip(),
                           expected_usr_access=self.expected.text().strip(),backup=self.backup.isChecked())
         cfg.validate();return cfg
 
@@ -128,6 +137,7 @@ class FlashPage(QWidget):
         self.part.setCurrentText(cfg.cfgmem_part);self.size.setCurrentIndex(self.size.findData(cfg.size_mib));self.interface.setCurrentText(cfg.interface)
         self.rate.setCurrentIndex(self.rate.findData(cfg.config_rate));self.falling.setChecked(cfg.falling_edge);self.server.setText(cfg.server)
         self.target.setCurrentText(cfg.target);self.device.setCurrentText(cfg.device);self.bit.setText(cfg.bitfile)
+        self.source.setCurrentIndex(self.source.findData(cfg.image_source));self.image.setText(cfg.image_file)
         self.expected.setText(cfg.expected_usr_access);self.backup.setChecked(cfg.backup);self.refresh()
 
     def preset(self):
@@ -138,12 +148,25 @@ class FlashPage(QWidget):
         path,_=QFileDialog.getOpenFileName(self,'选择 FPGA 比特流',self.bit.text(),'Bitstream (*.bit)')
         if path:self.bit.setText(path)
 
+    def browse_image(self):
+        path,_=QFileDialog.getOpenFileName(self,'选择已有 Flash 镜像',self.image.text(),'Flash 镜像 (*.mcs *.bin);;MCS (*.mcs);;BIN (*.bin)')
+        if path:self.image.setText(path)
+
     def running(self):return self.process is not None and self.process.state()!=QProcess.NotRunning
 
     def refresh(self):
         if not hasattr(self,'buttons'):return
         building=self.board_page.process is not None and self.board_page.process.state()!=QProcess.NotRunning
-        for op,b in self.buttons.items():b.setEnabled(not self.running() and not building and (op=='generate' or not self.serial_connected))
+        direct=self.source.currentData()=='image'
+        self.boot_section.setVisible(not direct);self.file_form.setRowVisible(self.bit_row,not direct);self.file_form.setRowVisible(self.image_row,direct)
+        for op,b in self.buttons.items():
+            b.setVisible(direct if op=='inspect' else not direct if op in ('generate','temporary') else True)
+            supported=(direct if op=='inspect' else not direct if op in ('generate','temporary') else True)
+            b.setEnabled(supported and not self.running() and not building and (op in ('generate','inspect') or not self.serial_connected))
+        self.source.setEnabled(not self.running() and not building)
+        self.rate.setEnabled(not direct);self.falling.setEnabled(not direct)
+        self.source_note.setText('直接使用镜像中的固件与上电波形，不重新构建。仅支持地址 0 的连续 SPI 单镜像；BIN 偏移为 0。将检查容量与器件 ID，具体引脚、DAC 时钟及 SPI 启动设置须与该镜像匹配。'
+                                 if direct else 'SPI 位宽与配置时钟只对重新构建的比特流生效；把已有 .bit 转为 MCS 不会改写其中的启动设置。配置时钟独立于 DAC 采样时钟；启动跳线应为相应 Master SPI 模式。')
         self.buttons['program'].setText('备份并固化 + 校验' if self.backup.isChecked() else '固化 + 校验（不备份）')
 
     def start(self,operation):
@@ -152,7 +175,7 @@ class FlashPage(QWidget):
         try:
             cfg=self.settings();cfg.validate(operation)
             vivado=self.board_page.vivado.text().strip()
-            if not Path(vivado).is_file():raise ValueError('请在“板卡信息”中设置有效 Vivado 路径')
+            if operation!='inspect' and not Path(vivado).is_file():raise ValueError('请在“板卡信息”中设置有效 Vivado 路径')
             self.job_dir=self.board_page.library.root/'flash_jobs'/datetime.datetime.now().strftime('%Y%m%d_%H%M%S_%f')
             self.job_dir.mkdir(parents=True,exist_ok=False)
             job=self.job_dir/'job.json';job.write_text(json.dumps({'operation':operation,'settings':cfg.to_dict(),'vivado':vivado},ensure_ascii=False,indent=2),encoding='utf-8')
@@ -190,6 +213,8 @@ class FlashPage(QWidget):
                 old=combo.currentText();values=list(dict.fromkeys(r[key] for r in targets));combo.clear();combo.addItems(values)
                 if old in values or len(values)!=1:combo.setCurrentText(old)
         self.feedback.setText(('完成' if passed else '失败或结果未确认，请查看日志')+f' · {self.job_dir}')
+        if passed and result.get('operation')=='inspect':
+            info=result['image'];self.feedback.setText(f"镜像检查通过 · {info['format']} · {info['bytes']:,} 字节 / {self.size.currentData()} MiB · 地址 0 · IDCODE {info['idcode']}。未连接硬件；固化前将重新检查并匹配 JTAG 器件。")
         if passed and result.get('operation')=='program':self.feedback.setText('Flash 写入与逐字节校验通过。FPGA 仍为烧写辅助配置，请点击“从 Flash 重启”；完整断电重启仍需单独验证。')
 
     def failed(self,error):

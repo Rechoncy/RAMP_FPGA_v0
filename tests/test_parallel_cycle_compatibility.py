@@ -21,7 +21,7 @@ def test_parallel_all_outputs_match_frozen_reply_cache(tmp_path, bits):
     )
     # The frozen parent's logic is unchanged. Adapt only declared INFO
     # capability additions for batch uploads.
-    source = source.replace('reply[207:200]<=1;', 'reply[207:200]<=3;')
+    source = source.replace('reply[207:200]<=1;', 'reply[207:200]<=35;')
     source = source.replace('reply[223:216]<=1;', 'reply[223:216]<=1;reply[231:224]<=1;reply[239:232]<=3;')
     frozen = tmp_path / 'adapted_frozen.v'
     frozen.write_text(source)

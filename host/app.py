@@ -20,6 +20,7 @@ from .protocol import ARM,TRIGGER,ABORT,DISARM,STATES
 from .plot import WaveformPlot
 from .board_page import BoardPage
 from .debug_page import DebugPage
+from .trigger_debug_page import TriggerDebugPage
 from .parallel_page import ParallelPage
 from .dac_navigation import DacNavigation
 from .channel_page import ChannelPage
@@ -98,7 +99,7 @@ class Studio(WorkspaceTransfer,DacNavigation,QMainWindow):
         b=button('输出控制',lambda:self.navigate(4),'nav');b.setCheckable(True);menu_layout.addWidget(b);self.nav_buttons[4]=b
         self.dac_nav_layout=QVBoxLayout(); self.dac_nav_layout.setSpacing(7); menu_layout.addLayout(self.dac_nav_layout)
         menu_layout.addSpacing(14); menu_layout.addWidget(label("控制与管理","subtitle"))
-        for i,text in [(3,"Debug 静态输出"),(2,"运行记录")]:
+        for i,text in [(3,"系统调试"),(2,"运行记录")]:
             b=button(text,lambda checked=False,index=i:self.navigate(index),"nav"); b.setCheckable(True); menu_layout.addWidget(b); self.nav_buttons[i]=b
         menu_layout.addStretch(); menu_scroll.setWidget(menu); nav.addWidget(menu_scroll,1)
         self.sidebar_footer=label("200 MHz\nFPGA waveform control");nav.addWidget(self.sidebar_footer); nav.addSpacing(10)
@@ -135,7 +136,12 @@ class Studio(WorkspaceTransfer,DacNavigation,QMainWindow):
         resource_actions.rejected.connect(self.resource_dialog.hide);resource_box.addWidget(resource_actions)
         self.board_page.utilization_panel.build_requested.connect(self.navigate_resource_build)
         self.make_history()
-        self.debug_page=DebugPage(); self.stack.addWidget(self.debug_page)
+        self.debug_page=DebugPage();self.trigger_debug_page=TriggerDebugPage()
+        self.debug_tabs=QTabWidget();self.debug_tabs.addTab(self.debug_page,'静态原码')
+        self.trigger_debug_scroll=QScrollArea();self.trigger_debug_scroll.setWidgetResizable(True);self.trigger_debug_scroll.setWidget(self.trigger_debug_page)
+        self.debug_tabs.addTab(self.trigger_debug_scroll,'触发调试');self.stack.addWidget(self.debug_tabs)
+        self.trigger_debug_page.requested.connect(lambda p:self.send('trigger_debug',p))
+        self.worker.trigger_status.connect(self.trigger_debug_page.readback)
         self.debug_page.workspace_requested.connect(lambda:self.navigate(0))
         self.debug_page.connection_requested.connect(lambda:self.navigate(1))
         self.debug_page.output_requested.connect(self.set_static_output)
@@ -377,6 +383,7 @@ class Studio(WorkspaceTransfer,DacNavigation,QMainWindow):
 
     def open_debug(self,channel):
         self.debug_page.channel.setCurrentIndex(self.debug_page.channel.findData(channel))
+        self.debug_tabs.setCurrentIndex(0)
         self.navigate(3)
 
     def refresh_hardware_options(self,*args,channel=None,trigger_input=None,edit=True):
@@ -843,7 +850,7 @@ class Studio(WorkspaceTransfer,DacNavigation,QMainWindow):
                 self.validation.setText(f'{self.resource_source()} · {verdict}：插值段 {len(result.runs):,} / {limit:,} · 已检查全部 {result.checked_samples:,} 点 · 实际最大差异 {result.max_error:g} / 允许 {result.error_limit} 原码')
             else:self.validation.setText(f"{self.resource_source()} · {verdict}：{result.total:,} 点 / {len(result.runs):,} 个连续码段（每路容量 {limit:,}）· 最大取整误差 {result.max_error:.4g} LSB")
         if operation!="upload": self.library.log(operation,demo=self.demo,result="完整采样检查通过" if operation=="compile" else str(result))
-        self.notice({"connect":"设备已连接","disconnect":"已断开；硬件会继续执行已提交任务","upload":"方案已校验并提交","command":"命令已确认","prepare":"所选通道准备完成","upload_many":"所选波形已下载并确认","group":"所选通道命令已确认","external":"演示外部触发已发送","compile":"全部采样点已按当前速率检查，未跳点","static":"静态原码已提交并回读确认；运行波形前请重新下载方案"}.get(operation,operation))
+        self.notice({"connect":"设备已连接","disconnect":"已断开；硬件会继续执行已提交任务","upload":"方案已校验并提交","command":"命令已确认","prepare":"所选通道准备完成","upload_many":"所选波形已下载并确认","group":"所选通道命令已确认","external":"演示外部触发已发送","trigger_debug":"触发调试命令已确认 · 请查看各 DAC 回读状态","compile":"全部采样点已按当前速率检查，未跳点","static":"静态原码已提交并回读确认；运行波形前请重新下载方案"}.get(operation,operation))
         self.update_buttons()
         if operation=='capabilities':self.notice('设备能力已重新读取；容量提示已更新')
 
@@ -945,7 +952,8 @@ class Studio(WorkspaceTransfer,DacNavigation,QMainWindow):
         self.refresh_resources()
         if hasattr(self,'debug_page'):
             initials={i:p.initial for i,row in enumerate(self.parallel_page.rows) for p in self.parallel_page.profiles if p.id==row['combo'].currentData()}
-            self.debug_page.set_context(self.caps,self.connected,self.busy,self.last_status,self.demo,initials,self.channel_statuses)
+        self.debug_page.set_context(self.caps,self.connected,self.busy,self.last_status,self.demo,initials,self.channel_statuses)
+        self.trigger_debug_page.set_context(self.caps,self.connected,self.busy,self.channel_statuses)
 
     def notice(self,text):
         self.statusBar().showMessage(text,15000)

@@ -83,6 +83,8 @@ def test_global_roundtrip_preserves_raw_drafts_board_assignments_and_rollback(de
     board.dac_count.setValue(4)
     board.uart_baud.setCurrentIndex(board.uart_baud.findData(1_000_000))
     board.flash_page.bit.setText('D:/外部固件/启动.bit')
+    board.flash_page.source.setCurrentIndex(board.flash_page.source.findData('image'))
+    board.flash_page.image.setText('D:/外部固件/启动.mcs')
     board.flash_page.expected.setText('ABCDEF01')
     board.tabs.setCurrentIndex(1)
     w.baudrate.setCurrentIndex(w.baudrate.findData(1_000_000))
@@ -134,6 +136,8 @@ def test_global_roundtrip_preserves_raw_drafts_board_assignments_and_rollback(de
     assert other.board_page.name.text() == '全局迁移的四路板卡'
     assert other.board_page.uart_baud.currentData() == other.baudrate.currentData() == 1_000_000
     assert other.board_page.flash_page.bit.text() == 'D:/外部固件/启动.bit'
+    assert other.board_page.flash_page.source.currentData() == 'image'
+    assert other.board_page.flash_page.image.text() == 'D:/外部固件/启动.mcs'
     assert other.board_page.flash_page.expected.text() == 'ABCDEF01'
     assert other.board_page.tabs.currentIndex() == 1
     assert other.ports.currentData() == 'COM987' and other.caps.dac_count == 4

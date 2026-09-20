@@ -45,7 +45,7 @@ module tb_linear_controller;
  initial begin
   repeat(6)tick;rst=0;send(1,0,0);
   if(response[127:120]!=14 || response[167:152]!=2048 || response[175:168]!=4 ||
-     response[207:200]!=3 || response[215:208]!=32 || response[223:216]!=1 || response[239:232]!=3)$fatal(1,"capabilities");
+     response[207:200]!=35 || response[215:208]!=32 || response[223:216]!=1 || response[239:232]!=3)$fatal(1,"capabilities");
   if(response[87:56]!==CORE_HZ)$fatal(1,"INFO sample frequency mismatch");
   // The one-second gate return limit follows the selected core clock.
   p=0;p[15:0]=1000;p[31:16]=700;p[47:32]=2;p[63:48]=1;p[159:128]=CORE_HZ+1;

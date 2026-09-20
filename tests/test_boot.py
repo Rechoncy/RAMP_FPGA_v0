@@ -88,7 +88,7 @@ initial begin #200000;$fatal(1,"timeout");end
 endmodule
 '''
     (out/'tb.v').write_text(tb)
-    sources=[ROOT/'rtl/common'/f for f in ['parallel_controller.v','controller.v','linear_engine.v','scan_engine.v','sample_engine.v','gate_engine.v','sequence_engine.v','program_sequencer.v']]
+    sources=[ROOT/'rtl/common'/f for f in ['trigger_debug.v','parallel_controller.v','controller.v','linear_engine.v','scan_engine.v','sample_engine.v','gate_engine.v','sequence_engine.v','program_sequencer.v']]
     subprocess.run(['iverilog','-g2012','-s','tb_boot','-o',str(out/'sim'),*map(str,sources),str(out/'tb.v')],check=True,capture_output=True,text=True)
     r=subprocess.run(['vvp',str(out/'sim')],cwd=out,check=True,capture_output=True,text=True)
     assert 'PASS' in r.stdout

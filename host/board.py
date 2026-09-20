@@ -65,7 +65,7 @@ def port_purpose(port, dac_bits=10):
     if port.startswith('dac_clk['): return f'DAC {int(port[8:-1])+1} · 输出采样时钟'
     if port.startswith('trigger_in['): return f'触发输入 {int(port[11:-1])+1} · 可路由至所选 DAC'
     return {'sys_clk':'单端参考时钟','sys_clk_p':'差分参考时钟 · P 正端','sys_clk_n':'差分参考时钟 · N 负端',
-            'uart_rx':'UART 接收','uart_tx':'UART 发送','gnd0':'低电平输出','gnd1':'低电平输出'}[port]
+            'uart_rx':'UART 接收','uart_tx':'UART 发送','gnd0':"固定低电平控制输出 1 · 1'b0（非 GND）",'gnd1':"固定低电平控制输出 2 · 1'b0（非 GND）"}[port]
 
 
 def remap_data_ports(mapping, old_bits, new_bits):
@@ -232,6 +232,7 @@ def generate_xdc(board, complete=False):
     group = None
     for port in ports_for_board(board):
         if port in ALL_CLOCK_PORTS: current_group = 'Reference clock'
+        elif port in ('gnd0', 'gnd1'): current_group = 'Constant-low control outputs (RTL drives 1\'b0; not ground pins)'
         elif port in USB_PORTS: current_group = 'FT232H USB FIFO (15 pins; independent IO standard)'
         elif port.startswith('trigger_in['): current_group = 'External triggers'
         elif port.startswith('dac_'):

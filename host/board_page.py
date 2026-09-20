@@ -126,7 +126,7 @@ class BoardPage(QWidget):
         self.port_filter=QComboBox(); self.port_filter.currentIndexChanged.connect(self.filter_ports)
         filter_row=QHBoxLayout(); filter_row.setSpacing(12); filter_row.addWidget(QLabel('信号分组'))
         filter_row.addWidget(self.port_filter,1); pins.addLayout(filter_row)
-        pin_note=QLabel('双击管脚或 IO 标准编辑；普通 IO 留空继承统一值，USB 使用独立标准。UART 与 USB FIFO 的引脚分别列出，修改后需重新构建固件。')
+        pin_note=QLabel('双击管脚或 IO 标准编辑；普通 IO 留空继承统一值，USB 使用独立标准。UART 与 USB FIFO 的引脚分别列出。筛选“固定低电平控制脚”可设置 gnd0/gnd1，固件运行时恒为 0，不能代替接地；配置加载前电平不由此逻辑保证。修改管脚后需重新构建并烧录。')
         pin_note.setWordWrap(True); pin_note.setObjectName('subtitle'); pins.addWidget(pin_note)
         self.table = QTableWidget(0,4)
         self.table.verticalHeader().setDefaultSectionSize(36)
@@ -373,7 +373,7 @@ class BoardPage(QWidget):
                 self.table.setItem(i,j,item)
         self.table.blockSignals(False)
         current=self.port_filter.currentData()
-        self.port_filter.blockSignals(True); self.port_filter.clear(); self.port_filter.addItem('全部信号','all');self.port_filter.addItem('参考时钟','clock'); self.port_filter.addItem('触发输入','trigger'); self.port_filter.addItem('通信与其他','other')
+        self.port_filter.blockSignals(True); self.port_filter.clear(); self.port_filter.addItem('全部信号','all');self.port_filter.addItem('参考时钟','clock'); self.port_filter.addItem('触发输入','trigger'); self.port_filter.addItem('UART 通信','other'); self.port_filter.addItem('固定低电平控制脚 · 2 路','low')
         if self.usb_enabled.isChecked():self.port_filter.addItem('高速 USB FIFO · 15 根','usb')
         for i in range(self.dac_count.value()): self.port_filter.addItem(f'DAC {i+1}',i)
         self.port_filter.setCurrentIndex(max(0,self.port_filter.findData(current))); self.port_filter.blockSignals(False); self.filter_ports()
@@ -410,7 +410,7 @@ class BoardPage(QWidget):
         group=self.port_filter.currentData()
         for i in range(self.table.rowCount()):
             port=self.table.item(i,0).text()
-            match=(group=='all' or group=='clock' and port in ALL_CLOCK_PORTS or group=='trigger' and port.startswith('trigger_in') or group=='other' and port not in ALL_CLOCK_PORTS and not port.startswith(('dac_','trigger_in','usb_'))
+            match=(group=='all' or group=='clock' and port in ALL_CLOCK_PORTS or group=='trigger' and port.startswith('trigger_in') or group=='other' and port in ('uart_rx','uart_tx') or group=='low' and port in ('gnd0','gnd1')
                    or group=='usb' and port in USB_PORTS)
             if type(group) is int:
                 match=port==f'dac_clk[{group}]' or port.startswith('dac_data[') and int(port[9:-1])//self.dac_bits.currentData()==group
@@ -448,7 +448,7 @@ class BoardPage(QWidget):
                        'delay_max', 'falling', 'mode', 'usb_enabled', 'usb_standard',
                        'usb_input_min', 'usb_input_max', 'usb_output_min', 'usb_output_max')
     _FLASH_SESSION_FIELDS = ('part', 'size', 'interface', 'rate', 'falling',
-                            'backup', 'server', 'target', 'device', 'bit', 'expected')
+                            'backup', 'server', 'target', 'device', 'bit', 'source', 'image', 'expected')
 
     @staticmethod
     def _capture_control(widget):
@@ -727,7 +727,7 @@ class BoardPage(QWidget):
         if code==0 and getattr(self,'build_mode','')=='implement':
             bit=self.build_output/'ramp_studio.bit'
             if bit.is_file():
-                self.flash_page.bit.setText(str(bit));self.flash_page.expected.clear()
+                self.flash_page.bit.setText(str(bit));self.flash_page.source.setCurrentIndex(self.flash_page.source.findData('bit'));self.flash_page.expected.clear()
                 self.build_log.appendPlainText('比特流已填入 Flash 页面；请核对后执行固化与校验。')
 
     def build_error(self,error):

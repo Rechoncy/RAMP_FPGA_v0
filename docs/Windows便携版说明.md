@@ -80,7 +80,7 @@
 
 迁移时正常关闭程序，复制整个 `user_data`，包括 `profiles`、`desktop_session.json`、`designer_draft.json`、`sequence_draft.json`、`scan_draft.json`、`parallel.json`、`loaded_waveforms.json`、`flash_selection.json`。旧版 `dac_editors.json` 保留。可通过“恢复历史草稿”读取旧通道草稿及归档的设计草稿；历史分段只读打开，三段结构可转换为新的 Ramp 副本，检查后再保存。启动不再自动恢复旧编辑器，FM 扫描输入已移除。迁移时保留 `user_data/archive` 中的草稿备份。
 
-Flash 固化入口位于“板卡与连接 → Flash 固化与启动”，支持型号/容量/SPI 设置、生成 MCS/BIN、备份固化、读回校验与启动检查，详见随包的《Flash固化与启动.md》。
+Flash 固化入口位于“板卡与连接 → Flash 固化与启动”，支持型号/容量/SPI 设置、生成 MCS/BIN、直接使用已有 MCS/BIN、备份固化、读回校验与启动检查。已有镜像的离线检查不需要 Vivado；实际固化需要 Vivado 和 JTAG，不需要重新综合。详见随包的《Flash固化与启动.md》。
 
 首次升级时，Flash 独立选择优先从已有上电快照纳入通道初始化；没有上电快照时从旧勾选配置迁移一次。之后仅使用 Flash 页自己的选择。
 

@@ -115,6 +115,7 @@ class Capabilities:
     usb_fifo: bool = False
     max_batch_runs: int = 1
     uart_autobaud: bool = False
+    trigger_debug: bool = False
 
 
 def offline_capabilities(**kwargs):
