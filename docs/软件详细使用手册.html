@@ -93,6 +93,7 @@ main{margin:30px 32px 40px 322px;max-width:1120px;background:#fff;border:1px sol
 </li>
 <li><a href="#_27">软件模拟真实外部触发</a></li>
 <li><a href="#_28">固定低电平控制脚</a></li>
+<li><a href="#file-or-directory-fpython-does-not-exist">迁移后构建提示 File or Directory 'F:/python' does not exist</a></li>
 </ul>
 </div>
 </aside>
@@ -1386,4 +1387,8 @@ main{margin:30px 32px 40px 322px;max-width:1120px;background:#fff;border:1px sol
 <h2 id="_28">固定低电平控制脚</h2>
 <p>进入「板卡与连接 → 引脚配置」，在筛选框选择「固定低电平控制脚 · 2 路」。现有端口 <code>gnd0</code>、<code>gnd1</code> 已由 RTL 固定输出 0（等价于 <code>assign gnd0 = 1'b0;</code>），参考模板映射为 F15、F16；这两个名称是历史命名，实际是普通控制 IO，不是电源地。</p>
 <p>可编辑封装管脚和 IO 标准，保存板卡配置后查看 XDC 预览的 Constant-low control outputs 分组。程序检查与 DAC、触发、UART、USB 等管脚的重复分配。更换映射后重新生成工程、生成 BIT 并加载，不能只修改 XDC 就改变当前运行固件。未更换映射时，现有固件已经支持这两路低电平。</p>
-<p>此固定值在 FPGA 配置完成并进入用户模式后生效；加载前的上电电平不由该 assign 保证。若外设要求配置前也保持低电平，需要硬件下拉。控制脚的 IO 标准须与外设和对应 Bank 电压匹配。</p><footer><a class="top" href="#top">返回顶部 ↑</a>Ramp Studio · 本地离线文档；截图为演示状态。以设备实际能力和对应验证记录为准。</footer></main></body></html>
+<p>此固定值在 FPGA 配置完成并进入用户模式后生效；加载前的上电电平不由该 assign 保证。若外设要求配置前也保持低电平，需要硬件下拉。控制脚的 IO 标准须与外设和对应 Bank 电压匹配。</p>
+<h2 id="file-or-directory-fpython-does-not-exist">迁移后构建提示 File or Directory 'F:/python' does not exist</h2>
+<p>如果实际软件目录是 <code>F:\python GUI\Ramp_studio_v0</code>，错误却只显示 <code>F:/python</code>，这是旧版 Vivado Tcl 脚本把带空格的单个文件路径当成多个文件解析。Vivado 已启动，通常与 CH340、FTDI 或 JTAG 驱动无关；日志里的“ECHO 处于关闭状态”也不是这次构建停止的原因。</p>
+<p>使用修复版 EXE 后保留原 <code>user_data</code>，从软件重新生成一个新的工程。已有失败工程的 <code>_sources</code> 保存的是旧脚本，替换 EXE 不会自动改写这些旧快照。修复覆盖 XDC、上电方案顶层和 USB 接口顶层的文件导入。旧版本临时解决方法：关闭软件，把整个软件目录连同 <code>user_data</code> 移至不含空格的短目录，例如 <code>F:\RampStudio</code>，重新生成工程；如配置中另有绝对文件路径，应重新选择对应文件。</p>
+<p>工程生成通过仅说明源码、约束及 IP 导入成功，完整 BIT 仍需执行实现、时序和 DRC 检查。</p><footer><a class="top" href="#top">返回顶部 ↑</a>Ramp Studio · 本地离线文档；截图为演示状态。以设备实际能力和对应验证记录为准。</footer></main></body></html>

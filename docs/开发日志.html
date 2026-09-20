@@ -76,6 +76,7 @@ main{margin:30px 32px 40px 322px;max-width:1120px;background:#fff;border:1px sol
 <li><a href="#2026-09-20">2026-09-20 · 已布防波形直接触发修复</a></li>
 <li><a href="#2026-09-20_1">2026-09-20 · 已布防波形直接触发</a></li>
 <li><a href="#2026-09-20_2">2026-09-20 · 固定低电平控制脚入口</a></li>
+<li><a href="#2026-09-20-vivado">2026-09-20 · 迁移目录含空格时的 Vivado 导入修复</a></li>
 </ul>
 </div>
 </aside>
@@ -640,4 +641,7 @@ main{margin:30px 32px 40px 322px;max-width:1120px;background:#fff;border:1px sol
 <li>16 项专项测试通过；USB FIFO 实板使用用户高斯方案完成真实 GUI 的“先布防 → 高电平 → 低电平 → 返回重新布防”，配置标识不变。重新打包 EXE，加入已布防情况下的按钮及接管模块便携检查。无需重烧固件。</li>
 </ul>
 <h2 id="2026-09-20_2">2026-09-20 · 固定低电平控制脚入口</h2>
-<p>复用现有 gnd0/gnd1 常零输出，新增独立引脚筛选及 XDC 分组，明确普通控制 IO 与 GND 的区别；保持现有引脚和 RTL 行为。29 项板卡相关回归通过，界面筛选、XDC 映射和重复管脚拒绝检查通过。更新便携 EXE；未烧写板卡。</p><footer><a class="top" href="#top">返回顶部 ↑</a>Ramp Studio · 本地离线文档；截图为演示状态。以设备实际能力和对应验证记录为准。</footer></main></body></html>
+<p>复用现有 gnd0/gnd1 常零输出，新增独立引脚筛选及 XDC 分组，明确普通控制 IO 与 GND 的区别；保持现有引脚和 RTL 行为。29 项板卡相关回归通过，界面筛选、XDC 映射和重复管脚拒绝检查通过。更新便携 EXE；未烧写板卡。</p>
+<h2 id="2026-09-20-vivado">2026-09-20 · 迁移目录含空格时的 Vivado 导入修复</h2>
+<p>修复 add_files 单文件参数没有包装成 Tcl 列表，导致 F:/python GUI 被拆为 F:/python 的问题；覆盖 XDC、boot 顶层与 USB 顶层。真实 EXE/Vivado 验证目录改为含空格路径，防止仅检查软件可启动而漏掉构建流程。新增四种普通/boot/USB/组合路径回归，相关 62 项测试通过。</p>
+<p>修复版 EXE 三组验证通过：离屏迁移、Windows 迁移、含空格路径下真实 Vivado 2023.1 工程/IP 生成（差分参考、USB+UART、上电波形组合）。未执行完整实现或烧写。验证报告：本机构建目录 path_fix_validation.json。迁移后需重新生成工程，不复用旧失败源码快照。</p><footer><a class="top" href="#top">返回顶部 ↑</a>Ramp Studio · 本地离线文档；截图为演示状态。以设备实际能力和对应验证记录为准。</footer></main></body></html>

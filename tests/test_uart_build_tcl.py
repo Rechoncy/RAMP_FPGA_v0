@@ -34,6 +34,7 @@ def run_script(tmp_path, argc=16, baud='1000000', kind='single_ended', interface
     interp.setvar('argv', tuple(args[:argc]))
     interp.eval('''
         set recorded {}
+        set imported {}
         set created 0
         proc puts {args} {}
         proc exit {code} {error "script_exit:$code"}
@@ -44,7 +45,7 @@ def run_script(tmp_path, argc=16, baud='1000000', kind='single_ended', interface
         proc get_runs {args} {return impl_1}
         proc get_ips {args} {return clk_core_ip}
         proc get_files {args} {return memory_file}
-        proc add_files {args} {}
+        proc add_files {args} {lappend ::imported [lindex $args end]}
         proc create_ip {args} {}
         proc generate_target {args} {}
         proc update_compile_order {args} {}
@@ -105,3 +106,19 @@ def test_selected_core_frequency_and_optional_interface_arguments(tmp_path,core_
 def test_unsupported_output_frequency_rejected(tmp_path):
     status,created,_=run_script(tmp_path,core_mhz=150)
     assert 'Output rate' in status and created==0
+
+
+@pytest.mark.parametrize('boot,interfaces', [(False,False),(True,False),(False,True),(True,True)])
+def test_file_imports_preserve_space_paths(tmp_path, boot, interfaces):
+    folder=tmp_path/'python GUI'/'Ramp Studio'
+    folder.mkdir(parents=True)
+    status,created,_=run_script(folder,boot=boot,interfaces=interfaces)
+    assert status=='script_exit:0' and created==1
+    interp=tcl_interpreter()
+    paths=[str(path) for group in interp.getvar('imported') for path in interp.splitlist(group)]
+    assert (folder/'board.xdc').as_posix() in paths
+    if boot:
+        assert (folder/'boot'/'ramp_boot_top.v').as_posix() in paths
+        assert (folder/'boot'/'boot_dac0.mem').as_posix() in paths
+    if interfaces:
+        assert (folder/'interfaces'/'ramp_extended_top.v').as_posix() in paths

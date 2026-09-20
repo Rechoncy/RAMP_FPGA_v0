@@ -47,12 +47,14 @@ if {[catch {
  set_property STEPS.PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]
  add_files [glob [file join $root rtl/common/*.v]]
  add_files [glob [file join $root rtl/platform/xilinx_7series/*.v]]
- add_files -fileset constrs_1 [file normalize $xdc]
+ # Vivado interprets file arguments as Tcl lists, including a single path.
+ # Quoting by Tcl substitution alone does not protect spaces at that layer.
+ add_files -fileset constrs_1 [list [file normalize $xdc]]
  set_property top [expr {$clock_input eq "differential" ? "ramp_top_diff" : "ramp_top"}] [current_fileset]
  set_property generic "DAC_COUNT=$dac_count TRIGGER_COUNT=$trigger_count DAC_BITS=$dac_bits UART_BAUD=$uart_baud CORE_HZ=$core_hz" [current_fileset]
  if {$boot_dir ne ""} {
   set boot_dir [file normalize $boot_dir]
-  add_files [file join $boot_dir ramp_boot_top.v]
+  add_files [list [file join $boot_dir ramp_boot_top.v]]
   set boot_memory [glob [file join $boot_dir *.mem*]]
   add_files $boot_memory
   set_property file_type {Memory Initialization Files} [get_files $boot_memory]
@@ -60,7 +62,7 @@ if {[catch {
   set_property top ramp_boot_top [current_fileset]
  }
  if {$interfaces_dir ne ""} {
-  add_files [file join $interfaces_dir ramp_extended_top.v]
+  add_files [list [file join $interfaces_dir ramp_extended_top.v]]
   set_property generic {} [current_fileset]
   set_property top [expr {$boot_dir ne "" ? "ramp_boot_top" : "ramp_extended_top"}] [current_fileset]
   # Tcl flow control is not legal in an XDC reader. Run the constraint script

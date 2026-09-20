@@ -50,7 +50,7 @@ for index,location in enumerate((first,folder/'moved location')):
     result['runs'].append(check)
     print(f'PASS: {env["QT_QPA_PLATFORM"]}, relocated executable, profiles and 14-bit board',flush=True)
 if args.vivado:
-    location=folder/'vivado_check'; location.mkdir()
+    location=folder/'vivado check with spaces'; location.mkdir()
     shutil.copy2(original,location/original.name)
     env['QT_QPA_PLATFORM']='offscreen'
     env['RAMP_STUDIO_CHECK_VIVADO']=str(Path(args.vivado).resolve())
